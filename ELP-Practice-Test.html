@@ -916,7 +916,7 @@ function choiceText(c) { return c == null ? "(no answer)" : typeof c === "string
 
 /* ---------- audio: browser voices, chosen per speaker ---------- */
 let VOICES = [];
-function loadVoices() { if (!window.speechSynthesis) return; VOICES = speechSynthesis.getVoices().filter(v => /^en[-_]/i.test(v.lang)); fillVoicePickers(); }
+function loadVoices() { if (!window.speechSynthesis) return; VOICES = speechSynthesis.getVoices().filter(v => /^en[-_]/i.test(v.lang) && !/^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Junior|Ralph|Fred|Kathy|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i.test(v.name)); fillVoicePickers(); }
 const ROLES = { narrator: "Narrator", teacherF: "Teacher (woman)", teacherM: "Teacher (man)", student: "Student" };
 const PREF = {
   narrator: [/Google US English/i, /Aria.*Natural/i, /Jenny.*Natural/i, /Samantha/i, /Zira/i, /female/i],
