@@ -1,0 +1,45 @@
+ELP PRACTICE TEST (unofficial, in the style of WIDA ACCESS)
+==========================================================
+
+WHAT'S IN THIS FOLDER
+- ELP-Practice-Test.html  -> the test. Double-click it to open it in Google Chrome (or Microsoft Edge).
+- images/                 -> put the pictures here. The test works without them (it shows simple emoji pictures).
+- ELP-image-prompts.csv   -> one row per picture: the exact file name to use and an AI-image prompt.
+                             Priority 1 = big scene pictures (74). Priority 2 = small answer-choice pictures (65).
+
+SHARING WITH OTHER TEACHERS
+Share the WHOLE folder (zip it, or share it from Google Drive or OneDrive). Each teacher downloads it,
+unzips it, and opens ELP-Practice-Test.html in Chrome. Nothing needs to be installed and no account is needed.
+(If the HTML file is moved away from the images folder, the test still works but shows emoji pictures.)
+
+BEFORE TESTING (each computer)
+1. On the start page, open Teacher settings and click "Test the voices". Adjust the voice speed if needed.
+   "Choose voices" lets you pick the narrator, teacher, and student voices. Chrome's
+   "Google US English" and Edge's "Natural" voices sound best.
+2. Click "Test the microphone" and choose Allow.
+3. Students should use headphones. For Speaking, a headset with a microphone works best.
+
+DURING THE TEST
+- Order: Listening (12 questions), Reading (12), Speaking (4 tasks), Writing (2 tasks). About 30–35 minutes.
+- Listening and Reading stop early if a student misses all 3 questions in a part. This saves time for
+  beginning students.
+- Speaking records the student's voice so the teacher can listen later. Chrome also tries to turn the
+  speech into text. Note: Chrome's speech-to-text sends audio to Google to process it.
+
+AFTER THE TEST
+- The score report shows Listening, Reading, Speaking, and Writing levels (1.0–6.0) plus Oral Language,
+  Literacy, Comprehension, and Overall, with approximate scale scores.
+- For the most accurate Speaking and Writing scores, the teacher should use the rubric menus on the score report
+  (Linguistic complexity, Vocabulary usage, Language control). Until then, the built-in estimate is used.
+- Click "Download results (.csv)" to keep a copy. Results also stay in that browser on that computer
+  (start page -> Saved results -> Download all).
+
+ADDING PICTURES
+- Start page -> Teacher settings -> "Picture checklist & prompts" shows every picture, where it is used,
+  its prompt, and whether it has been added yet.
+- Save each picture as .png with the exact file name, inside the images folder.
+  Scenes: 4:3 landscape. Answer choices and portraits: square.
+
+IMPORTANT
+This is unofficial practice material written to the WIDA ELD Standards Framework (2020). It is not made or
+endorsed by WIDA. Scores are practice estimates and should not be used for placement or exit decisions.

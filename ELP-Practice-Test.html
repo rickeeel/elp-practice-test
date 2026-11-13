@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ELP Practice Test (WIDA ACCESS format)</title>
+<style>:root{--navy:#1f3864;--blue:#2a6ebb;--blue2:#4a90d9;--light:#e8f0fa;--line:#b9c7da;--bg:#f2f4f7;--text:#1b1b1b;--panel:#ffffff;--sel:#2a6ebb;--hl:#ffc0d9;}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;font-family:Arial,Helvetica,sans-serif;color:var(--text);background:var(--bg)}
+body.theme-gray{--bg:#cfd2d6;--panel:#e4e6e9;--text:#2d2d2d}
+body.theme-cream{--bg:#f4ecc8;--panel:#fbf6dc;--text:#000}
+body.theme-pink{--bg:#efd2d6;--panel:#fbe3e6;--text:#5a3418}
+body.theme-dark{--bg:#111;--panel:#1d1d1d;--text:#f2f2f2;--light:#26303f;--line:#555}
+button{font-family:inherit}
+.hidden{display:none!important}
+
+/* ---------- HOME ---------- */
+#home{max-width:980px;margin:0 auto;padding:28px 20px 60px}
+.brand{display:flex;align-items:center;gap:14px;margin-bottom:6px}
+.brand .logo{width:54px;height:54px;border-radius:12px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:22px}
+.brand h1{margin:0;font-size:26px;color:var(--navy)}
+body.theme-dark .brand h1{color:#9cc3ff}
+.sub{color:#555;margin:2px 0 18px}
+body.theme-dark .sub{color:#bbb}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin-bottom:16px}
+.card h2{margin:0 0 12px;font-size:18px;color:var(--navy)}
+body.theme-dark .card h2{color:#9cc3ff}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input[type=text]{font-size:16px;padding:9px 12px;border:1px solid var(--line);border-radius:6px;min-width:260px;background:var(--panel);color:var(--text)}
+.pill{border:2px solid var(--line);background:var(--panel);color:var(--text);border-radius:8px;padding:12px 18px;font-size:16px;cursor:pointer;min-width:120px}
+.pill:hover{border-color:var(--blue2)}
+.pill.on{border-color:var(--blue);background:var(--light);font-weight:bold}
+.pill small{display:block;font-weight:normal;color:#666;font-size:12px;margin-top:3px}
+.go{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:13px 30px;font-size:18px;cursor:pointer}
+.go:disabled{background:#9fb4cf;cursor:not-allowed}
+.go.sec{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+.note{font-size:13px;color:#555;line-height:1.45}
+body.theme-dark .note{color:#bbb}
+.disclaim{font-size:12.5px;color:#666;border-top:1px solid var(--line);padding-top:12px;margin-top:20px;line-height:1.5}
+.chk{display:flex;gap:8px;align-items:center;margin:6px 0;font-size:15px}
+.status-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;background:#bbb}
+.status-dot.ok{background:#2e9d4a}.status-dot.warn{background:#e0a100}
+
+/* ---------- TEST FRAME ---------- */
+#test{display:flex;flex-direction:column;height:100vh}
+.tophead{background:#fff;display:flex;align-items:center;justify-content:space-between;padding:6px 14px;border-bottom:1px solid #d6dbe3}
+body.theme-dark .tophead{background:#222}
+.tophead .who b{display:block;font-size:15px;color:var(--navy)}
+body.theme-dark .tophead .who b{color:#9cc3ff}
+.tophead .who span{font-size:12px;color:#666}
+.icons{display:flex;gap:8px}
+.icon{width:30px;height:30px;border-radius:50%;border:none;background:var(--blue);color:#fff;font-weight:bold;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center}
+.icon.x{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+.navbar{background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:5px 14px;font-size:13px}
+.prog{display:flex;align-items:center;gap:8px}
+.progbar{width:180px;height:14px;background:#fff;border-radius:2px;overflow:hidden}
+.progbar i{display:block;height:100%;background:var(--blue2);width:0;transition:width .3s}
+.toolbar{display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--bg)}
+.nextbtn{width:44px;height:40px;border-radius:4px;border:2px solid var(--blue);background:var(--blue);color:#fff;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.nextbtn:disabled{background:#d7dde6;border-color:#c3cad5;color:#8a96a8;cursor:not-allowed}
+.tool{width:40px;height:40px;border-radius:4px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:18px;position:relative}
+.tool.on{background:var(--light);border-color:var(--blue)}
+.tsep{width:14px}
+.clock{margin-left:auto;font-size:13px;color:#555}
+.menu{position:absolute;top:44px;left:0;background:#fff;border:1px solid var(--line);border-radius:4px;z-index:50;box-shadow:0 4px 12px rgba(0,0,0,.15);min-width:150px;text-align:left}
+.menu div{padding:9px 12px;cursor:pointer;font-size:14px;color:var(--blue)}
+.menu div:hover{background:var(--light)}
+.stagewrap{flex:1;overflow:auto;padding:0 14px 14px}
+.stage{background:var(--panel);border:1px solid var(--line);min-height:100%;padding:18px;transform-origin:0 0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media (max-width:820px){.cols{grid-template-columns:1fr}}
+.panel{border:1px solid var(--line);border-radius:4px;padding:16px;background:var(--panel)}
+.qnum{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:30px;border:2px solid var(--blue);color:var(--blue);font-weight:bold;border-radius:3px;margin-right:10px;padding:0 6px}
+.qtext{font-size:18px;line-height:1.45;display:flex;align-items:flex-start;margin-bottom:14px}
+.choices{display:flex;flex-direction:column;gap:10px}
+.choices.pics{flex-direction:row;flex-wrap:wrap}
+.choice{display:flex;align-items:center;gap:12px;border:2px solid var(--line);border-radius:4px;padding:12px 14px;cursor:pointer;background:var(--panel);font-size:17px;text-align:left;color:var(--text)}
+.choice:hover{border-color:var(--blue2)}
+.choice .radio{width:20px;height:20px;border:2px solid #777;border-radius:50%;flex:none}
+.choice.sel{border-color:var(--sel);background:var(--light)}
+.choice.sel .radio{border-color:var(--sel);background:radial-gradient(var(--sel) 45%,#fff 50%)}
+.choices.pics .choice{flex-direction:column;min-width:130px;flex:1;justify-content:center}
+.choice .cpic{font-size:52px;line-height:1.1}
+.choice .ctext{font-size:16px}
+.pic{background:linear-gradient(#eaf3ff,#f7fbff);border:1px solid var(--line);border-radius:4px;text-align:center;padding:20px 10px}
+body.theme-dark .pic{background:#26303f}
+.pic .emo{font-size:62px;letter-spacing:6px;line-height:1.3}
+.pic .cap{font-size:14px;color:#456;margin-top:8px}
+body.theme-dark .pic .cap{color:#ccd}
+.bigpic{font-size:120px;text-align:center;padding:20px}
+.passage{font-size:18px;line-height:1.65}
+.passage p{margin:0 0 12px}
+.passage .big{font-size:24px;line-height:1.7}
+.sign{border:3px solid #444;border-radius:6px;padding:16px;font-size:18px;line-height:1.7;text-align:center;background:#fffdf3;color:#222}
+.tbl{border-collapse:collapse;font-size:18px;margin:auto}
+.tbl th,.tbl td{border:1px solid #888;padding:8px 22px}
+.tbl th{background:var(--light)}
+mark{background:var(--hl);color:inherit}
+.playrow{display:flex;align-items:center;gap:12px;margin:6px 0 16px}
+.playbtn{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;border:none;border-radius:4px;padding:10px 18px;font-size:16px;cursor:pointer}
+.playbtn:disabled{background:#9fb4cf;cursor:default}
+.eq{display:inline-flex;gap:3px;height:18px;align-items:flex-end}
+.eq i{width:4px;background:var(--blue);animation:eq 0.9s infinite ease-in-out}
+.eq i:nth-child(2){animation-delay:.2s}.eq i:nth-child(3){animation-delay:.4s}
+@keyframes eq{0%,100%{height:4px}50%{height:18px}}
+.hint{font-size:13px;color:#667;margin-top:8px}
+body.theme-dark .hint{color:#aab}
+.scriptbox{background:#fff8e1;border:1px dashed #d4a800;padding:10px;font-size:14px;margin-top:10px;color:#333}
+.dirs{max-width:760px;margin:10px auto;font-size:18px;line-height:1.6}
+.dirs h2{color:var(--navy);margin-top:0}
+body.theme-dark .dirs h2{color:#9cc3ff}
+
+/* speaking */
+.people{display:flex;gap:14px;align-items:flex-start;margin:10px 0}
+.avatar{width:66px;height:66px;border-radius:8px;background:#dfe9f6;display:flex;align-items:center;justify-content:center;font-size:44px;flex:none;border:2px solid transparent}
+.avatar.talk{border-color:var(--blue);box-shadow:0 0 0 3px #bcd6f7}
+.bubble{background:var(--light);border-radius:8px;padding:10px 14px;font-size:17px;line-height:1.5;flex:1}
+.bubble .nm{font-size:12px;font-weight:bold;color:var(--blue);display:block;margin-bottom:2px}
+.recbox{border:1px solid var(--line);border-radius:6px;padding:14px;margin-top:12px;background:var(--panel)}
+.recbtn{background:var(--blue);color:#fff;border:none;border-radius:4px;padding:11px 20px;font-size:16px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.recbtn.stop{background:#c62828}
+.recbtn:disabled{background:#9fb4cf}
+.timebar{height:16px;background:#e3e8ef;border:1px solid var(--line);border-radius:3px;overflow:hidden;margin:12px 0 4px}
+.timebar i{display:block;height:100%;background:var(--blue2);width:0}
+.dot{width:12px;height:12px;border-radius:50%;background:#fff;display:inline-block}
+.recbtn.stop .dot{border-radius:2px;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.3}}
+textarea{width:100%;font-family:inherit;font-size:16px;line-height:1.5;padding:10px;border:1px solid var(--line);border-radius:4px;background:var(--panel);color:var(--text)}
+.writebox{min-height:300px}
+.partial{color:#888;font-style:italic}
+
+/* line guide */
+#lineguide{position:fixed;left:0;right:0;height:34px;top:300px;z-index:40;pointer-events:none}
+#lineguide.under{border-bottom:3px solid #1d63c9}
+#lineguide.gray{background:rgba(0,0,0,.12)}
+#lgHandle{position:fixed;right:24px;top:300px;z-index:41;width:38px;height:38px;border-radius:6px;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;cursor:grab;font-size:18px;user-select:none;touch-action:none}
+
+/* notepad */
+#notepad{position:fixed;right:30px;top:150px;width:300px;background:#fff;border:2px solid var(--navy);border-radius:4px;z-index:45;box-shadow:0 4px 16px rgba(0,0,0,.2)}
+#notepad .h{background:var(--navy);color:#fff;padding:5px 10px;font-size:13px;display:flex;justify-content:space-between;cursor:move}
+#notepad textarea{border:none;height:180px;border-radius:0}
+
+/* modal */
+.modalbg{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:100}
+.modal{background:#fff;color:#222;border-radius:8px;padding:22px 24px;max-width:460px;width:92%;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.modal h3{margin-top:0;color:var(--navy)}
+.modal .row{justify-content:flex-end;margin-top:16px}
+
+/* results */
+#results{max-width:1050px;margin:0 auto;padding:24px 20px 60px}
+.scoregrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}
+@media (max-width:760px){.scoregrid{grid-template-columns:repeat(2,1fr)}}
+.sc{border:1px solid var(--line);border-radius:8px;background:var(--panel);padding:14px;text-align:center}
+.sc .d{font-size:14px;color:#556;text-transform:uppercase;letter-spacing:.5px}
+.sc .v{font-size:40px;font-weight:bold;color:var(--navy);margin:4px 0}
+body.theme-dark .sc .v{color:#9cc3ff}
+.sc .l{font-size:14px;font-weight:bold}
+.sc .src{font-size:11.5px;color:#778;margin-top:6px}
+.lv1{color:#b23b3b}.lv2{color:#c4651b}.lv3{color:#a88a00}.lv4{color:#3a8a3a}.lv5{color:#1f6fb2}.lv6{color:#5a3fa8}
+.overall{display:flex;gap:16px;align-items:stretch;flex-wrap:wrap}
+.overall .big{flex:1;min-width:240px;background:var(--navy);color:#fff;border-radius:8px;padding:18px;text-align:center}
+.overall .big .v{font-size:56px;font-weight:bold}
+.overall .comps{flex:2;min-width:300px}
+table.rt{border-collapse:collapse;width:100%;font-size:14px;background:var(--panel)}
+table.rt th,table.rt td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+table.rt th{background:var(--light)}
+.ok{color:#2e7d32;font-weight:bold}.no{color:#c62828;font-weight:bold}
+.resp{white-space:pre-wrap;background:var(--bg);border-radius:4px;padding:8px;font-size:14px;max-height:180px;overflow:auto}
+.scale{position:relative;height:22px;background:linear-gradient(90deg,#f3d3d3,#f6dfc9,#f3ecc4,#d6ecd2,#cfe1f3,#ddd3f1);border-radius:4px;margin:6px 0 2px}
+.scale i{position:absolute;top:-4px;width:4px;height:30px;background:#111;border-radius:2px}
+.scalelbl{display:flex;justify-content:space-between;font-size:10.5px;color:#666}
+select{font-size:14px;padding:4px}
+.aibox{font-size:13px;background:#f1f6ff;border-left:3px solid var(--blue);padding:6px 9px;margin-top:6px;color:#223}
+/* v2 additions */
+.pic{position:relative}
+.pic img,.cimg img,.avatar img{display:none;max-width:100%;border-radius:3px}
+.pic.hasimg img,.cimg.hasimg img,.avatar.hasimg img{display:block;margin:auto}
+.pic.hasimg .emo,.cimg.hasimg .emo,.avatar.hasimg .emo{display:none}
+.pic.hasimg{padding:6px;background:#fff}
+.cimg{display:flex;align-items:center;justify-content:center;min-height:70px}
+.cimg img{max-height:130px}
+.choices.pics .choice .cimg .emo{font-size:52px}
+.choice .cimg .emo{font-size:40px}
+.avatar img{width:100%;height:100%;object-fit:cover;border-radius:6px}
+.avatar .emo{font-size:44px}
+.imgtable img{max-width:120px;max-height:90px}
+.imgtable .miss{color:#c62828;font-weight:bold}
+.imgtable .have{color:#2e7d32;font-weight:bold}
+.isr td.bar{width:42%}
+.ssbar{position:relative;height:18px;background:#eef2f7;border:1px solid var(--line);border-radius:3px}
+.ssbar i{position:absolute;top:0;bottom:0;left:0;background:var(--blue2);border-radius:2px}
+.ssbar span{position:absolute;right:6px;top:0;font-size:12px;line-height:18px;color:#123}
+.rub select{font-size:13px;margin:2px 0;max-width:100%}
+.rub label{display:block;font-size:12px;color:#445;margin-top:4px}
+.small{font-size:12px}
+</style>
+</head>
+<body>
+<!-- ================= HOME ================= -->
+<div id="home">
+  <div class="brand"><div class="logo">ELP</div><div><h1>English Language Proficiency Practice Test</h1></div></div>
+  <p class="sub">An unofficial practice test in the style of WIDA ACCESS Online · Listening · Reading · Speaking · Writing · Scores 1.0–6.0</p>
+
+  <div class="card"><h2>1. Student name</h2><input type="text" id="nm" placeholder="First name" autocomplete="off"></div>
+  <div class="card"><h2>2. Grade-level cluster</h2><div class="row" id="grades"></div></div>
+  <div class="card"><h2>3. What to take</h2><div class="row" id="dmode"></div></div>
+  <div class="card"><h2>4. Teacher settings</h2>
+    <div class="row" style="margin-bottom:8px"><button class="go sec" id="testAudio" style="font-size:15px;padding:8px 16px">🔊 Test the voices</button><button class="go sec" id="testMic" style="font-size:15px;padding:8px 16px">🎤 Test the microphone</button></div>
+    <div class="note" id="stAudio"></div><div class="note" id="micMsg"></div>
+    <label class="chk">Voice speed: <input type="range" id="rate" min="0.7" max="1.1" step="0.05" style="width:160px"> <span id="rateV"></span></label>
+    <details style="margin:6px 0"><summary class="note" style="cursor:pointer">Choose voices</summary><div id="voicePickers"></div></details>
+    <label class="chk"><input type="checkbox" id="rep"> Allow replaying audio (accommodation — the real test plays audio once)</label>
+    <div class="row" style="margin-top:10px"><button class="go sec" id="imgBtn" style="font-size:14px;padding:7px 14px">🖼 Picture checklist &amp; prompts</button><button class="go sec" id="histBtn" style="font-size:14px;padding:7px 14px">Saved results</button><span class="note" id="imgStatus"></span></div>
+  </div>
+  <p style="text-align:center"><button class="go" id="startBtn" disabled>Begin the Test</button></p>
+  <p class="disclaim">Unofficial practice material, written to the WIDA English Language Development Standards Framework (2020 Edition) and modeled on the ACCESS Online format. Not produced or endorsed by WIDA or DRC. Scores are practice estimates only. Works best in Google Chrome or Microsoft Edge. Use headphones; for Speaking, a headset with a microphone works best.</p>
+</div>
+
+<!-- ================= TEST ================= -->
+<div id="test" class="hidden">
+  <div class="tophead">
+    <div class="who"><b id="hdDomain">Listening</b><span id="hdName"></span></div>
+    <div class="icons"><button class="icon" id="help" title="Help">?</button><button class="icon" id="opt" title="Options" style="position:relative">⚙</button><button class="icon x" id="exit" title="Exit">✕</button></div>
+  </div>
+  <div class="navbar"><span id="navTitle"></span><span class="prog"><span id="progT">Progress: 0%</span><span class="progbar"><i id="progI"></i></span></span></div>
+  <div class="toolbar">
+    <button class="nextbtn" id="nextBtn" title="Next" disabled>➜</button><span class="tsep"></span>
+    <button class="tool" id="toolHL" title="Highlighter">🖍️</button>
+    <button class="tool" id="toolMag" title="Magnifier">🔍</button>
+    <button class="tool" id="toolLG" title="Line Guide">☰</button>
+    <button class="tool hidden" id="toolNotes" title="Notepad">🗒️</button>
+    <span class="clock" id="clock">Time: 0:00</span>
+  </div>
+  <div class="stagewrap" id="stagewrap"><div class="stage" id="stage"></div></div>
+</div>
+<div id="lineguide" class="hidden"></div><div id="lgHandle" class="hidden">⇕</div>
+<div id="notepad" class="hidden"><div class="h">Notepad <span id="npClose" style="cursor:pointer">✕</span></div><textarea placeholder="Plan your writing here. This is not scored."></textarea></div>
+
+<div id="imgcheck" class="hidden" style="max-width:1100px;margin:0 auto;padding:24px 20px 60px"></div>
+<!-- ================= RESULTS ================= -->
+<div id="results" class="hidden"></div>
+
+<script>// ===== TEST CONTENT (original items aligned to the WIDA ELD Standards Framework, 2020) =====
+// Listening & Reading: 4 thematic folders x 3 items, each item has a target level (lvl 1–6).
+// Pictures: {p: AI-image prompt, fb: emoji fallback shown until an image file is added}.
+// Image file names are assigned automatically (see the Image Checklist in the app).
+
+const STYLE = "Children's educational test illustration, flat cartoon style, bold clean black outlines, bright flat colors with light simple shading, realistic proportions, friendly diverse characters, simple uncluttered background, no text, no words, no letters, no logos";
+const STYLE_OBJ = "Simple flat cartoon illustration of a single object, bold clean black outlines, bright flat colors, centered on a plain pale-blue background, no text, no letters, square";
+
+const PEOPLE = {
+  teacherF: { p: "Head-and-shoulders portrait of a friendly smiling female teacher in her 30s, warm expression, wearing a cardigan, plain light background, realistic photo style, square", fb: "👩🏽‍🏫", file: "people-teacher-female.png" },
+  teacherM: { p: "Head-and-shoulders portrait of a friendly smiling male teacher in his 40s, wearing a collared shirt, plain light background, realistic photo style, square", fb: "👨🏾‍🏫", file: "people-teacher-male.png" },
+  student:  { p: "Head-and-shoulders portrait of a friendly smiling student wearing a headset with a microphone, plain light background, realistic photo style, square", fb: "🧒🏻", file: "people-student-sam.png" },
+};
+
+const TESTS = {
+/* =========================================================== GRADE 1 */
+g1: { label: "Grade 1",
+ listening: { folders: [
+  { title: "Our Class Garden", std: "ELD-SC.1.Inform", T: "f", tn: "Ms. Park",
+    pic: { p: "A first-grade teacher and three young students working in a small school garden with raised beds, sunflowers, a watering can, a caterpillar on a leaf, sunny day", fb: "🌻 🌱 🐛 ☀️", cap: "The class garden" },
+    intro: "Look at the big picture. It shows Ms. Park and her class in the school garden. Listen to what they say.",
+    items: [
+      { lvl: 1, lines: [["S", "Ms. Park, what is that?"], ["T", "That is a caterpillar. It is on the leaf."]], q: "Which picture shows the caterpillar?",
+        ch: [{ p: "a green caterpillar", fb: "🐛" }, { p: "a yellow flower", fb: "🌼" }, { p: "a red strawberry", fb: "🍓" }], ans: 0 },
+      { lvl: 2, lines: [["T", "Look, everyone. The seed is under the soil."]], q: "Which picture shows the seed under the soil?",
+        ch: [{ p: "cross-section of soil with one seed deep under the ground", fb: "svg:soil-under" }, { p: "one seed sitting on top of the soil", fb: "svg:soil-on" }, { p: "one seed lying on the ground next to a pile of soil", fb: "svg:soil-next" }], ans: 0 },
+      { lvl: 2, lines: [["T", "Please get the watering can. The plants need water."]], q: "What does Ms. Park want?",
+        ch: [{ p: "a green watering can", fb: "🚿" }, { p: "a small garden shovel", fb: "⛏️" }, { p: "a pair of garden gloves", fb: "🧤" }], ans: 0 },
+    ]},
+  { title: "Snack Time", std: "ELD-MA.1.Explain", T: "m", tn: "Mr. Lopez",
+    pic: { p: "Young students sitting at a classroom table eating a healthy snack of apples and crackers, a male teacher helping", fb: "🍎 🍪 🧃 🧒", cap: "Snack time" },
+    intro: "Look at the big picture. It shows Mr. Lopez and his class at snack time. Listen to what they say.",
+    items: [
+      { lvl: 2, lines: [["T", "Maria has three apples on her plate."]], q: "Which picture shows three apples?",
+        ch: [{ p: "two red apples on a plate", fb: "🍎🍎" }, { p: "three red apples on a plate", fb: "🍎🍎🍎" }, { p: "four red apples on a plate", fb: "🍎🍎🍎🍎" }], ans: 1 },
+      { lvl: 3, lines: [["T", "Sam has three crackers. Ana gives him two more crackers."]], q: "How many crackers does Sam have now?",
+        ch: [{ t: "4", fb: "🍪🍪🍪🍪" }, { t: "5", fb: "🍪🍪🍪🍪🍪" }, { t: "6", fb: "🍪🍪🍪🍪🍪🍪" }], ans: 1 },
+      { lvl: 3, lines: [["T", "There are five children at the table. Two children go to wash their hands."]], q: "How many children are at the table now?",
+        ch: [{ t: "2", fb: "🧒🧒" }, { t: "3", fb: "🧒🧒🧒" }, { t: "7", fb: "🧒🧒🧒🧒🧒🧒🧒" }], ans: 1 },
+    ]},
+  { title: "Weather Watch", std: "ELD-SC.1.Inform", T: "f", tn: "Ms. Park",
+    pic: { p: "First-grade classroom window showing rainy weather, a teacher pointing at a weather chart with sun, rain, and snow symbols, children watching", fb: "🌧️ 🌡️ 📋 🧥", cap: "The weather chart" },
+    intro: "Look at the big picture. Ms. Park's class is learning about the weather. Listen to what they say.",
+    items: [
+      { lvl: 3, lines: [["T", "Today the sky is gray. It is raining, so we will have recess inside."]], q: "Which picture shows today's weather?",
+        ch: [{ p: "bright sunny sky over a playground", fb: "☀️" }, { p: "gray clouds and rain over a playground", fb: "🌧️" }, { p: "snow falling over a playground", fb: "❄️" }], ans: 1 },
+      { lvl: 4, lines: [["S", "Ms. Park, why do I need my coat?"], ["T", "It is cold and windy today. Your coat will keep you warm."]], q: "Why does the boy need his coat?",
+        ch: [{ t: "to stay warm", p: "a child zipping up a warm coat", fb: "🧥" }, { t: "to play in the sun", p: "a child playing in bright sun", fb: "😎" }, { t: "to go swimming", p: "a child swimming in a pool", fb: "🏊" }], ans: 0 },
+      { lvl: 5, lines: [["T", "First, we look at the thermometer. Next, we write the temperature on our chart. Then, we draw a picture of the weather."]], q: "What do the students do last?",
+        ch: [{ t: "look at the thermometer", p: "a child looking at a thermometer", fb: "🌡️" }, { t: "write the temperature", p: "a child writing numbers on a chart", fb: "📝" }, { t: "draw the weather", p: "a child drawing a rain cloud with crayons", fb: "🖍️" }], ans: 2 },
+    ]},
+  { title: "How Plants Grow", std: "ELD-SC.1.Explain", T: "f", tn: "Ms. Park",
+    pic: { p: "A teacher showing young students a healthy potted plant and a wilted potted plant on a classroom windowsill, bees outside near flowers", fb: "🪴 🥀 🐝 🌸", cap: "Plants in our classroom" },
+    intro: "Look at the big picture. Ms. Park is teaching about plants. Listen to what she says.",
+    items: [
+      { lvl: 4, lines: [["T", "Plants need sun and water to grow. Ben forgot to water his plant for many days."]], q: "What happened to Ben's plant?",
+        ch: [{ p: "a wilted, drooping brown plant in a pot", fb: "🥀" }, { p: "a tall healthy plant with big yellow flowers", fb: "🌻" }, { p: "a plant with red apples", fb: "🍎" }], ans: 0 },
+      { lvl: 5, lines: [["T", "First, Lily dug a small hole. Next, she put a seed in the hole. Then, she covered the seed with soil."]], q: "What did Lily do last?",
+        ch: [{ t: "dug a hole", p: "a girl digging a small hole in soil", fb: "🕳️" }, { t: "put in a seed", p: "a girl dropping a seed into a hole", fb: "🫘" }, { t: "covered it with soil", p: "a girl patting soil over a seed", fb: "🟫" }], ans: 2 },
+      { lvl: 6, lines: [["T", "Some animals help gardens. Bees fly from flower to flower. They carry pollen, a yellow powder, that helps plants make fruit."]], q: "Why are bees important to the garden?",
+        ch: [{ t: "They help plants make fruit.", p: "a bee on a strawberry flower next to ripe strawberries", fb: "🐝🍓" }, { t: "They eat the leaves.", p: "a bee next to a leaf with holes", fb: "🐝🍃" }, { t: "They make the soil wet.", p: "a bee next to water drops on soil", fb: "🐝💧" }], ans: 0 },
+    ]},
+ ]},
+ reading: { readQuestions: true, folders: [
+  { title: "At School", std: "ELD-SI.1",
+    items: [
+      { lvl: 1, pic: { p: "a red book", fb: "📕", obj: 1 }, q: "Which word goes with the picture?", ch: ["book", "ball", "bag"], ans: 0 },
+      { lvl: 2, text: `<p class="big">Sam has a <b>red</b> ball.</p>`, q: "Which one is Sam's ball?",
+        ch: [{ p: "a blue ball", fb: "🔵" }, { p: "a red ball", fb: "🔴" }, { p: "a yellow ball", fb: "🟡" }], ans: 1 },
+      { lvl: 2, text: `<p class="big">Put your pencil in the cup.</p>`, q: "Which picture shows this?",
+        ch: [{ p: "a pencil standing in a cup on a desk", fb: "✏️🥤" }, { p: "a pencil inside a backpack", fb: "✏️🎒" }, { p: "a book next to a cup", fb: "📕🥤" }], ans: 0 },
+    ]},
+  { title: "A Rainy Day", std: "ELD-SC.1.Inform",
+    pic: { p: "A girl with boots and a yellow umbrella walking past puddles, a rainbow appearing in the sky", fb: "☔ 👢 🌈", cap: "Ana on a rainy day" },
+    items: [
+      { lvl: 3, text: `<p class="big">It is raining. Ana puts on her boots. She takes her umbrella.</p>`, q: "What does Ana take?",
+        ch: [{ t: "umbrella", p: "a yellow umbrella", fb: "☂️" }, { t: "sunglasses", p: "sunglasses", fb: "🕶️" }, { t: "gloves", p: "gloves", fb: "🧤" }], ans: 0 },
+      { lvl: 3, text: `<p class="big">The rain stops. The sun comes out. Ana sees a rainbow!</p>`, q: "What does Ana see?",
+        ch: [{ p: "a rainbow", fb: "🌈" }, { p: "a moon at night", fb: "🌙" }, { p: "a snowman", fb: "⛄" }], ans: 0 },
+      { lvl: 4, text: `<p class="big">There are puddles on the sidewalk. Ana jumps in a puddle. Her boots get wet, but her feet stay dry.</p>`, q: "Why do Ana's feet stay dry?",
+        ch: ["She wears boots.", "It is sunny.", "She stays inside."], ans: 0 },
+    ]},
+  { title: "Field Day", std: "ELD-LA.1.Narrate",
+    pic: { p: "Children running a race on a school field on Field Day, one boy helping a girl who fell get up, a blue ribbon", fb: "🏃 🏁 🎗️", cap: "Field Day" },
+    items: [
+      { lvl: 3, text: `<p class="big">Today is Field Day. Tom runs in a race. He runs very fast. Tom wins a blue ribbon!</p>`, q: "What does Tom win?", ch: ["a ball", "a ribbon", "a hat"], ans: 1 },
+      { lvl: 4, text: `<p class="big">Kim runs in the race, too. She falls down. Tom stops and helps her get up.</p>`, q: "Who helps Kim?", ch: ["Tom", "the teacher", "Kim's mom"], ans: 0 },
+      { lvl: 5, text: `<p class="big">At the end of the day, Tom gives his ribbon to Kim. "You were brave," he says. Kim smiles.</p>`, q: "Why does Tom give Kim his ribbon?",
+        ch: ["He thinks Kim was brave.", "He does not like ribbons.", "Kim won the race."], ans: 0 },
+    ]},
+  { title: "Growing and Changing", std: "ELD-SC.1.Explain",
+    items: [
+      { lvl: 5, pic: { p: "Life cycle of a frog: eggs in a pond, tadpole, froglet, adult frog, arranged left to right", fb: "🥚 ➜ 🐟 ➜ 🐸", cap: "A frog grows" },
+        text: `<p class="big">Frogs start as eggs in a pond. The eggs hatch into tadpoles. Tadpoles have tails and swim. Later, they grow legs and become frogs.</p>`, q: "What comes after the eggs?", ch: ["frogs", "tadpoles", "ponds"], ans: 1 },
+      { lvl: 6, pic: { p: "Life cycle of a butterfly: caterpillar eating a leaf, green chrysalis hanging from a twig, butterfly", fb: "🐛 ➜ 🫛 ➜ 🦋", cap: "A butterfly grows" },
+        text: `<p class="big">A caterpillar eats leaves and grows bigger. Then it makes a chrysalis. Inside the chrysalis, it changes. Two weeks later, a butterfly comes out!</p>`, q: "What happens inside the chrysalis?",
+        ch: ["The caterpillar changes into a butterfly.", "The caterpillar eats more leaves.", "The butterfly lays eggs."], ans: 0 },
+      { lvl: 6, pic: { p: "A girl putting a new trash can next to playground swings with a hand-made sign taped to it", fb: "🗑️ 🛝 🪧", cap: "Mia helps her school" },
+        text: `<p class="big">Mia wanted to help her school. Every day, she saw paper on the playground. She made a sign that said, "Keep our school clean!" She put a new trash can by the swings. Now the playground is clean.</p>`, q: "Why did Mia make a sign?",
+        ch: ["to ask kids to keep the school clean", "to tell kids about a party", "to find her lost paper"], ans: 0 },
+    ]},
+ ]},
+ speaking: { title: "My School Day", T: "f", tn: "Ms. Park", tasks: [
+   { lvl: 1, cap: 3, std: "ELD-SI.1", secs: 25, pic: { p: "Classroom supplies on a desk: books, pencils, a backpack, crayons, scissors", fb: "📚 ✏️ 🎒 🖍️ ✂️" },
+     intro: "This is a desk in a classroom. Here are some things students use at school.", model: { q: "Sam, what is this?", a: "It is a pencil." },
+     q: "Now it's your turn. What are two other things you see in the picture?" },
+   { lvl: 2, cap: 3, std: "ELD-SI.1", secs: 25, pic: { p: "Children at recess on a playground: one on a slide, two playing ball, one on a swing", fb: "🛝 ⚽ 🧒 🌳" },
+     intro: "This picture shows children at recess.", q: "What are the children doing?" },
+   { lvl: 3, cap: 4, std: "ELD-SC.1.Inform", secs: 30, pic: { p: "Three panels showing a sunny day, a rainy day, and a snowy day with children dressed for each", fb: "☀️ 🌧️ ❄️" },
+     intro: "These pictures show different kinds of weather.", q: "Tell me about the weather today where you live. What do you wear when it is cold?" },
+   { lvl: 5, cap: 6, std: "ELD-LA.1.Narrate", secs: 45, pic: { p: "Three-panel story: a dog runs away from a boy in a park; the boy looks sad and searches behind a tree; the boy happily hugs the dog", fb: "🐕💨 ➜ 🧒🔎 ➜ 🧒🐕❤️" },
+     intro: "These pictures tell a story. A boy has a dog. The dog runs away. The boy looks for his dog.", q: "Tell me the whole story. What happened first, next, and last? How did the boy feel?" },
+ ]},
+ writing: { title: "All About Me", tasks: [
+   { cap: 4, w: 0.4, std: "ELD-SI.1", pic: { p: "A school lunch tray with an apple, a sandwich, a carton of milk, and a banana", fb: "🍎 🥪 🥛 🍌" },
+     prompt: "Look at the picture. Write words or a sentence about what you see.", starter: "Example: <i>apple</i>", target: 10 },
+   { cap: 6, w: 0.6, std: "ELD-LA.1.Inform", pic: { p: "A cat, a dog, a rabbit, a turtle, and a parrot sitting together in a friendly group", fb: "🐱 🐶 🐰 🐢 🦜" },
+     prompt: "Write about your favorite animal. What does it look like? What can it do?", starter: "You can use: <i>My favorite animal is ___. It has ___. It can ___. I like it because ___.</i>", target: 30 },
+ ]}
+},
+
+/* =========================================================== GRADES 2–3 */
+g23: { label: "Grades 2–3",
+ listening: { folders: [
+  { title: "The Weather Station", std: "ELD-SC.2-3.Inform", T: "m", tn: "Mr. Diaz",
+    pic: { p: "Elementary students and a male teacher at a school weather station with a thermometer, rain gauge, wind sock, and clipboard, cloudy windy day", fb: "🌡️ 🌥️ 💨 📋", cap: "The school weather station" },
+    intro: "Look at the big picture. Mr. Diaz's class has a weather station at school. Listen to what they say.",
+    items: [
+      { lvl: 1, lines: [["T", "This is a thermometer. It tells us how hot or cold it is."]], q: "Which picture shows a thermometer?",
+        ch: [{ p: "an umbrella", fb: "☂️" }, { p: "an outdoor thermometer", fb: "🌡️" }, { p: "a compass", fb: "🧭" }], ans: 1 },
+      { lvl: 2, lines: [["S", "Mr. Diaz, what is the weather today?"], ["T", "Today it is cloudy and windy."]], q: "Which picture shows today's weather?",
+        ch: [{ p: "a sunny sky", fb: "☀️" }, { p: "clouds with wind blowing trees", fb: "🌥️💨" }, { p: "falling snow", fb: "❄️" }], ans: 1 },
+      { lvl: 3, lines: [["T", "We measured the rain every day. On Monday there were two centimeters of rain. On Tuesday there were four centimeters."]], q: "Which day had more rain?",
+        ch: ["Monday", "Tuesday", "They had the same."], ans: 1 },
+    ]},
+  { title: "Measuring Our Classroom", std: "ELD-MA.2-3.Explain", T: "f", tn: "Ms. Grant",
+    pic: { p: "Second-grade students measuring a desk and a bookshelf with rulers and a measuring tape in a classroom", fb: "📏 📐 🪑 📚", cap: "Measuring in class" },
+    intro: "Look at the big picture. Ms. Grant's class is measuring things in the classroom. Listen to what they say.",
+    items: [
+      { lvl: 2, lines: [["T", "Please use your ruler to measure your pencil."]], q: "What should the students use?",
+        ch: [{ p: "a wooden ruler", fb: "📏" }, { p: "a clock", fb: "🕒" }, { p: "a scale for weighing", fb: "⚖️" }], ans: 0 },
+      { lvl: 3, lines: [["S", "My desk is sixty centimeters long."], ["S", "My desk is seventy centimeters long."], ["T", "Good! Lucas, your desk is the longer one."]], q: "How long is Lucas's desk?",
+        ch: ["60 centimeters", "70 centimeters", "130 centimeters"], ans: 1 },
+      { lvl: 4, lines: [["T", "The bookshelf has three shelves. Each shelf holds ten books. We want to know how many books fit on the whole bookshelf."]], q: "How many books fit on the bookshelf?",
+        ch: ["13", "30", "10"], ans: 1 },
+    ]},
+  { title: "Community Helpers", std: "ELD-SS.2-3.Inform", T: "m", tn: "Mr. Diaz",
+    pic: { p: "A town street with a firefighter, a mail carrier, a librarian, and a weather reporter in front of a TV camera", fb: "🚒 📬 📚 📺", cap: "People who help our community" },
+    intro: "Look at the big picture. Mr. Diaz is teaching about people who help the community. Listen to what he says.",
+    items: [
+      { lvl: 3, lines: [["T", "A mail carrier brings letters and packages to our homes."]], q: "What does a mail carrier do?",
+        ch: ["puts out fires", "brings letters and packages", "checks out library books"], ans: 1 },
+      { lvl: 4, lines: [["T", "When the air gets very cold, rain can turn into snow. Snow falls when the temperature is below zero degrees Celsius."]], q: "When does snow fall?",
+        ch: ["when it is very hot", "when it is below zero degrees Celsius", "when the wind stops"], ans: 1 },
+      { lvl: 5, lines: [["T", "Weather reporters help their communities. When a big storm is coming, they warn people so families can get ready. Families might buy water, find flashlights, and stay inside."]], q: "How do weather reporters help communities?",
+        ch: ["They stop storms from coming.", "They tell people to get ready for storms.", "They sell water and flashlights."], ans: 1 },
+    ]},
+  { title: "The Ice Cube Test", std: "ELD-SC.2-3.Explain", T: "f", tn: "Ms. Grant",
+    pic: { p: "Students at a table with three ice cubes wrapped in aluminum foil, cloth, and newspaper, a timer, and a science notebook", fb: "🧊 🧣 📰 ⏲️", cap: "A science investigation" },
+    intro: "Look at the big picture. Ms. Grant's class is doing a science investigation. Listen to what they say.",
+    items: [
+      { lvl: 4, lines: [["T", "We want to find out which material keeps ice frozen the longest. We will wrap ice cubes in foil, in cloth, and in newspaper."]], q: "What do the students want to find out?",
+        ch: ["which material keeps ice frozen longest", "how to make ice cubes", "which material is the softest"], ans: 0 },
+      { lvl: 5, lines: [["S", "It has been one hour. The ice in the cloth is the biggest!"], ["T", "Yes. The ice in the foil and the newspaper melted more."]], q: "What happened after one hour?",
+        ch: ["All the ice melted the same.", "The ice in the cloth melted the least.", "The ice in the foil was the biggest."], ans: 1 },
+      { lvl: 6, lines: [["T", "So the cloth kept the warm air away from the ice better than the other materials. If we wanted to keep our lunch cold, what could we learn from this?"]], q: "What did the class learn?",
+        ch: ["Cloth can help keep things cold.", "Foil is the best way to melt ice.", "Newspaper keeps food warm."], ans: 0 },
+    ]},
+ ]},
+ reading: { folders: [
+  { title: "Around Town", std: "ELD-SI.2-3",
+    items: [
+      { lvl: 1, pic: { p: "a red fire truck", fb: "🚒", obj: 1 }, q: "Which words go with the picture?", ch: ["fire truck", "school bus", "bicycle"], ans: 0 },
+      { lvl: 2, text: `<div class="sign"><b>CITY LIBRARY</b><br>Open: Monday – Friday, 9:00 – 5:00<br>Closed: Saturday and Sunday</div>`, q: "When is the library closed?",
+        ch: ["Monday and Tuesday", "Saturday and Sunday", "every day at 9:00"], ans: 1 },
+      { lvl: 3, pic: { p: "A veterinarian gently bandaging the paw of a dog on an exam table", fb: "👩🏻‍⚕️🐕", cap: "Dr. Kim at work" },
+        text: `<p>Dr. Kim is a vet. She takes care of sick animals. Today she helped a dog with a hurt paw.</p>`, q: "Who does Dr. Kim help?", ch: ["children", "animals", "teachers"], ans: 1 },
+    ]},
+  { title: "The Class Pet", std: "ELD-LA.2-3.Narrate",
+    pic: { p: "Elementary students gathered around a hamster cage in a classroom, one student holding a small bag of food", fb: "🐹 🏫 🥕", cap: "The class hamster" },
+    items: [
+      { lvl: 3, text: `<p>Our class has a hamster named Peanut. Every morning, one student gives Peanut food and fresh water.</p>`, q: "What does a student do every morning?", ch: ["cleans the classroom", "feeds the hamster", "takes the hamster home"], ans: 1 },
+      { lvl: 4, text: `<p>On Friday, it was Rosa's turn to take Peanut home for the weekend. She carried the cage carefully to the car. She wanted Peanut to feel safe.</p>`, q: "Why did Rosa carry the cage carefully?", ch: ["The cage was very heavy.", "She wanted Peanut to feel safe.", "She was late for the car."], ans: 1 },
+      { lvl: 5, text: `<p>On Monday, Rosa told the class, "Peanut slept all day and ran on his wheel all night!" The students laughed. Mr. Lee explained that hamsters are nocturnal, which means they are awake at night.</p>`, q: "What does <i>nocturnal</i> mean?", ch: ["awake at night", "sleepy all the time", "afraid of people"], ans: 0 },
+    ]},
+  { title: "Desert Life", std: "ELD-SC.2-3.Explain",
+    pic: { p: "A sunny desert with tall cactus plants, sand, and a small fennec fox resting in the shade of a rock", fb: "🌵 ☀️ 🦊", cap: "The desert" },
+    items: [
+      { lvl: 4, text: `<p>A desert gets very little rain. Cactus plants store water in their thick stems. Many desert animals, like the fennec fox, sleep during the hot day. They come out at night when it is cooler.</p>`, q: "Why do some desert animals come out at night?",
+        ch: ["because they are looking for rain", "because it is cooler at night", "because cactus plants are open at night"], ans: 1 },
+      { lvl: 5, text: `<p>The fennec fox has very large ears. Its ears help it hear small animals moving under the sand. Its big ears also let heat leave its body, which helps it stay cool.</p>`, q: "What are TWO ways big ears help the fennec fox?",
+        ch: ["They help it hear and stay cool.", "They help it dig and swim.", "They help it see and jump."], ans: 0 },
+      { lvl: 6, text: `<p>Beavers are sometimes called "nature's engineers." They cut down trees with their strong teeth. Then they use the branches and mud to build dams across streams. A dam slows the water and makes a pond. The pond gives fish, frogs, and birds a new place to live.</p>`, q: "Why are beavers called \"nature's engineers\"?",
+        ch: ["They have very strong teeth.", "They build things that change the land and water.", "They live in ponds with fish and frogs."], ans: 1 },
+    ]},
+  { title: "Friends", std: "ELD-LA.2-3.Narrate",
+    pic: { p: "A boy sitting alone on a school bench, writing a letter, looking a little sad, other children playing in the background", fb: "🧒✉️ 🪑", cap: "Carlos writes a letter" },
+    items: [
+      { lvl: 4, text: `<p>Carlos stared at the empty bench where his friend Jamal used to sit. Jamal's family had moved to another city last week.</p>`, q: "Why is the bench empty?", ch: ["Jamal is sick today.", "Jamal moved away.", "Jamal is playing soccer."], ans: 1 },
+      { lvl: 5, text: `<p>Carlos picked up his pencil and began a letter: "Dear Jamal, recess is not the same without you..."</p>`, q: "How does Carlos feel?", ch: ["He misses his friend.", "He is angry at Jamal.", "He is excited about recess."], ans: 0 },
+      { lvl: 6, text: `<p>A week later, a letter arrived for Carlos. Inside was a drawing of two boys on a bench, and a note: "Write back soon. Your friend always, Jamal." Carlos taped the drawing above his desk.</p>`, q: "What does the end of the story show?",
+        ch: ["The boys will stay friends even when they are far apart.", "Jamal is moving back to Carlos's city.", "Carlos does not like drawing."], ans: 0 },
+    ]},
+ ]},
+ speaking: { title: "Our Neighborhood", T: "m", tn: "Mr. Diaz", tasks: [
+   { lvl: 1, cap: 3, std: "ELD-SS.2-3", secs: 25, pic: { p: "A neighborhood scene with a school, a hospital, a grocery store, a park with trees, and a bus", fb: "🏫 🏥 🏪 🌳 🚌" },
+     intro: "This picture shows a neighborhood. There are many places in a neighborhood.", model: { q: "Sam, what is this building?", a: "It is a school." },
+     q: "Now it's your turn. What other places do you see in the picture?" },
+   { lvl: 3, cap: 4, std: "ELD-SI.2-3", secs: 35, pic: { p: "Children and families at a playground, a basketball court, a library, and a grocery store in one neighborhood", fb: "🛝 🏀 📚 🛒" },
+     intro: "People go to many places in their neighborhood.", q: "Tell me about a place you like to go in your neighborhood. What do you do there?" },
+   { lvl: 4, cap: 5, std: "ELD-SS.2-3.Explain", secs: 40, pic: { p: "A firefighter talking to a class of children next to a fire truck", fb: "👩‍🚒 🚒 🧒🧒" },
+     intro: "Firefighters, doctors, teachers, and bus drivers all help their communities.", q: "Choose one community helper. Explain what that person does and why the job is important." },
+   { lvl: 5, cap: 6, std: "ELD-SS.2-3.Argue", secs: 50, pic: { p: "Split picture: on the left a new park with a playground, on the right a new library with books", fb: "🌳🛝  or  🏛️📚" },
+     intro: "Your town has money to build one new thing. It can build a new park or a new library.", q: "Which one should the town build? Tell me why. Give reasons." },
+ ]},
+ writing: { title: "Our Class", tasks: [
+   { cap: 4, w: 0.4, std: "ELD-SI.2-3", pic: { p: "Children at recess: one kicking a soccer ball, one jumping rope, one on a slide, a teacher watching", fb: "🧒⚽ 👧🪢 🧒🛝" },
+     prompt: "Look at the picture. Write 2 or 3 sentences about what the children are doing.", target: 25 },
+   { cap: 6, w: 0.6, std: "ELD-LA.2-3.Argue", pic: { p: "A classroom table with a fishbowl with a goldfish on one side and a hamster in a cage on the other side", fb: "🐠  or  🐹" },
+     prompt: "Your class is choosing a class pet: a fish or a hamster. Write to your teacher. Which pet should your class get? Give reasons why.", target: 60 },
+ ]}
+},
+
+/* =========================================================== GRADES 4–5 */
+g45: { label: "Grades 4–5",
+ listening: { folders: [
+  { title: "Getting Ready for the Field Trip", std: "ELD-SI.4-5", T: "f", tn: "Ms. Okafor",
+    pic: { p: "A fourth-grade classroom where a teacher points to a map of a river on the whiteboard, students packing backpacks with water bottles and notebooks", fb: "🗺️ 🎒 🧴 📓", cap: "Planning the field trip" },
+    intro: "Look at the big picture. Ms. Okafor's class is getting ready for a field trip to the river. Listen to what they say.",
+    items: [
+      { lvl: 1, lines: [["T", "This is a map. It shows the path along the river."]], q: "Which picture shows a map?",
+        ch: [{ p: "a compass", fb: "🧭" }, { p: "a ruler", fb: "📏" }, { p: "a folded paper map", fb: "🗺️" }], ans: 2 },
+      { lvl: 2, lines: [["S", "Ms. Okafor, when are we going to the river?"], ["T", "We will go on Tuesday morning."]], q: "When is the field trip?",
+        ch: ["Tuesday morning", "Tuesday afternoon", "Thursday morning"], ans: 0 },
+      { lvl: 3, lines: [["T", "Please bring a water bottle, a notebook, and a pencil. You do not need to bring money."]], q: "What should the students NOT bring?",
+        ch: ["a water bottle", "money", "a notebook"], ans: 1 },
+    ]},
+  { title: "The Water Cycle", std: "ELD-SC.4-5.Explain", T: "f", tn: "Ms. Okafor",
+    pic: { p: "Water cycle diagram drawn as a landscape: sun heating a river, arrows of water vapor rising to clouds, rain falling on mountains, water flowing back to the river", fb: "☀️ 💧 ☁️ 🌧️", cap: "The water cycle" },
+    intro: "Look at the big picture. It shows the water cycle. Listen to Ms. Okafor.",
+    items: [
+      { lvl: 3, lines: [["T", "The sun heats the water in the river. Some of the water turns into a gas called water vapor and rises into the air. This is called evaporation."]], q: "What is evaporation?",
+        ch: ["when water falls from clouds", "when water turns into a gas and rises", "when water freezes into ice"], ans: 1 },
+      { lvl: 4, lines: [["T", "High in the sky, the air is cold. The water vapor cools down and turns back into tiny drops of water. The drops come together to make clouds. This is called condensation."]], q: "What happens during condensation?",
+        ch: ["Water vapor cools and forms clouds.", "Rain falls on the ground.", "The sun heats the river."], ans: 0 },
+      { lvl: 5, lines: [["S", "So the rain that falls today might be the same water that was in the river last week?"], ["T", "Exactly. The water moves in a cycle. It is used again and again."]], q: "What does the teacher mean when she says the water moves in a cycle?",
+        ch: ["Water is used over and over again.", "Water only moves in rivers.", "Rain is different from river water."], ans: 0 },
+    ]},
+  { title: "On the Trail", std: "ELD-MA.4-5.Explain", T: "m", tn: "the park guide",
+    pic: { p: "A park ranger guide leading fourth graders on a trail next to a river, a trail sign with a map, trees along the riverbank", fb: "🥾 🏞️ 🪧 🌳", cap: "The river trail" },
+    intro: "Look at the big picture. A park guide is talking to the class on the river trail. Listen to what he says.",
+    items: [
+      { lvl: 4, lines: [["T", "This trail is three kilometers long. We will stop to eat lunch halfway along the trail."]], q: "After how many kilometers will the class eat lunch?",
+        ch: ["1.5 kilometers", "3 kilometers", "6 kilometers"], ans: 0 },
+      { lvl: 5, lines: [["T", "Long ago, many towns were built next to rivers. People used rivers to get drinking water, to grow crops, and to move goods by boat. Over time, many of these towns grew into big cities."]], q: "Why were many towns built next to rivers?",
+        ch: ["Rivers kept the towns safe from storms.", "Rivers gave people water, food, and a way to travel.", "People liked to swim in the rivers."], ans: 1 },
+      { lvl: 6, lines: [["T", "The trees along the riverbank are important. Their roots hold the soil in place. Without trees, heavy rain washes soil into the river. This makes the water muddy and harms the fish, which need clear water to find food."]], q: "According to the guide, what happens if the trees are cut down?",
+        ch: ["The roots grow bigger.", "Soil washes into the river and harms the fish.", "The river becomes clearer."], ans: 1 },
+    ]},
+  { title: "Back in Class", std: "ELD-LA.4-5.Argue", T: "f", tn: "Ms. Okafor",
+    pic: { p: "Two fourth-grade students presenting a poster about protecting rivers to their class, with drawings of trees, fish, and a recycling bin", fb: "🧑‍🏫 🪧 🐟 ♻️", cap: "Student presentations" },
+    intro: "Look at the big picture. Two students are presenting their ideas to the class. Listen to what they say.",
+    items: [
+      { lvl: 4, lines: [["S", "We think our school should plant trees near the stream behind the playground. The trees will keep the soil from washing away."]], q: "What do the students want the school to do?",
+        ch: ["clean the playground", "plant trees near the stream", "build a new bridge"], ans: 1 },
+      { lvl: 5, lines: [["S", "Some people say trees cost too much money. But a local garden store said it would donate ten young trees to our school for free."]], q: "Why do the students talk about the garden store?",
+        ch: ["to answer the worry about cost", "to tell where to buy flowers", "to explain how trees grow"], ans: 0 },
+      { lvl: 6, lines: [["T", "That's a strong argument. You stated your claim, you gave a reason, and you answered a possible objection with evidence. What could make it even stronger?"], ["S", "Maybe we could show data about how much soil washes into the stream now."]], q: "How does the student suggest making the argument stronger?",
+        ch: ["by adding data as evidence", "by speaking more loudly", "by choosing a different topic"], ans: 0 },
+    ]},
+ ]},
+ reading: { folders: [
+  { title: "Great Inventions", std: "ELD-SS.4-5",
+    items: [
+      { lvl: 1, pic: { p: "a glowing lightbulb", fb: "💡", obj: 1 }, q: "Which word goes with the picture?", ch: ["lightbulb", "telephone", "wheel"], ans: 0 },
+      { lvl: 2, text: `<table class="tbl"><tr><th>Invention</th><th>Year</th></tr><tr><td>Telephone</td><td>1876</td></tr><tr><td>Lightbulb</td><td>1879</td></tr><tr><td>Airplane</td><td>1903</td></tr></table>`, q: "Which invention came first?", ch: ["telephone", "lightbulb", "airplane"], ans: 0 },
+      { lvl: 3, pic: { p: "An early 1900s car in the snow with a woman watching the driver wipe snow off the windshield by hand", fb: "🚗❄️", cap: "Driving in 1903" },
+        text: `<p>Mary Anderson saw that drivers had to open their windows to clean snow off the glass. This was cold and dangerous. In 1903, she invented the windshield wiper.</p>`, q: "What problem did Mary Anderson solve?",
+        ch: ["Cars were too slow.", "Drivers could not clean their windows easily.", "Roads had too much snow."], ans: 1 },
+    ]},
+  { title: "Inventors Who Solved Problems", std: "ELD-LA.4-5.Inform",
+    pic: { p: "A young boy in 1820s France at a wooden desk, feeling raised dots on paper with his fingertips", fb: "✋ ⠃⠗⠁⠊⠇⠇⠑", cap: "Louis Braille" },
+    items: [
+      { lvl: 4, text: `<p>Louis Braille lost his sight when he was a child. At his school, books for blind students used large raised letters. These books were heavy and very slow to read. When he was 15, Louis created a system of raised dots that readers could feel quickly with their fingertips.</p>`, q: "Why did Louis Braille create his system of dots?",
+        ch: ["Raised-letter books were too slow to read.", "He wanted to write music.", "His teacher asked him to make a game."], ans: 0 },
+      { lvl: 4, text: `<p>Today, braille is used all over the world. You can find it on elevator buttons, on medicine boxes, and on signs in public buildings.</p>`, q: "What is the main idea of this paragraph?",
+        ch: ["Braille is used in many places today.", "Elevators have many buttons.", "Medicine boxes are hard to open."], ans: 0 },
+      { lvl: 5, text: `<p>Some inventions happen by accident. In 1945, engineer Percy Spencer was testing a machine that made microwaves for radar. He noticed that a chocolate bar in his pocket had melted. Curious, he placed popcorn kernels near the machine. They popped! His discovery led to the microwave oven.</p>`, q: "Which word best describes Percy Spencer in this story?",
+        ch: ["careless", "curious", "angry", "hungry"], ans: 1 },
+    ]},
+  { title: "Fractions at the Bake Sale", std: "ELD-MA.4-5.Explain",
+    pic: { p: "Fourth graders at a school bake sale table with a pie cut into eight slices, cookies, and a price sign shape with no words", fb: "🥧 🍪 💵", cap: "The bake sale" },
+    items: [
+      { lvl: 3, text: `<p>The class baked a pie and cut it into 8 equal slices. They sold 3 slices in the first hour.</p>`, q: "What fraction of the pie did they sell in the first hour?", ch: ["3/8", "3/5", "5/8", "8/3"], ans: 0 },
+      { lvl: 4, text: `<p>By the end of the day, they had sold 6 of the 8 slices. Jada said, "We sold three-fourths of the pie!" Leo said, "No, we sold six-eighths." Their teacher said they were both right.</p>`, q: "Why were Jada and Leo both right?",
+        ch: ["6/8 and 3/4 are equivalent fractions.", "They counted different pies.", "3/4 is larger than 6/8."], ans: 0 },
+      { lvl: 6, text: `<p>The class wants to earn $60 for a new class library. They earned $36 at the bake sale. Next week, they plan to sell lemonade for $2 a cup. Maya says they need to sell at least 12 cups to reach their goal.</p>`, q: "Is Maya's plan correct?",
+        ch: ["Yes, because $60 − $36 = $24, and 12 cups × $2 = $24.", "No, because they need to sell 30 cups.", "No, because they already reached their goal.", "Yes, because 12 + 36 = 48."], ans: 0 },
+    ]},
+  { title: "Screens or Paper?", std: "ELD-LA.4-5.Argue",
+    pic: { p: "A student at a desk with a tablet in one hand and a stack of paper textbooks on the other side, thinking", fb: "📱 📚 🤔", cap: "Tablets or textbooks?" },
+    items: [
+      { lvl: 5, text: `<p>Some people believe students should use tablets instead of paper textbooks. Tablets are lighter than a backpack full of books, and one tablet can hold hundreds of titles.</p>`, q: "Which reason supports using tablets?", ch: ["Tablets are lighter than many books.", "Paper books never break.", "Tablets need to be charged."], ans: 0 },
+      { lvl: 6, text: `<p>However, critics point out that screens can strain the eyes, and not every family has internet at home to download materials. Schools must weigh these benefits against the costs.</p>`, q: "What is the author's main purpose in the whole passage?",
+        ch: ["to explain both sides of an issue", "to convince schools to buy tablets", "to describe how tablets are made", "to tell a story about a student"], ans: 0 },
+      { lvl: 6, text: `<p>Schools must <b>weigh</b> these benefits against the costs.</p>`, q: "In this sentence, what does <i>weigh</i> mean?", ch: ["compare carefully", "measure how heavy", "buy more", "write down"], ans: 0 },
+    ]},
+ ]},
+ speaking: { title: "The Science Fair", T: "f", tn: "Ms. Okafor", tasks: [
+   { lvl: 1, cap: 3, std: "ELD-SC.4-5", secs: 25, pic: { p: "A school science fair with tables showing a microscope, test tubes, a model volcano, a bar graph poster, and magnets", fb: "🔬 🧪 🌋 📊 🧲" },
+     intro: "This picture shows things at a school science fair.", model: { q: "Sam, what is this?", a: "It's a microscope." }, q: "Now it's your turn. What other things do you see at the science fair?" },
+   { lvl: 3, cap: 4, std: "ELD-SC.4-5.Explain", secs: 40, pic: { p: "Two potted plants side by side: one on a sunny windowsill, one inside a dark closet", fb: "🪴☀️   🪴🌑" },
+     intro: "A student did a project about plants. She put one plant in the sunlight. She put another plant in a dark closet for two weeks.", q: "What do you think happened to each plant? Tell me why." },
+   { lvl: 4, cap: 5, std: "ELD-SC.4-5.Explain", secs: 45, pic: { p: "A student presenting a magnet experiment at a science fair table, paper clips sticking to a magnet", fb: "🧲 📎 🧑‍🔬" },
+     intro: "This student tested which objects stick to a magnet. Paper clips and nails stuck to the magnet. A plastic spoon and a pencil did not.", q: "Explain what the student found out. Why do you think some objects stuck to the magnet and others did not?" },
+   { lvl: 5, cap: 6, std: "ELD-SC.4-5.Explain", secs: 60, pic: { p: "A student thinking at a desk with a science notebook, question marks and small sketches of experiments around her", fb: "🤔 🧪 📝" },
+     intro: "Now imagine you are doing a science fair project.", q: "What question would you study? Explain how you would do your experiment, step by step, and what you think you would find out." },
+ ]},
+ writing: { title: "How Plants Grow", tasks: [
+   { cap: 4, w: 0.4, std: "ELD-SC.4-5.Inform", pic: { p: "Four-panel sequence of a bean plant growing: seed in soil, sprout, young plant with leaves, plant with a flower", fb: "🫘 ➜ 🌱 ➜ 🌿 ➜ 🌻", cap: "1. seed  2. sprout  3. young plant  4. flower" },
+     prompt: "Look at the pictures. They show how a seed becomes a plant. Write 3 to 5 sentences that describe each stage.", target: 45 },
+   { cap: 6, w: 0.6, std: "ELD-LA.4-5.Argue", pic: { p: "Split picture: students playing at recess on one side, students eating lunch in a cafeteria on the other side, a clock above", fb: "⚽⏰  or  🍎⏰" },
+     prompt: "Your school is deciding between a longer recess and a longer lunch. Write a letter to your principal. Explain which one you think is better. Give reasons and examples.", target: 90 },
+ ]}
+},
+
+/* =========================================================== GRADES 6–8 */
+g68: { label: "Grades 6–8",
+ listening: { folders: [
+  { title: "Project Day", std: "ELD-SI.6-8", T: "m", tn: "Mr. Hassan",
+    pic: { p: "Middle school students working in groups on science and history poster projects in a classroom, a volcano model and a map of a canal on the tables", fb: "🌋 🗺️ 🪧 👥", cap: "Project day" },
+    intro: "Look at the big picture. Mr. Hassan's students are working on projects. Listen to what they say.",
+    items: [
+      { lvl: 1, lines: [["S", "Look at our model. It is a volcano."]], q: "Which picture shows a volcano?",
+        ch: [{ p: "a snowy mountain", fb: "🏔️" }, { p: "a small island", fb: "🏝️" }, { p: "an erupting volcano", fb: "🌋" }], ans: 2 },
+      { lvl: 2, lines: [["T", "Attention, everyone. You will present your projects in the library at two o'clock."]], q: "Where will the class present their projects?", ch: ["in the gym", "in the library", "in the cafeteria"], ans: 1 },
+      { lvl: 3, lines: [["S", "Mr. Hassan, can we use the computers to make our slides?"], ["T", "Yes, but please finish your research first. Then you can make your slides."]], q: "What should the students do first?", ch: ["make slides", "finish their research", "go to the library"], ans: 1 },
+    ]},
+  { title: "Ratios in the Kitchen", std: "ELD-MA.6-8.Explain", T: "f", tn: "Ms. Chen",
+    pic: { p: "Middle school students in a family-and-consumer-science kitchen classroom measuring flour and sugar with measuring cups, cookie trays", fb: "🥣 🍪 📏 👩‍🍳", cap: "Cooking class" },
+    intro: "Look at the big picture. Ms. Chen's class is using math in the kitchen. Listen to what they say.",
+    items: [
+      { lvl: 3, lines: [["T", "This recipe uses two cups of flour to make twelve cookies. Ana wants to make twenty-four cookies."]], q: "How many cups of flour does Ana need?", ch: ["2 cups", "4 cups", "6 cups"], ans: 1 },
+      { lvl: 4, lines: [["T", "The ratio of sugar to flour in this recipe is one to two. That means for every one cup of sugar, we use two cups of flour."]], q: "If the class uses 3 cups of sugar, how much flour do they need?", ch: ["2 cups", "5 cups", "6 cups"], ans: 2 },
+      { lvl: 5, lines: [["S", "Ms. Chen, the recipe says the cookies bake for twelve minutes, but ours are still soft."], ["T", "Our oven runs a little cool. Let's add a few minutes and check them again. Recipes are a guide, but cooks have to observe and adjust."]], q: "What is Ms. Chen's main point?", ch: ["Cooks should observe and adjust.", "The recipe is always wrong.", "Soft cookies are better."], ans: 0 },
+    ]},
+  { title: "Ecosystems", std: "ELD-SC.6-8.Explain", T: "f", tn: "Dr. Rivera",
+    pic: { p: "A forest and meadow ecosystem with grass, oak trees, a rabbit, a deer, a fox, and arrows showing a food chain", fb: "🌿 🐇 🦊 🦌", cap: "A food web" },
+    intro: "Look at the big picture. Dr. Rivera is teaching about ecosystems. Listen to what she says.",
+    items: [
+      { lvl: 4, lines: [["T", "In an ecosystem, producers, like plants, make their own food using sunlight. Consumers, like rabbits, must eat other living things to get energy."]], q: "Which of these is a consumer?", ch: ["grass", "a deer", "an oak tree"], ans: 1 },
+      { lvl: 5, lines: [["T", "Imagine that a disease kills most of the foxes in this forest. Foxes eat rabbits. With fewer foxes, the rabbit population grows quickly, and the rabbits eat more and more of the grass."]], q: "According to Dr. Rivera, what happens when the foxes disappear?",
+        ch: ["The rabbits eat more grass.", "The grass grows taller.", "The rabbits get sick, too."], ans: 0 },
+      { lvl: 6, lines: [["T", "Scientists have noticed that many coral reefs are turning white. This is called bleaching. When ocean water becomes too warm, corals push out the tiny algae that live inside them. Because these algae provide most of the coral's food and its color, the coral can starve if the water stays warm for too long."]], q: "Why can bleaching be deadly for coral?",
+        ch: ["White coral attracts more predators.", "The coral loses its main source of food.", "The algae grow too quickly and cover the coral."], ans: 1 },
+    ]},
+  { title: "The Erie Canal", std: "ELD-SS.6-8.Explain", T: "m", tn: "Mr. Hassan",
+    pic: { p: "Historical scene from the 1830s: a mule pulling a wooden canal boat loaded with barrels along the Erie Canal, workers and a small town", fb: "🚢 🐴 📦 🏘️", cap: "The Erie Canal, 1830s" },
+    intro: "Look at the big picture. It shows the Erie Canal long ago. Listen to Mr. Hassan.",
+    items: [
+      { lvl: 4, lines: [["T", "In 1825, the Erie Canal opened. It was a long, human-made waterway that connected the Great Lakes to the Hudson River in New York."]], q: "What was the Erie Canal?", ch: ["a railroad", "a human-made waterway", "a large lake"], ans: 1 },
+      { lvl: 5, lines: [["T", "Before the canal, shipping goods from Buffalo to New York City took weeks and was very expensive. After the canal opened, shipping costs dropped by about ninety percent, and New York City became a major trading port."]], q: "What was one effect of the Erie Canal?",
+        ch: ["Shipping goods became much cheaper.", "The Great Lakes became smaller.", "Buffalo became the largest city."], ans: 0 },
+      { lvl: 6, lines: [["S", "If shipping was so much cheaper, did that help farmers in the Midwest too?"], ["T", "Good inference. Yes. Farmers could now sell their wheat in eastern cities and even overseas, so many more people moved west to start farms."]], q: "Why did more people move west after the canal opened?",
+        ch: ["They could sell their crops in more places.", "The canal flooded eastern cities.", "Land in the east became free."], ans: 0 },
+    ]},
+ ]},
+ reading: { folders: [
+  { title: "School Life", std: "ELD-SI.6-8",
+    items: [
+      { lvl: 1, pic: { p: "a red horseshoe magnet", fb: "🧲", obj: 1 }, q: "Which word goes with the picture?", ch: ["magnet", "battery", "compass"], ans: 0 },
+      { lvl: 2, text: `<div class="sign"><b>AFTER-SCHOOL CLUBS</b><br>Robotics – Mon. & Wed. – Room 104<br>Art – Tuesday – Room 210<br>Chess – Thursday – Library</div>`, q: "Where does the Chess Club meet?", ch: ["Room 104", "Room 210", "the library"], ans: 2 },
+      { lvl: 3, pic: { p: "A nervous middle school boy holding a trumpet on a school stage, taking a deep breath, audience in seats", fb: "🎺 🎭", cap: "The school concert" },
+        text: `<p>Ravi practiced his trumpet every evening for the school concert. On the night of the show, his hands shook as he walked onto the stage. Then he took a deep breath and played his solo perfectly.</p>`, q: "How did Ravi feel before he played?", ch: ["nervous", "bored", "angry"], ans: 0 },
+    ]},
+  { title: "Sea Turtles", std: "ELD-SC.6-8.Explain",
+    pic: { p: "Baby sea turtles hatching on a beach at night, moonlight on the ocean, bright hotel lights in the background", fb: "🐢 🌙 🏨 🌊", cap: "Hatchlings on the beach" },
+    items: [
+      { lvl: 4, text: `<p>Sea turtles lay their eggs on beaches. When the babies hatch at night, they find the ocean by moving toward the brightest light, which is usually the moon shining on the water.</p>`, q: "How do baby sea turtles find the ocean?", ch: ["They follow the sound of waves.", "They move toward the brightest light.", "Their mothers lead them.", "They smell the salt water."], ans: 1 },
+      { lvl: 5, text: `<p>Today, bright lights from hotels and streets can confuse the hatchlings and lead them away from the sea. Many beach towns now require "turtle-safe" lights that are dim, low to the ground, and red or amber in color.</p>`, q: "Why do some towns require turtle-safe lights?",
+        ch: ["to help hatchlings reach the ocean", "to save money on electricity", "to keep tourists away from the beach", "to help turtles lay more eggs"], ans: 0 },
+      { lvl: 6, text: `<p>Volunteers who monitor one Florida beach found that after the town switched to turtle-safe lighting, the share of hatchlings that wandered inland fell from 40 percent to under 5 percent.</p>`, q: "How does this paragraph support the passage?",
+        ch: ["It gives data showing the lights work.", "It explains how turtles lay eggs.", "It argues that volunteers are needed.", "It describes a different animal."], ans: 0 },
+    ]},
+  { title: "The Garden Club", std: "ELD-MA.6-8.Explain",
+    pic: { p: "Middle school garden club picking tomatoes and peppers in a school garden, baskets of vegetables", fb: "🍅 🫑 🧺", cap: "The garden club" },
+    items: [
+      { lvl: 4, text: `<p>The garden club planted 4 rows of tomatoes. Each row had 6 plants.</p>`, q: "How many tomato plants did the club plant?", ch: ["10", "24", "46", "64"], ans: 1 },
+      { lvl: 5, text: `<p>The club kept track of its harvest. For every 3 tomatoes the club picked, it picked 1 pepper. By the end of the summer, the club had picked 24 tomatoes.</p>`, q: "How many peppers did the club pick?", ch: ["6", "8", "21", "72"], ans: 1 },
+      { lvl: 6, text: `<p>The club sold its vegetables at a farmers market. It earned $45 in June and $60 in July. A member said, "Our sales increased by about 33 percent."</p>`, q: "Is the member's statement accurate?",
+        ch: ["Yes, because $15 is about 33% of $45.", "No, because $15 is 15% of $60.", "No, sales went down.", "Yes, because $60 is 33% more than $105."], ans: 0 },
+    ]},
+  { title: "Should School Start Later?", std: "ELD-LA.6-8.Argue",
+    pic: { p: "A sleepy middle school student yawning at a bus stop before sunrise with an alarm clock showing early morning", fb: "🥱 🚌 ⏰", cap: "An early morning" },
+    items: [
+      { lvl: 5, text: `<p>(1) Should middle schools start later in the morning? (2) Sleep scientists have found that teenagers' internal clocks shift during puberty, making it difficult for them to fall asleep before 11 p.m. (3) Consequently, early start times can leave students tired.</p>`, q: "What does <i>consequently</i> show in sentence 3?", ch: ["a result", "a contrast", "an example", "a question"], ans: 0 },
+      { lvl: 6, text: `<p>(4) Opponents argue that later start times would disrupt bus schedules and after-school activities. (5) Nevertheless, several districts that delayed their start times reported improved attendance and higher grades.</p>`, q: "Which sentence gives the strongest evidence that later start times can help students?", ch: ["Sentence 2", "Sentence 3", "Sentence 4", "Sentence 5"], ans: 3 },
+      { lvl: 6, text: `<p>Reread sentences 4 and 5.</p>`, q: "Why does the author include sentence 4?",
+        ch: ["to acknowledge an opposing view before responding to it", "to prove that later start times are a bad idea", "to describe how buses work", "to change the topic of the passage"], ans: 0 },
+    ]},
+ ]},
+ speaking: { title: "Community Clean-Up Day", T: "m", tn: "Mr. Hassan", tasks: [
+   { lvl: 1, cap: 3, std: "ELD-SS.6-8", secs: 25, pic: { p: "Clean-up supplies on a park table: recycling bin, trash bags, work gloves, a broom, a rake", fb: "♻️ 🗑️ 🧤 🧹" },
+     intro: "This picture shows things students use on Community Clean-Up Day.", model: { q: "Sam, what is this?", a: "It's a recycling bin." }, q: "Now it's your turn. What other things do you see in the picture?" },
+   { lvl: 3, cap: 4, std: "ELD-SS.6-8.Inform", secs: 40, pic: { p: "Middle school volunteers in gloves picking up litter and planting flowers in a city park", fb: "🧑‍🤝‍🧑🧤🗑️ 🌳" },
+     intro: "These students are volunteering at a park in their town.", q: "Tell me what the students are doing. How does their work help the community?" },
+   { lvl: 4, cap: 5, std: "ELD-SC.6-8.Explain", secs: 45, pic: { p: "A storm drain on a city street with litter around it, and a stream behind with a plastic bottle floating", fb: "🕳️ 🥤 🌊" },
+     intro: "Trash on the street can be washed into storm drains when it rains. Many storm drains carry water directly to streams and rivers.", q: "Explain how trash on a street can harm animals that live in a river." },
+   { lvl: 5, cap: 6, std: "ELD-SS.6-8.Argue", secs: 60, pic: { p: "High school graduation cap next to a volunteer t-shirt and a question mark", fb: "🎓 ❓ 🤝" },
+     intro: "Some people think all students should have to do community service before they can graduate.", q: "Do you agree or disagree? Explain your opinion with reasons and examples." },
+ ]},
+ writing: { title: "School Life", tasks: [
+   { cap: 4, w: 0.35, std: "ELD-LA.6-8.Narrate", pic: { p: "Four-panel comic with no words: 1) a student at a locker realizes their lunch is missing, looks worried; 2) the student at a cafeteria table with no food; 3) a friend shares half a sandwich; 4) both students laughing together", fb: "1 🎒😟   2 🍱❌   3 🧑‍🤝‍🧑🥪   4 😊" },
+     prompt: "The pictures show a story: a student forgets lunch, and a friend helps. Write 3 to 5 sentences telling the story from beginning to end.", target: 60 },
+   { cap: 6, w: 0.65, std: "ELD-LA.6-8.Argue", pic: { p: "A cell phone with a red prohibition circle over it in front of a middle school hallway with lockers", fb: "📱🚫🏫" },
+     prompt: "Your school is thinking about banning cell phones during the school day. Write an essay to your principal. State your opinion, support it with reasons and examples, and respond to people who disagree.", target: 130 },
+ ]}
+},
+
+/* =========================================================== GRADES 9–12 */
+g912: { label: "Grades 9–12",
+ listening: { folders: [
+  { title: "Announcements", std: "ELD-SI.9-12", T: "f", tn: "the principal",
+    pic: { p: "A busy high school hallway with students at lockers, a bulletin board with flyers, and a speaker on the wall", fb: "🏫 📢 🎒", cap: "Morning announcements" },
+    intro: "Look at the big picture. Listen to the morning announcements at a high school.",
+    items: [
+      { lvl: 1, lines: [["T", "Science students, please bring your microscope slides to the lab today."]], q: "Which picture shows a microscope?",
+        ch: [{ p: "a telescope", fb: "🔭" }, { p: "a microscope", fb: "🔬" }, { p: "a test tube", fb: "🧪" }], ans: 1 },
+      { lvl: 2, lines: [["T", "Attention, students. The college fair will be on Friday in the gym from six to eight p.m."]], q: "What time does the college fair start?", ch: ["6:00 p.m.", "8:00 p.m.", "Friday morning"], ans: 0 },
+      { lvl: 3, lines: [["T", "Students who want to join the soccer team must turn in a signed permission form and a physical exam form to Coach Ellis by Wednesday."]], q: "What must students give to Coach Ellis?", ch: ["two forms", "a soccer ball", "money for uniforms"], ans: 0 },
+    ]},
+  { title: "Math for Life", std: "ELD-MA.9-12.Explain", T: "m", tn: "Mr. Novak",
+    pic: { p: "High school students in a math class comparing two phone plan charts on a whiteboard, calculators on desks", fb: "📱 📈 🧮", cap: "Comparing phone plans" },
+    intro: "Look at the big picture. Mr. Novak's class is comparing phone plans. Listen to what they say.",
+    items: [
+      { lvl: 3, lines: [["T", "Plan A costs twenty-five dollars a month, plus five dollars for each gigabyte of data. Elena used three gigabytes this month."]], q: "How much did Elena pay?", ch: ["$30", "$40", "$75"], ans: 1 },
+      { lvl: 4, lines: [["T", "Plan B costs forty-five dollars a month for unlimited data."], ["S", "So if I use five gigabytes, Plan A would cost fifty dollars, and Plan B would cost forty-five."]], q: "Which plan is cheaper for someone who uses five gigabytes?", ch: ["Plan A", "Plan B", "They cost the same."], ans: 1 },
+      { lvl: 5, lines: [["T", "Let's find the break-even point. That's the amount of data where both plans cost exactly the same. Twenty-five plus five times x equals forty-five."], ["S", "So x equals four. At four gigabytes, both plans cost forty-five dollars."]], q: "What is a break-even point?",
+        ch: ["the point where both plans cost the same", "the cheapest plan available", "the most data a person can use"], ans: 0 },
+    ]},
+  { title: "Chemistry and Biology", std: "ELD-SC.9-12.Explain", T: "f", tn: "Dr. Mensah",
+    pic: { p: "High school biology lab with a teacher at the front, a rusty iron nail in a beaker, petri dishes with bacteria colonies, safety goggles", fb: "🧫 🔩 🥽 🧬", cap: "Science lab" },
+    intro: "Look at the big picture. Dr. Mensah is teaching a science lesson. Listen to what she says.",
+    items: [
+      { lvl: 4, lines: [["T", "In a chemical change, a new substance is formed. For example, when iron rusts, it combines with oxygen to make iron oxide. In a physical change, like ice melting, the substance stays the same."]], q: "Which of these is a chemical change?", ch: ["wood burning", "ice melting", "paper being cut"], ans: 0 },
+      { lvl: 5, lines: [["S", "Dr. Mensah, why does the nail in salt water rust faster than the nail in fresh water?"], ["T", "Salt water conducts electricity better, which speeds up the reaction between iron and oxygen."]], q: "Why does the nail in salt water rust faster?",
+        ch: ["Salt water speeds up the reaction.", "Fresh water has no oxygen.", "Salt water is colder."], ans: 0 },
+      { lvl: 6, lines: [["T", "Antibiotics kill most bacteria, but a few may survive because of random genetic differences. If a patient stops taking the medicine too early, those surviving bacteria can multiply. Over time, the population becomes dominated by resistant bacteria, making infections much harder to treat. It is natural selection happening on a timescale we can actually observe."]], q: "What does Dr. Mensah suggest about stopping antibiotics early?",
+        ch: ["It can help resistant bacteria spread.", "It makes all bacteria weaker.", "It has no effect on bacteria."], ans: 0 },
+    ]},
+  { title: "The Great Migration", std: "ELD-SS.9-12.Explain", T: "m", tn: "Mr. Novak",
+    pic: { p: "Historical 1920s scene of African American families with suitcases boarding a northbound train at a rural Southern station", fb: "🚂 🧳 🏙️", cap: "Moving north, 1920s" },
+    intro: "Look at the big picture. Mr. Novak is giving a short history lecture. Listen to what he says.",
+    items: [
+      { lvl: 4, lines: [["T", "Between 1910 and 1970, about six million African Americans moved from the rural South to cities in the North and West. Historians call this the Great Migration."]], q: "About how many people moved during the Great Migration?", ch: ["six thousand", "six hundred thousand", "six million"], ans: 2 },
+      { lvl: 5, lines: [["T", "Many were seeking factory jobs and escaping unfair laws. This shift reshaped the culture and politics of cities such as Chicago, Detroit, and New York."]], q: "Which statement best summarizes the lecture so far?",
+        ch: ["Millions moved north and west for opportunity, which changed American cities.", "Factories in the South needed more workers after 1910.", "Chicago was the largest city in the United States."], ans: 0 },
+      { lvl: 6, lines: [["S", "Is that why jazz and blues became so popular in northern cities?"], ["T", "That's an insightful connection. Migrants brought musical traditions with them, and new audiences, clubs, and record companies in the North helped those styles spread nationally."]], q: "What connection does the student make?",
+        ch: ["The migration helped spread music like jazz and blues.", "Jazz caused people to move north.", "Record companies paid for train tickets."], ans: 0 },
+    ]},
+ ]},
+ reading: { folders: [
+  { title: "Getting a Job", std: "ELD-SI.9-12",
+    items: [
+      { lvl: 1, pic: { p: "a stethoscope", fb: "🩺", obj: 1 }, q: "Which word goes with the picture?", ch: ["stethoscope", "bandage", "thermometer"], ans: 0 },
+      { lvl: 2, text: `<div class="sign"><b>HELP WANTED: CASHIER</b><br>Part-time, weekends only<br>Must be 16 or older<br>Apply in person at Green Market, 45 Main St.</div>`, q: "How can someone apply for this job?", ch: ["by calling the store", "by going to the store", "by sending an email"], ans: 1 },
+      { lvl: 3, pic: { p: "A teenage girl volunteering at a food bank, sorting canned food into boxes", fb: "🥫 📦 🤝", cap: "Volunteering" },
+        text: `<p>Lena volunteers at a food bank every Saturday. She sorts cans and boxes, and she helps families carry groceries to their cars. She says the work makes her feel connected to her community.</p>`, q: "Why does Lena like volunteering?", ch: ["She gets free groceries.", "She feels connected to her community.", "She wants to drive a car."], ans: 1 },
+    ]},
+  { title: "Photosynthesis", std: "ELD-SC.9-12.Explain",
+    pic: { p: "Labeled-style diagram without words of a plant leaf absorbing sunlight, carbon dioxide arrows entering, water rising from roots, oxygen arrows leaving", fb: "☀️ 🍃 💨 💧", cap: "Photosynthesis" },
+    items: [
+      { lvl: 4, text: `<p>During photosynthesis, plants absorb carbon dioxide from the air and water from the soil. Using energy from sunlight, they convert these ingredients into glucose, a sugar that the plant uses for energy. Oxygen is released as a by-product.</p>`, q: "According to the passage, what is a by-product of photosynthesis?", ch: ["carbon dioxide", "glucose", "oxygen", "water"], ans: 2 },
+      { lvl: 5, text: `<p>Scientists measured photosynthesis in two groups of identical plants. Group A received 12 hours of light per day; Group B received 6 hours. After three weeks, Group A had grown nearly twice as tall.</p>`, q: "What is the variable being tested in this experiment?", ch: ["the type of plant", "the amount of light", "the height of the plants", "the length of the experiment"], ans: 1 },
+      { lvl: 6, text: `<p>Because forests absorb large amounts of carbon dioxide, some scientists describe them as "carbon sinks." When forests are cleared, not only is this absorption lost, but the carbon stored in the trees is often released back into the atmosphere.</p>`, q: "Based on the passage, why is clearing forests a double problem?",
+        ch: ["Less CO₂ is absorbed and more is released.", "Trees grow back too slowly to be useful.", "Forests produce too much oxygen.", "Cleared land cannot be farmed."], ans: 0 },
+    ]},
+  { title: "The Loom", std: "ELD-LA.9-12.Narrate",
+    pic: { p: "An elderly grandmother weaving colorful threads on a wooden loom while her teenage granddaughter watches beside a packed suitcase", fb: "🧶 👵 🧳", cap: "Grandmother's loom" },
+    items: [
+      { lvl: 4, text: `<p>Grandmother's hands moved across the loom the way water moves over stones—without hurry, without hesitation.</p>`, q: "What does the comparison to water tell us about Grandmother's weaving?", ch: ["It is smooth and calm.", "It is wet and messy.", "It is loud and fast.", "It is difficult for her."], ans: 0 },
+      { lvl: 5, text: `<p>I had watched her weave for years, but only now, as I packed for college, did I notice how each thread depended on the one beside it.</p>`, q: "What does the narrator most likely realize?",
+        ch: ["that weaving is faster than it looks", "that people, like threads, depend on each other", "that she wants to study weaving in college", "that her grandmother's loom is broken"], ans: 1 },
+      { lvl: 6, text: `<p>The night before I left, she cut a narrow strip from the edge of the blanket and tied it around my wrist. "So you remember where your thread begins," she said.</p>`, q: "What does the strip of cloth most likely symbolize?", ch: ["the narrator's family and roots", "the narrator's need for new clothes", "a mistake in the blanket", "the narrator's college major"], ans: 0 },
+    ]},
+  { title: "A Four-Day School Week?", std: "ELD-LA.9-12.Argue",
+    pic: { p: "A calendar page with Monday to Thursday highlighted and Friday crossed out, a school bus and a worried parent in the background", fb: "🗓️ 🚌 🤔", cap: "A four-day week" },
+    items: [
+      { lvl: 5, text: `<p>Supporters of a four-day school week point to lower transportation costs and better teacher retention.</p>`, q: "What does <i>teacher retention</i> most likely mean?", ch: ["keeping teachers in their jobs", "hiring new teachers", "testing teachers", "paying teachers less"], ans: 0 },
+      { lvl: 6, text: `<p>Yet these savings may be illusory: districts that adopted the model often lengthened each remaining school day, and families without flexible work schedules were left scrambling for childcare on the fifth day.</p>`, q: "The author uses the word \"illusory\" to suggest that the savings", ch: ["are larger than people expected", "may not be as real as they appear", "will benefit families the most", "are easy to measure"], ans: 1 },
+      { lvl: 6, text: `<p>Before embracing the policy, districts should ask who ultimately bears its hidden costs.</p>`, q: "What is the author's overall position?",
+        ch: ["Districts should consider the hidden costs before adopting it.", "All districts should adopt the four-day week.", "Teachers prefer a four-day week.", "Transportation costs are the most important factor."], ans: 0 },
+    ]},
+ ]},
+ speaking: { title: "Planning for the Future", T: "f", tn: "Ms. Alvarez", tasks: [
+   { lvl: 1, cap: 3, std: "ELD-SS.9-12", secs: 25, pic: { p: "Career Day booths with a doctor, a chef, a construction worker, a teacher, and a computer programmer", fb: "👩‍⚕️ 👨‍🍳 👷 👩‍🏫 👨‍💻" },
+     intro: "This picture shows people at Career Day. They have different jobs.", model: { q: "Sam, what job is this?", a: "She is a doctor." }, q: "Now it's your turn. What other jobs do you see in the picture?" },
+   { lvl: 3, cap: 4, std: "ELD-SI.9-12", secs: 40, pic: { p: "A high school student imagining a future job, thought bubble showing a workplace", fb: "💼 🎯 🗓️" },
+     intro: "Many students think about the jobs they want in the future.", q: "Tell me about a job you would like to have someday. What would you do in that job, and why does it interest you?" },
+   { lvl: 4, cap: 5, std: "ELD-SC.9-12.Explain", secs: 45, pic: { p: "A nurse explaining to a teen patient why washing hands helps stop germs, with a hand-washing poster without words", fb: "🧼 🦠 👩‍⚕️" },
+     intro: "Health workers often explain science to patients. For example, washing your hands removes germs that can make people sick.", q: "Explain why washing your hands helps stop illness from spreading in a school." },
+   { lvl: 5, cap: 6, std: "ELD-SS.9-12.Argue", secs: 60, pic: { p: "Split image: a teen studying at a desk with books on one side, the same teen working at a grocery store register on the other", fb: "🏫📚  vs  🛒💵" },
+     intro: "Some people believe high school students should have part-time jobs. Others think students should focus only on school.", q: "What is your opinion? Support it with reasons and examples, and explain what someone who disagrees with you might say." },
+ ]},
+ writing: { title: "Community Decisions", tasks: [
+   { cap: 4, w: 0.35, std: "ELD-SI.9-12.Inform", pic: { p: "Four-panel sequence with no words: 1) a teen filling out a form at a library desk; 2) a librarian handing over a library card; 3) the teen searching shelves for a book; 4) the teen reading at home", fb: "1 🪪📝   2 🧑‍💼✅   3 📚🔎   4 📖🏠" },
+     prompt: "The pictures show how to get a library card and borrow a book. Write 3 to 5 sentences that explain the steps in order.", target: 60 },
+   { cap: 6, w: 0.65, std: "ELD-SS.9-12.Argue", pic: { p: "A city street at night with a clock showing 10 o'clock and a city council meeting room inset", fb: "🌙🕙🚫" },
+     prompt: "Your city council is debating a 10:00 p.m. curfew for everyone under 18. Write an essay to the council. State your position, support it with reasons and evidence, and respond to an opposing argument.", target: 160 },
+ ]}
+}
+};
+
+// Approximate proficiency-level <-> scale-score tables (knots at PL 1.0,1.5,...,6.0).
+// g1–g45 fitted from 391 anonymized 2025 score reports (grades 1–5); g68/g912 extrapolated.
+const SS_TABLES = {"g1": {"L": [173, 202, 224, 249, 260, 275, 286, 294, 311, 325, 342], "S": [117, 165, 203, 233, 257, 284, 309, 333, 338, 365, 393], "R": [239, 246, 254, 277, 286, 293, 301, 309, 319, 326, 340], "W": [117, 206, 222, 255, 270, 302, 304, 335, 366, 398, 429], "Oral": [151, 182, 209, 243, 263, 283, 298, 311, 336, 339, 339], "Lit": [187, 217, 241, 261, 279, 301, 314, 316, 335, 353, 372], "Comp": [225, 238, 251, 267, 278, 289, 298, 306, 313, 321, 331], "Overall": [183, 206, 234, 258, 271, 294, 306, 308, 326, 344, 361]}, "g23": {"L": [198, 217, 239, 272, 292, 304, 314, 330, 344, 362, 377], "S": [137, 181, 216, 251, 281, 305, 326, 350, 355, 382, 409], "R": [263, 270, 283, 305, 311, 318, 329, 341, 343, 354, 372], "W": [144, 212, 232, 261, 291, 316, 336, 361, 367, 395, 422], "Oral": [177, 197, 227, 262, 286, 305, 324, 345, 358, 376, 378], "Lit": [210, 241, 261, 280, 302, 319, 338, 353, 360, 363, 380], "Comp": [258, 263, 274, 294, 303, 316, 331, 333, 343, 356, 372], "Overall": [210, 231, 250, 274, 297, 313, 336, 350, 358, 362, 378]}, "g45": {"L": [247, 254, 270, 302, 316, 334, 343, 363, 373, 412, 428], "S": [156, 203, 243, 273, 299, 326, 352, 375, 390, 416, 440], "R": [279, 288, 301, 327, 337, 350, 355, 364, 370, 377, 400], "W": [156, 232, 259, 279, 304, 330, 352, 375, 395, 424, 435], "Oral": [202, 222, 254, 290, 309, 330, 349, 367, 390, 400, 422], "Lit": [229, 249, 280, 301, 324, 337, 354, 369, 385, 401, 415], "Comp": [285, 290, 299, 315, 333, 344, 353, 361, 369, 385, 401], "Overall": [227, 245, 269, 298, 316, 337, 352, 371, 381, 400, 416]}, "g68": {"L": [281, 281, 292, 323, 333, 355, 363, 386, 393, 447, 464], "S": [169, 218, 262, 288, 312, 341, 370, 392, 414, 440, 462], "R": [290, 301, 314, 342, 355, 372, 373, 380, 389, 393, 420], "W": [164, 246, 278, 292, 313, 340, 363, 385, 415, 444, 444], "Oral": [220, 240, 273, 310, 325, 348, 366, 382, 412, 417, 453], "Lit": [242, 255, 293, 316, 339, 350, 365, 380, 402, 428, 440], "Comp": [304, 309, 316, 330, 354, 364, 368, 381, 387, 405, 421], "Overall": [239, 255, 282, 315, 329, 354, 363, 386, 397, 427, 443]}, "g912": {"L": [311, 311, 311, 341, 347, 373, 381, 406, 411, 477, 494], "S": [181, 232, 278, 302, 322, 353, 386, 408, 436, 460, 480], "R": [300, 311, 324, 356, 371, 392, 392, 394, 405, 407, 436], "W": [172, 258, 294, 302, 321, 348, 373, 393, 431, 462, 462], "Oral": [234, 254, 289, 326, 339, 362, 382, 396, 432, 432, 479], "Lit": [254, 259, 305, 328, 353, 360, 375, 390, 418, 450, 460], "Comp": [320, 325, 332, 342, 372, 380, 382, 397, 403, 423, 439], "Overall": [249, 263, 294, 329, 341, 368, 373, 398, 411, 449, 465]}};
+
+// ===== SCORING =====
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const r1 = x => Math.round(x * 10) / 10;
+const KNOTS = [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6];
+function interp(x, xs, ys) { if (x <= xs[0]) return ys[0]; for (let i = 1; i < xs.length; i++) if (x <= xs[i]) { const t = (x - xs[i - 1]) / (xs[i] - xs[i - 1] || 1); return ys[i - 1] + t * (ys[i] - ys[i - 1]); } return ys[ys.length - 1]; }
+const plToSS = (g, k, pl) => Math.round(interp(pl, KNOTS, SS_TABLES[g][k]));
+const ssToPL = (g, k, ss) => r1(interp(ss, SS_TABLES[g][k], KNOTS));
+
+// Listening / Reading: ability estimate on the 1.0–6.0 scale from items of known level.
+// Items not reached (after the stop rule) count as incorrect.
+function estimateMC(items, answers) {
+  const n = items.length, correct = items.filter((it, i) => answers[i] === it.ans).length;
+  if (correct === 0) return { pl: 1.0, correct, n };
+  if (correct === n) return { pl: 6.0, correct, n };
+  let best = 1, bestLL = -Infinity;
+  for (let th = 1; th <= 6.0001; th += 0.05) {
+    let ll = -0.04 * (th - 3.5) * (th - 3.5);
+    items.forEach((it, i) => {
+      const g = 1 / it.ch.length, p = g + (1 - g) / (1 + Math.exp(-1.6 * (th - it.lvl - 0.2)));
+      ll += answers[i] === it.ans ? Math.log(p) : Math.log(1 - p);
+    });
+    if (ll > bestLL) { bestLL = ll; best = th; }
+  }
+  const byCount = 1 + 5 * Math.pow(correct / n, 1.15);
+  return { pl: r1(clamp(0.5 * best + 0.5 * byCount, 1, 6)), correct, n };
+}
+
+// Built-in estimate for written/spoken responses (features that track the rubric:
+// amount and complexity of language, linking words, vocabulary variety, control).
+const CONNECT = ["because", "so", "but", "when", "if", "after", "before", "then", "while", "also", "first", "next", "finally", "last"];
+const CONNECT2 = ["although", "however", "therefore", "which", "who", "whose", "since", "unless", "instead", "whereas", "even though", "in addition", "for example", "for instance", "on the other hand", "as a result", "consequently", "furthermore", "moreover", "despite", "in conclusion", "nevertheless", "some people", "others"];
+const CLUSTER_SCALE = { g1: 0.45, g23: 0.65, g45: 0.8, g68: 0.92, g912: 1.0 };
+function estimateText(text, task, mode, cluster) {
+  text = (text || "").trim();
+  const words = text.match(/[A-Za-z][A-Za-z'’-]*/g) || [];
+  const n = words.length;
+  if (n === 0) return { pl: 1.0, blank: true, why: "No response" };
+  const lower = " " + text.toLowerCase().replace(/[^a-z' ]+/g, " ") + " ";
+  const sents = mode === "w" ? text.split(/[.!?]+/).map(s => s.trim()).filter(s => s.split(/\s+/).length >= 2) : [];
+  const sCount = mode === "w" ? Math.max(1, sents.length) : Math.max(1, Math.round(n / 9));
+  const avgLen = n / sCount;
+  const c1 = CONNECT.filter(c => lower.includes(" " + c + " ")).length;
+  const c2 = CONNECT2.filter(c => lower.includes(" " + c + " ")).length;
+  const uniq = new Set(words.map(w => w.toLowerCase())).size;
+  const rootTTR = uniq / Math.sqrt(n), longShare = words.filter(w => w.length >= 7).length / n;
+  const amount = n / (task.target || (task.secs ? task.secs * 1.1 : 40)), sc = CLUSTER_SCALE[cluster] || 1;
+  let pts = 0;
+  pts += Math.min(2.0, Math.sqrt(amount) * 2.0);
+  pts += Math.min(1.6, c1 * 0.25 + c2 * 0.55);
+  pts += mode === "w" ? clamp((avgLen - 4) / 9, 0, 1) * 0.7 : 0.35;
+  pts += clamp((rootTTR - 2) / 4.5, 0, 1) * 0.7;
+  pts += clamp(longShare / (0.22 * sc), 0, 1) * 0.6;
+  let pen = 0;
+  if (mode === "w") {
+    pen += Math.min(0.4, sents.filter(s => /^[a-z]/.test(s)).length * 0.12);
+    if (/(^|\s)i(\s|')/.test(text)) pen += 0.15;
+    if (!/[.!?]\s*$/.test(text) && n > 6) pen += 0.1;
+    if (avgLen > 32) pen += 0.25;
+  }
+  let pl = 1 + pts - pen;
+  if (n < 4) pl = Math.min(pl, 1.6); else if (n < 10) pl = Math.min(pl, 2.6);
+  if (mode === "w" && sents.length < 2) pl = Math.min(pl, 3.4);
+  if (c1 + c2 === 0) pl = Math.min(pl, 3.6);
+  pl = clamp(pl, 1, task.cap || 6);
+  return { pl: r1(pl), n, why: `${n} words${mode === "w" ? ", " + sents.length + " sentences" : ""}, ${c1 + c2} linking words` };
+}
+
+// A task scored at its ceiling counts at the level shown on harder tasks.
+function combineTasks(scores, tasks, weights) {
+  const eff = scores.map((s, i) => { const later = scores.slice(i + 1); return s >= (tasks[i].cap || 6) - 0.05 && later.length ? Math.max(s, ...later) : s; });
+  let tot = 0, wsum = 0; eff.forEach((s, i) => { tot += s * weights[i]; wsum += weights[i]; });
+  return r1(clamp(tot / wsum, 1, 6));
+}
+
+// Composites are combined on the scale-score metric, as on the real score report.
+function composites(g, L, S_, R, W) {
+  const ss = { L: plToSS(g, "L", L), S: plToSS(g, "S", S_), R: plToSS(g, "R", R), W: plToSS(g, "W", W) };
+  const mk = (k, v) => ({ ss: Math.round(v), pl: ssToPL(g, k, v) });
+  return { ss,
+    oral: mk("Oral", 0.5 * ss.L + 0.5 * ss.S), literacy: mk("Lit", 0.5 * ss.R + 0.5 * ss.W),
+    comprehension: mk("Comp", 0.7 * ss.R + 0.3 * ss.L), overall: mk("Overall", 0.35 * ss.R + 0.35 * ss.W + 0.15 * ss.L + 0.15 * ss.S) };
+}
+
+/* ---------- rubric text for teacher scoring ---------- */
+const RUBRIC = {
+  writing: {
+    "Linguistic complexity": ["", "single words, set phrases, chunks", "phrases and short sentences", "simple and expanded sentences, emerging complexity", "variety of sentence lengths, emerging cohesion", "variety of sentences, organized text with cohesion", "variety of sentences, tightly organized and cohesive"],
+    "Vocabulary usage": ["", "highest-frequency words", "general content words", "general and some specific words", "specific and some technical words", "technical content words, clear facility", "consistently precise word choice"],
+    "Language control": ["", "understandable mostly when copied/adapted", "understandable in simple text; errors often get in the way", "generally understandable; errors sometimes get in the way", "errors don't get in the way of overall meaning", "approaching proficient peers", "comparable to proficient peers"]
+  },
+  speaking: {
+    "Linguistic complexity": ["", "single words, set or memorized phrases", "phrases, short sentences", "simple and expanded sentences, adds detail", "variety of sentence lengths, emerging cohesion", "extended, organized speech with cohesion", "extended, organized speech like proficient peers"],
+    "Vocabulary usage": ["", "highest-frequency words", "general content words; searches for words", "general and some specific words", "specific and some technical words", "technical words, clear facility", "precise, flexible word choice"],
+    "Language control": ["", "understandable only with memorized language", "understandable in simple speech", "generally understandable; errors sometimes get in the way", "fluent; errors don't get in the way of meaning", "approaching proficient peers", "comparable to proficient peers"]
+  }
+};
+const CAN_DO = {
+  listening: ["", "understand simple words and short commands, especially with pictures or gestures", "understand short directions and messages about routines and familiar topics", "understand main ideas and some details about school topics", "understand main ideas and details, including some specific and technical language", "understand detailed information and technical language on a variety of topics", "understand complex spoken English like English-proficient peers"],
+  speaking: ["", "use single words and memorized phrases", "use phrases and short sentences about familiar topics", "share ideas and some details in sentences about school topics", "explain and give details using a variety of sentences", "express connected, organized ideas with detail", "communicate connected ideas in many situations, comparable to proficient peers"],
+  reading: ["", "get meaning from pictures, symbols, and very familiar words", "understand short texts with pictures and familiar words", "understand main ideas and some details in simple texts", "understand main ideas and details in grade-level texts with some support", "understand detailed and technical texts and make inferences", "read grade-level texts like English-proficient peers"],
+  writing: ["", "write words, labels, or copied phrases", "write phrases and short sentences about familiar topics", "write simple and expanded sentences with some detail", "write connected sentences with details and specific words", "write organized text with technical words; errors don't hide meaning", "write like English-proficient peers"]
+};
+
+// ===== ENGINE (runs in any modern Chrome/Edge browser; no account needed) =====
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const DOMAINS = ["listening", "reading", "speaking", "writing"];
+const DNAME = { listening: "Listening", reading: "Reading", speaking: "Speaking", writing: "Writing" };
+const DMIN = { listening: 8, reading: 10, speaking: 6, writing: 10 };
+const PLN = ["", "Entering", "Emerging", "Developing", "Expanding", "Bridging", "Reaching"];
+const IMG_DIR = "images/";
+const LET = "abcd";
+
+const S = { name: "", cluster: null, domains: DOMAINS.slice(), repeatAudio: false, rate: 0.9,
+  di: 0, screens: [], si: 0, resp: {}, start: 0, zoom: 1, stopped: {} };
+const store = { get(k, d) { try { const v = localStorage.getItem("elp_" + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem("elp_" + k, JSON.stringify(v)); } catch (e) {} } };
+
+/* ---------- image registry: assigns a file name to every picture ---------- */
+const IMGS = [];
+function reg(o, file, where, kind) { if (!o) return; o.file = o.file || file; IMGS.push({ o, file: o.file, where, kind: kind || (o.obj ? "object" : "scene") }); }
+(function buildRegistry() {
+  Object.values(PEOPLE).forEach(p => reg(p, p.file, "Speaking (all grades): photo next to the speaker", "portrait"));
+  for (const [g, C] of Object.entries(TESTS)) {
+    C.listening.folders.forEach((f, fi) => {
+      reg(f.pic, `${g}-L${fi + 1}.png`, `${C.label} Listening, part ${fi + 1} "${f.title}" — big picture`);
+      f.items.forEach((it, ii) => it.ch.forEach((c, ci) => { if (typeof c === "object" && c.p) reg(c, `${g}-L${fi + 1}-${ii + 1}${LET[ci]}.png`, `${C.label} Listening ${fi * 3 + ii + 1}, answer ${LET[ci].toUpperCase()}`, "choice"); }));
+    });
+    C.reading.folders.forEach((f, fi) => {
+      if (f.pic) reg(f.pic, `${g}-R${fi + 1}.png`, `${C.label} Reading, part ${fi + 1} "${f.title}" — big picture`);
+      f.items.forEach((it, ii) => {
+        if (it.pic) reg(it.pic, `${g}-R${fi + 1}-${ii + 1}.png`, `${C.label} Reading ${fi * 3 + ii + 1} — picture`);
+        it.ch.forEach((c, ci) => { if (typeof c === "object" && c.p) reg(c, `${g}-R${fi + 1}-${ii + 1}${LET[ci]}.png`, `${C.label} Reading ${fi * 3 + ii + 1}, answer ${LET[ci].toUpperCase()}`, "choice"); });
+      });
+    });
+    C.speaking.tasks.forEach((t, i) => reg(t.pic, `${g}-S${i + 1}.png`, `${C.label} Speaking task ${i + 1}`));
+    C.writing.tasks.forEach((t, i) => reg(t.pic, `${g}-W${i + 1}.png`, `${C.label} Writing task ${i + 1}`));
+  }
+})();
+function fullPrompt(r) { return r.kind === "portrait" ? r.o.p : (r.kind === "object" || r.kind === "choice" ? STYLE_OBJ + ". Subject: " + r.o.p : STYLE + ". Scene: " + r.o.p + ". Wide 4:3 landscape."); }
+
+/* ---------- picture HTML with automatic emoji fallback ---------- */
+function soilSVG(pos) {
+  const seed = pos === "under" ? `<ellipse cx="60" cy="80" rx="9" ry="6" fill="#5b3613" stroke="#000"/>` :
+    pos === "on" ? `<ellipse cx="60" cy="46" rx="9" ry="6" fill="#5b3613" stroke="#000"/>` : `<ellipse cx="16" cy="46" rx="9" ry="6" fill="#5b3613" stroke="#000"/>`;
+  return `<svg width="120" height="100" viewBox="0 0 120 100"><rect width="120" height="52" fill="#cfe8ff"/><rect y="52" width="120" height="48" fill="#a0703c" stroke="#000"/>${pos === "next" ? `<path d="M60 52 Q85 28 110 52 Z" fill="#a0703c" stroke="#000"/>` : ""}${seed}</svg>`;
+}
+function fbHTML(fb) { return fb && fb.startsWith("svg:") ? soilSVG(fb.split("-")[1]) : esc(fb || ""); }
+function imgTag(o) { return o && o.file ? `<img alt="" src="${IMG_DIR}${o.file}" onload="this.parentNode.classList.add('hasimg')" onerror="this.remove()">` : ""; }
+function picHTML(o) { return o ? `<div class="pic">${imgTag(o)}<div class="emo">${fbHTML(o.fb)}</div>${o.cap ? `<div class="cap">${esc(o.cap)}</div>` : ""}</div>` : ""; }
+function choiceInner(c) {
+  if (typeof c === "string") return `<span class="ctext">${esc(c)}</span>`;
+  const pic = c.p || c.fb ? `<span class="cimg">${imgTag(c)}<span class="emo">${fbHTML(c.fb)}</span></span>` : "";
+  return `${pic}${c.t ? `<span class="ctext">${esc(c.t)}</span>` : ""}`;
+}
+function choiceText(c) { return c == null ? "(no answer)" : typeof c === "string" ? c : (c.t || c.p || ""); }
+
+/* ---------- audio: browser voices, chosen per speaker ---------- */
+let VOICES = [];
+function loadVoices() { if (!window.speechSynthesis) return; VOICES = speechSynthesis.getVoices().filter(v => /^en[-_]/i.test(v.lang)); fillVoicePickers(); }
+const ROLES = { narrator: "Narrator", teacherF: "Teacher (woman)", teacherM: "Teacher (man)", student: "Student" };
+const PREF = {
+  narrator: [/Google US English/i, /Aria.*Natural/i, /Jenny.*Natural/i, /Samantha/i, /Zira/i, /female/i],
+  teacherF: [/Michelle.*Natural/i, /Jenny.*Natural/i, /Aria.*Natural/i, /Google UK English Female/i, /Karen/i, /Samantha/i, /Zira/i],
+  teacherM: [/Guy.*Natural/i, /Andrew.*Natural/i, /Christopher.*Natural/i, /Google UK English Male/i, /Daniel/i, /David/i, /Alex/i, /male/i],
+  student:  [/Ana.*Natural/i, /Google US English/i, /Samantha/i, /Zira/i]
+};
+if (window.speechSynthesis) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+function pickVoice(role) {
+  const saved = store.get("voice_" + role, null);
+  if (saved) { const v = VOICES.find(x => x.name === saved); if (v) return v; }
+  for (const re of PREF[role]) { const v = VOICES.find(x => re.test(x.name) && /en[-_]US|en[-_]GB/i.test(x.lang)); if (v) return v; }
+  return VOICES.find(v => /en[-_]US/i.test(v.lang)) || VOICES[0] || null;
+}
+function fillVoicePickers() {
+  const box = $("#voicePickers"); if (!box) return;
+  box.innerHTML = Object.entries(ROLES).map(([r, nm]) => `<label class="chk small" style="margin:3px 0">${nm}: <select data-role="${r}"><option value="">(automatic)</option>${VOICES.map(v => `<option ${store.get("voice_" + r, "") === v.name ? "selected" : ""}>${esc(v.name)}</option>`).join("")}</select></label>`).join("");
+  box.querySelectorAll("select").forEach(s => s.onchange = () => store.set("voice_" + s.dataset.role, s.value || null));
+}
+function roleOf(who, folderT) { return who === "N" ? "narrator" : who === "S" ? "student" : folderT === "m" ? "teacherM" : "teacherF"; }
+const wait = ms => new Promise(r => setTimeout(r, ms));
+let speaking = false, cancelSpeech = false;
+function sayChunk(text, role) {
+  return new Promise(res => {
+    const u = new SpeechSynthesisUtterance(text), v = pickVoice(role);
+    if (v) u.voice = v; u.lang = v ? v.lang : "en-US";
+    u.rate = S.rate; u.pitch = role === "student" ? 1.25 : role === "teacherM" ? 0.95 : 1;
+    let done = false; const fin = () => { if (!done) { done = true; res(); } };
+    u.onend = fin; u.onerror = fin;
+    speechSynthesis.speak(u);
+    setTimeout(fin, 3000 + text.length * 110 / S.rate);
+  });
+}
+// lines: [{role, text}] — spoken sentence by sentence with ACCESS-like pauses
+async function speak(lines, opts = {}) {
+  if (!window.speechSynthesis || !VOICES.length && !speechSynthesis.getVoices().length) return false;
+  speaking = true; cancelSpeech = false;
+  try {
+    for (let i = 0; i < lines.length; i++) {
+      const l = lines[i];
+      const parts = l.text.match(/[^.!?]+[.!?]+["”’]?|[^.!?]+$/g) || [l.text];
+      for (const p of parts) { if (cancelSpeech) return true; await sayChunk(p.trim(), l.role); await wait(280); }
+      if (i < lines.length - 1) await wait(650);
+    }
+    if (opts.tone && !cancelSpeech) tone();
+    return true;
+  } finally { speaking = false; }
+}
+function stopAudio() { cancelSpeech = true; try { window.speechSynthesis && speechSynthesis.cancel(); } catch (e) {} }
+let actx;
+function tone() { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); const o = actx.createOscillator(), g = actx.createGain(); o.frequency.value = 660; o.type = "sine"; g.gain.setValueAtTime(0.0001, actx.currentTime); g.gain.exponentialRampToValueAtTime(0.15, actx.currentTime + 0.03); g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 0.45); o.connect(g).connect(actx.destination); o.start(); o.stop(actx.currentTime + 0.5); } catch (e) {} }
+
+/* ---------- build screens ---------- */
+function buildScreens(d) {
+  const C = TESTS[S.cluster], sc = [{ type: "dir", d }];
+  let n = 0;
+  if (d === "listening" || d === "reading") C[d].folders.forEach((f, fi) => f.items.forEach((it, ii) => sc.push({ type: d === "listening" ? "L" : "R", f, fi, it, ii, n: n++ })));
+  if (d === "speaking") C.speaking.tasks.forEach((t, i) => { sc.push({ type: "Sintro", t, i }); sc.push({ type: "S", t, i }); });
+  if (d === "writing") C.writing.tasks.forEach((t, i) => sc.push({ type: "W", t, i }));
+  sc.push({ type: "end", d });
+  return sc;
+}
+function totalItems(d) { return d === "speaking" ? TESTS[S.cluster].speaking.tasks.length : d === "writing" ? TESTS[S.cluster].writing.tasks.length : TESTS[S.cluster][d].folders.reduce((a, f) => a + f.items.length, 0); }
+
+/* ---------- navigation ---------- */
+let clockTimer;
+function startTest() {
+  S.name = $("#nm").value.trim() || "Student";
+  S.resp = { listening: [], reading: [], speaking: [], writing: [] }; S.stopped = {}; S.ov = null;
+  S.di = 0; S.start = Date.now();
+  $("#home").classList.add("hidden"); $("#results").classList.add("hidden"); $("#imgcheck").classList.add("hidden"); $("#test").classList.remove("hidden");
+  loadDomain();
+  clearInterval(clockTimer); clockTimer = setInterval(tickClock, 1000);
+}
+function tickClock() { const s = Math.floor((Date.now() - S.start) / 1000); $("#clock").textContent = `Time: ${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`; }
+function loadDomain() {
+  const d = S.domains[S.di];
+  S.screens = buildScreens(d); S.si = 0;
+  $("#hdDomain").textContent = DNAME[d];
+  $("#hdName").textContent = `${S.name} · ${TESTS[S.cluster].label}`;
+  render();
+}
+function next() {
+  stopAudio(); if (REC.active) REC.stop();
+  closeNotepad();
+  const cur = S.screens[S.si];
+  // adaptive stop: after a Listening/Reading part (3 questions), stop if none were correct
+  if ((cur.type === "L" || cur.type === "R") && cur.ii === cur.f.items.length - 1 && cur.fi > 0) {
+    const d = cur.type === "L" ? "listening" : "reading";
+    const start = cur.n - cur.ii, got = cur.f.items.filter((it, k) => S.resp[d][start + k] === it.ans).length;
+    if (got === 0 && cur.fi < TESTS[S.cluster][d].folders.length - 1) { S.stopped[d] = cur.n + 1; S.si = S.screens.length - 1; render(); return; }
+  }
+  if (S.si < S.screens.length - 1) { S.si++; render(); return; }
+  if (S.di < S.domains.length - 1) { S.di++; loadDomain(); return; }
+  finish();
+}
+function setNext(on) { $("#nextBtn").disabled = !on; }
+function setProgress() {
+  const sc = S.screens, isQ = s => ["L", "R", "S", "W"].includes(s.type);
+  const pct = S.screens[S.si].type === "end" ? 100 : Math.round(100 * sc.slice(0, S.si).filter(isQ).length / Math.max(1, sc.filter(isQ).length));
+  $("#progI").style.width = pct + "%"; $("#progT").textContent = `Progress: ${pct}%`;
+}
+
+/* ---------- screens ---------- */
+function render() {
+  const s = S.screens[S.si], d = S.domains[S.di], st = $("#stage");
+  setProgress(); setNext(false); clearHighlightMode();
+  $("#toolNotes").classList.toggle("hidden", s.type !== "W");
+  $("#navTitle").textContent = `${DNAME[d]}${s.f ? ": " + s.f.title : s.t ? ": " + TESTS[S.cluster][d].title : ""}`;
+  $("#stagewrap").scrollTop = 0;
+
+  if (s.type === "dir") {
+    const msgs = {
+      listening: "In this test, you will listen to teachers and students talk. Look at the big picture. Then select the Play button. You will hear everything one time. When you hear the tone, choose the best answer.",
+      reading: "In this test, you will read stories and information. Read carefully. Then choose the best answer to each question.",
+      speaking: "In this test, a teacher will talk with you. Listen to the teacher. When it is your turn, select Record and speak into the microphone. Select Stop when you are done. Try to say as much as you can.",
+      writing: "In this test, you will write. Read each task carefully. Use the pictures and words on the screen to help you. Write as much as you can."
+    };
+    st.innerHTML = `<div class="dirs"><h2>${DNAME[d]} Test</h2>
+      <div class="pic" style="margin-bottom:16px"><div class="emo">${{ listening: "🎧", reading: "📖", speaking: "🎤", writing: "✍️" }[d]}</div></div>
+      <p id="dirText">${msgs[d]}</p>
+      <p class="hint">Suggested time: about ${DMIN[d]} minutes. After you select the Next arrow (➜), you cannot go back.${d === "speaking" ? " Your browser will ask to use the microphone — select Allow." : ""}</p>
+      <div class="playrow"><button class="playbtn" id="dirPlay">▶ Play directions</button></div>
+      <p style="text-align:center"><button class="go" id="beginBtn">Begin the ${DNAME[d]} Test</button></p></div>`;
+    $("#dirPlay").onclick = () => speak([{ role: "narrator", text: msgs[d] }]);
+    $("#beginBtn").onclick = next;
+    return;
+  }
+  if (s.type === "end") {
+    const last = S.di === S.domains.length - 1;
+    st.innerHTML = `<div class="dirs" style="text-align:center"><h2>You finished the ${DNAME[d]} test!</h2>
+      <div class="pic"><div class="emo">⭐</div></div>
+      <p>${last ? "You are done with the practice test." : `Next is the <b>${DNAME[S.domains[S.di + 1]]}</b> test. Take a short break if you need one.`}</p>
+      <button class="go" id="contBtn">${last ? "Finish" : "Continue"}</button></div>`;
+    $("#contBtn").onclick = next;
+    return;
+  }
+  ({ L: renderListening, R: renderReading, Sintro: renderSpeakIntro, S: renderSpeak, W: renderWriting })[s.type](s);
+}
+
+function choicesHTML(ch) {
+  const pics = ch.every(c => typeof c === "object" && (c.p || c.fb)) && ch.every(c => !c.t || c.t.length < 28);
+  return `<div class="choices ${pics ? "pics" : ""}">${ch.map((c, k) =>
+    `<button class="choice" data-k="${k}">${pics ? "" : '<span class="radio"></span>'}${choiceInner(c)}${pics ? '<span class="radio"></span>' : ""}</button>`).join("")}</div>`;
+}
+let pendingNext = false;
+function wireChoices(save) {
+  document.querySelectorAll(".choice").forEach(b => b.onclick = () => {
+    if (hlMode) return;
+    document.querySelectorAll(".choice").forEach(x => x.classList.remove("sel"));
+    b.classList.add("sel"); save(+b.dataset.k);
+    if (!speaking) setNext(true); else pendingNext = true;
+  });
+}
+
+function renderListening(s) {
+  const f = s.f, it = s.it, first = s.ii === 0;
+  $("#stage").innerHTML = `<div class="cols">
+    <div>${picHTML(f.pic)}<p class="hint">Look at the big picture. It will help you understand what you hear.</p></div>
+    <div class="panel">
+      <div class="qtext"><span class="qnum">${s.n + 1}</span><span id="qShow" class="hidden">${esc(it.q)}</span><span id="qWait" class="hint">Select Play. Listen carefully.</span></div>
+      <div class="playrow"><button class="playbtn" id="play">▶ Play</button><span id="eq" class="eq hidden"><i></i><i></i><i></i></span></div>
+      <div id="chWrap" style="opacity:.35;pointer-events:none">${choicesHTML(it.ch)}</div>
+      <div id="noAudio"></div></div></div>`;
+  wireChoices(k => S.resp.listening[s.n] = k);
+  const lines = [];
+  if (first) lines.push({ role: "narrator", text: f.intro });
+  lines.push({ role: "narrator", text: `Number ${s.n + 1}.` });
+  it.lines.forEach(([w, t]) => lines.push({ role: roleOf(w, f.T), text: t }));
+  lines.push({ role: "narrator", text: it.q });
+  const reveal = ok => {
+    $("#eq").classList.add("hidden"); $("#qShow").classList.remove("hidden"); $("#qWait").classList.add("hidden");
+    $("#chWrap").style.opacity = 1; $("#chWrap").style.pointerEvents = "auto";
+    if (!ok) $("#noAudio").innerHTML = `<div class="scriptbox"><b>No voice is available in this browser.</b> A teacher can read this aloud:<br>${lines.map(l => esc(l.text)).join(" ")}</div>`;
+    if (S.repeatAudio) { $("#play").disabled = false; $("#play").textContent = "▶ Play again"; }
+    if (S.resp.listening[s.n] != null || pendingNext) setNext(true);
+  };
+  $("#play").onclick = async () => { pendingNext = false; $("#play").disabled = true; $("#eq").classList.remove("hidden"); reveal(await speak(lines, { tone: true })); };
+}
+
+function renderReading(s) {
+  const f = s.f, it = s.it, C = TESTS[S.cluster];
+  const left = `${f.pic && s.ii === 0 ? picHTML(f.pic) : f.pic ? picHTML(f.pic) : ""}${it.pic ? picHTML(it.pic) : ""}${it.text ? `<div class="passage hlzone" style="margin-top:12px">${it.text}</div>` : ""}`;
+  $("#stage").innerHTML = `<div class="cols"><div class="panel">${left}</div>
+    <div class="panel"><div class="qtext hlzone"><span class="qnum">${s.n + 1}</span><span>${it.q}</span></div>
+      ${C.reading.readQuestions ? `<div class="playrow"><button class="playbtn" id="rd">🔊 Hear the question</button></div>` : ""}
+      ${choicesHTML(it.ch)}</div></div>`;
+  wireChoices(k => { S.resp.reading[s.n] = k; setNext(true); });
+  if ($("#rd")) $("#rd").onclick = () => speak([{ role: "narrator", text: it.q.replace(/<[^>]+>/g, "") }]);
+}
+
+function personRow(kind, text, id, name) {
+  const P = kind === "student" ? PEOPLE.student : (kind === "m" ? PEOPLE.teacherM : PEOPLE.teacherF);
+  return `<div class="people"><div class="avatar" id="${id}">${imgTag(P)}<span class="emo">${P.fb}</span></div><div class="bubble"><span class="nm">${esc(name)}</span>${esc(text)}</div></div>`;
+}
+function renderSpeakIntro(s) {
+  const t = s.t, sp = TESTS[S.cluster].speaking;
+  const lines = [{ role: roleOf("T", sp.T), text: t.intro }];
+  if (t.model) lines.push({ role: roleOf("T", sp.T), text: t.model.q }, { role: "student", text: t.model.a });
+  $("#stage").innerHTML = `<div class="cols"><div>${picHTML(t.pic)}</div><div class="panel">
+    <div class="qtext"><span class="qnum">${s.i + 1}</span><span>Listen to ${esc(sp.tn)}.</span></div>
+    ${personRow(sp.T, t.intro, "avT", sp.tn)}
+    ${t.model ? personRow(sp.T, t.model.q, "avT2", sp.tn) + personRow("student", t.model.a, "avS", "Sam (student)") : ""}
+    <div class="playrow"><button class="playbtn" id="play">▶ Play</button><span id="eq" class="eq hidden"><i></i><i></i><i></i></span></div>
+    <p class="hint">${t.model ? "Sam is another student. Listen to how Sam answers. Then it will be your turn." : "Listen. On the next screen, it will be your turn to talk."}</p></div></div>`;
+  $("#play").onclick = async () => { $("#play").disabled = true; $("#eq").classList.remove("hidden"); await speak(lines); $("#eq").classList.add("hidden"); setNext(true); if (S.repeatAudio) $("#play").disabled = false; };
+  if (!window.speechSynthesis) setNext(true);
+}
+
+/* ---------- recording: audio for the teacher + speech-to-text when the browser offers it ---------- */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const REC = {
+  active: false, sr: null, mr: null, chunks: [], idx: null, t0: 0, secs: 30, timer: null,
+  start(idx, secs) {
+    this.idx = idx; this.secs = secs; this.active = true; this.t0 = Date.now();
+    S.resp.speaking[idx].recorded = true;
+    let stt = false;
+    if (SR) {
+      try {
+        const r = new SR(); r.lang = "en-US"; r.continuous = true; r.interimResults = true;
+        r.onresult = e => { let fin = "", par = ""; for (let i = e.resultIndex; i < e.results.length; i++) { const tr = e.results[i][0].transcript; if (e.results[i].isFinal) fin += tr; else par += tr; }
+          const ta = $("#trans"); if (fin && ta) { ta.value = (ta.value + " " + fin).trim(); saveTranscript(); } const p = $("#partial"); if (p) p.textContent = par ? "… " + par : ""; };
+        r.onerror = e => { if (e.error === "not-allowed" || e.error === "service-not-allowed") $("#recMsg").textContent = "Speech-to-text is blocked in this browser window. Your voice is still being recorded for your teacher."; };
+        r.onend = () => { if (this.active) { try { r.start(); } catch (e) {} } };
+        r.start(); this.sr = r; stt = true;
+      } catch (e) {}
+    }
+    this.chunks = [];
+    if (navigator.mediaDevices && window.MediaRecorder) {
+      navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+        if (!this.active) { stream.getTracks().forEach(t => t.stop()); return; }
+        const mr = new MediaRecorder(stream); this.mr = mr; const idx = this.idx;
+        mr.ondataavailable = e => this.chunks.push(e.data);
+        mr.onstop = () => { stream.getTracks().forEach(t => t.stop()); const b = new Blob(this.chunks, { type: mr.mimeType || "audio/webm" }); S.resp.speaking[idx].blob = b; S.resp.speaking[idx].audio = URL.createObjectURL(b); const pb = $("#pbWrap"); if (pb) pb.innerHTML = `<audio controls src="${S.resp.speaking[idx].audio}"></audio>`; };
+        mr.start();
+      }).catch(() => { $("#recMsg").textContent = "The microphone is not available. Answer out loud to your teacher; the teacher can type your words in the box and score them later."; });
+    } else $("#recMsg").textContent = "This browser cannot record. Answer out loud to your teacher.";
+    if (!stt) $("#trans").placeholder = "Speech-to-text is not available in this browser. A teacher may type the student's words here (optional).";
+    this.timer = setInterval(() => { const p = (Date.now() - this.t0) / 1000 / this.secs; const bar = $("#tb"); if (bar) bar.style.width = Math.min(100, p * 100) + "%"; if (p >= 1) this.stop(); }, 200);
+  },
+  stop() {
+    if (!this.active) return;
+    this.active = false; clearInterval(this.timer);
+    if (this.sr) { try { this.sr.stop(); } catch (e) {} this.sr = null; }
+    if (this.mr && this.mr.state !== "inactive") { try { this.mr.stop(); } catch (e) {} }
+    this.mr = null;
+    const b = $("#recBtn"); if (b) { b.classList.remove("stop"); b.innerHTML = '<span class="dot"></span> Record again'; }
+    const m = $("#recMsg"); if (m && /Recording/.test(m.textContent)) m.textContent = "Done. You can listen to your answer or record again.";
+    setTimeout(saveTranscript, 800);
+    setNext(true);
+  }
+};
+function saveTranscript() { const ta = $("#trans"); if (ta && REC.idx != null && +ta.dataset.idx === REC.idx && S.resp.speaking[REC.idx]) S.resp.speaking[REC.idx].text = ta.value.trim(); }
+
+function renderSpeak(s) {
+  const t = s.t, sp = TESTS[S.cluster].speaking;
+  S.resp.speaking[s.i] = S.resp.speaking[s.i] || { text: "", recorded: false };
+  $("#stage").innerHTML = `<div class="cols"><div>${picHTML(t.pic)}</div><div class="panel">
+    <div class="qtext"><span class="qnum">${s.i + 1}</span><span>Your turn</span></div>
+    ${personRow(sp.T, t.q, "avT", sp.tn)}
+    <div class="playrow"><button class="playbtn" id="play">▶ Play</button><span id="eq" class="eq hidden"><i></i><i></i><i></i></span></div>
+    <div class="recbox">
+      <button class="recbtn" id="recBtn" disabled><span class="dot"></span> Record</button>
+      <span class="hint" style="margin-left:8px">You have about ${t.secs} seconds.</span>
+      <div class="timebar"><i id="tb"></i></div>
+      <div id="recMsg" class="hint"></div><div id="pbWrap"></div>
+      <div style="margin-top:10px"><label class="hint"><b>Words we heard</b> (teachers may correct this):</label>
+      <textarea id="trans" data-idx="${s.i}" rows="3" placeholder="The student's words will appear here."></textarea><div id="partial" class="partial"></div></div>
+    </div></div></div>`;
+  $("#trans").value = S.resp.speaking[s.i].text || "";
+  $("#trans").oninput = () => { S.resp.speaking[s.i].text = $("#trans").value.trim(); if ($("#trans").value.trim()) setNext(true); };
+  const enableRec = () => { $("#recBtn").disabled = false; };
+  $("#play").onclick = async () => { $("#play").disabled = true; $("#eq").classList.remove("hidden"); await speak([{ role: roleOf("T", sp.T), text: t.q }]); $("#eq").classList.add("hidden"); enableRec(); if (S.repeatAudio) $("#play").disabled = false; };
+  if (!window.speechSynthesis) enableRec();
+  $("#recBtn").onclick = () => {
+    if (REC.active) { REC.stop(); return; }
+    $("#recBtn").classList.add("stop"); $("#recBtn").innerHTML = '<span class="dot"></span> Stop';
+    $("#recMsg").textContent = "Recording… speak clearly. Select Stop when you are done.";
+    REC.start(s.i, t.secs);
+  };
+}
+
+function renderWriting(s) {
+  const t = s.t;
+  S.resp.writing[s.i] = S.resp.writing[s.i] || { text: "" };
+  $("#stage").innerHTML = `<div class="cols"><div>${picHTML(t.pic)}</div><div class="panel">
+    <div class="qtext hlzone"><span class="qnum">${s.i + 1}</span><span>${esc(t.prompt)}</span></div>
+    ${t.starter ? `<p class="hint" style="font-size:15px">${t.starter}</p>` : ""}
+    <div class="playrow"><button class="playbtn" id="rd">🔊 Hear the directions</button></div>
+    <textarea id="wr" class="writebox" spellcheck="false" autocomplete="off" placeholder="Type your answer here."></textarea>
+    <p class="hint">Grades 1–3 may write on paper instead; the teacher can type it in or score it on the results page.</p></div></div>`;
+  $("#wr").value = S.resp.writing[s.i].text;
+  $("#wr").oninput = () => { S.resp.writing[s.i].text = $("#wr").value; };
+  $("#rd").onclick = () => speak([{ role: "narrator", text: t.prompt }]);
+  setNext(true);
+}
+
+/* ---------- tools ---------- */
+let hlMode = false;
+function clearHighlightMode() { hlMode = false; $("#toolHL").classList.remove("on"); }
+document.addEventListener("mouseup", () => {
+  if (!hlMode) return;
+  const sel = window.getSelection(); if (!sel.rangeCount || sel.isCollapsed) return;
+  const r = sel.getRangeAt(0), z = r.commonAncestorContainer.nodeType === 1 ? r.commonAncestorContainer : r.commonAncestorContainer.parentNode;
+  if (!z.closest || !z.closest(".hlzone")) return;
+  try { const m = document.createElement("mark"); m.appendChild(r.extractContents()); r.insertNode(m); } catch (e) {}
+  sel.removeAllRanges();
+});
+document.addEventListener("click", e => {
+  const m = e.target.closest && e.target.closest("mark");
+  if (m && hlMode) m.replaceWith(...m.childNodes);
+  if (!e.target.closest(".tool") && !e.target.closest(".icon")) document.querySelectorAll(".menu").forEach(x => x.remove());
+});
+function popMenu(btn, items) {
+  document.querySelectorAll(".menu").forEach(x => x.remove());
+  const m = document.createElement("div"); m.className = "menu";
+  items.forEach(([label, fn]) => { const d = document.createElement("div"); d.textContent = label; d.onclick = ev => { ev.stopPropagation(); fn(); m.remove(); }; m.appendChild(d); });
+  btn.appendChild(m);
+}
+function initTools() {
+  $("#nextBtn").onclick = next;
+  $("#toolHL").onclick = () => popMenu($("#toolHL"), [["Use Highlighter", () => { hlMode = true; $("#toolHL").classList.add("on"); }], ["Clear All", () => document.querySelectorAll("mark").forEach(m => m.replaceWith(...m.childNodes))], ["Off", clearHighlightMode]]);
+  $("#toolMag").onclick = () => popMenu($("#toolMag"), [["x 1.5", () => zoom(1.5)], ["x 2.0", () => zoom(2)], ["x 3.0", () => zoom(3)], ["Off", () => zoom(1)]]);
+  $("#toolLG").onclick = () => popMenu($("#toolLG"), [["Underline", () => lineGuide("under")], ["Gray Bar", () => lineGuide("gray")], ["Off", () => lineGuide(null)]]);
+  $("#toolNotes").onclick = () => $("#notepad").classList.toggle("hidden");
+  $("#npClose").onclick = closeNotepad;
+  $("#opt").onclick = () => popMenu($("#opt"), [["Black on White", () => theme("")], ["Dark Gray on Light Gray", () => theme("gray")], ["Black on Cream", () => theme("cream")], ["Brown on Pink", () => theme("pink")], ["White on Black", () => theme("dark")]]);
+  $("#help").onclick = () => modal("Help", `<p><b>➜ Next</b>: go to the next screen. You cannot go back.</p><p><b>🖍 Highlighter</b>: mark words in the reading or question. Select a mark again to remove it.</p><p><b>🔍 Magnifier</b>: make the screen bigger.</p><p><b>☰ Line Guide</b>: a line you can drag to help you follow the text.</p><p><b>⚙ Options</b>: change the screen colors.</p>`, [["OK"]]);
+  $("#exit").onclick = () => modal("Stop the test?", "<p>If you stop now, you will see scores for what you finished. Questions you did not answer count as wrong or blank.</p>", [["Keep testing"], ["Stop and see scores", () => { stopAudio(); if (REC.active) REC.stop(); finish(); }]]);
+  const h = $("#lgHandle"); let dy = null;
+  h.onpointerdown = e => { dy = e.clientY - h.offsetTop; h.setPointerCapture(e.pointerId); };
+  h.onpointermove = e => { if (dy == null) return; const y = e.clientY - dy; h.style.top = y + "px"; $("#lineguide").style.top = (y + 2) + "px"; };
+  h.onpointerup = () => dy = null;
+}
+function zoom(z) { S.zoom = z; $("#stage").style.transform = z === 1 ? "" : `scale(${z})`; $("#stage").style.width = z === 1 ? "" : (100 / z) + "%"; }
+function lineGuide(kind) { const g = $("#lineguide"), h = $("#lgHandle"); if (!kind) { g.classList.add("hidden"); h.classList.add("hidden"); return; } g.className = kind; h.classList.remove("hidden"); }
+function theme(t) { document.body.className = t ? "theme-" + t : ""; }
+function closeNotepad() { $("#notepad").classList.add("hidden"); }
+function modal(title, html, buttons) {
+  const bg = document.createElement("div"); bg.className = "modalbg";
+  bg.innerHTML = `<div class="modal"><h3>${title}</h3>${html}<div class="row"></div></div>`;
+  buttons.forEach(([label, fn], i) => { const b = document.createElement("button"); b.className = i === buttons.length - 1 ? "go" : "go sec"; b.style.fontSize = "15px"; b.style.padding = "9px 16px"; b.textContent = label; b.onclick = () => { bg.remove(); fn && fn(); }; $(".row", bg).appendChild(b); });
+  document.body.appendChild(bg);
+}
+
+// ===== RESULTS, HOME, IMAGE CHECKLIST, SAVED RESULTS =====
+const lvClass = x => "lv" + Math.floor(clamp(x, 1, 6));
+const plName = x => PLN[Math.floor(clamp(x, 1, 6))];
+const allItems = d => TESTS[S.cluster][d].folders.flatMap(f => f.items);
+
+function computeAll() {
+  const C = TESTS[S.cluster], out = { has: {} };
+  S.ov = S.ov || { writing: [], speaking: [] };
+  ["listening", "reading"].forEach(d => {
+    if (!S.domains.includes(d)) return;
+    const items = allItems(d);
+    out[d] = estimateMC(items, items.map((_, i) => S.resp[d][i]));
+    out[d].stoppedAt = S.stopped[d]; out.has[d] = true;
+  });
+  [["writing", "w", C.writing.tasks.map(t => t.w)], ["speaking", "s", [0.15, 0.2, 0.3, 0.35]]].forEach(([d, mode, wts]) => {
+    if (!S.domains.includes(d)) return;
+    const tasks = C[d].tasks;
+    const per = tasks.map((t, i) => {
+      const r = S.resp[d][i] || {}, est = estimateText(r.text, t, mode, S.cluster), ov = S.ov[d][i];
+      let teacher = null;
+      if (ov && Object.values(ov).filter(v => v).length === 3) teacher = r1(clamp(Object.values(ov).reduce((a, b) => a + b, 0) / 3, 1, t.cap || 6));
+      const noEvidence = est.blank && !r.recorded;
+      const used = teacher != null ? teacher : noEvidence ? 1 : est.pl;
+      return { est, teacher, used, src: teacher != null ? "teacher rubric" : est.blank && r.recorded ? "recorded — needs teacher score" : "built-in estimate", needs: teacher == null && est.blank && r.recorded };
+    });
+    out[d] = { pl: combineTasks(per.map(p => p.used), tasks, wts), per }; out.has[d] = true;
+  });
+  DOMAINS.forEach(d => { if (out.has[d]) out[d].ss = plToSS(S.cluster, { listening: "L", speaking: "S", reading: "R", writing: "W" }[d], out[d].pl); });
+  if (DOMAINS.every(d => out.has[d])) out.comp = composites(S.cluster, out.listening.pl, out.speaking.pl, out.reading.pl, out.writing.pl);
+  return out;
+}
+
+function finish() {
+  clearInterval(clockTimer); stopAudio(); lineGuide(null); zoom(1);
+  $("#test").classList.add("hidden"); $("#results").classList.remove("hidden");
+  S.mins = Math.max(1, Math.round((Date.now() - S.start) / 60000));
+  S.id = S.id && S.idStart === S.start ? S.id : "r" + Date.now(); S.idStart = S.start;
+  renderResults();
+}
+
+function ssBar(ss) { const p = clamp((ss - 100) / 500 * 100, 0, 100); return `<div class="ssbar"><i style="width:${p}%"></i><span>${ss}</span></div>`; }
+
+function renderResults() {
+  const C = TESTS[S.cluster], R = computeAll();
+  saveHistory(R);
+  const row = (name, sub, pl, ss) => `<tr><td><b>${name}</b>${sub ? `<div class="small">${sub}</div>` : ""}</td><td><b class="${lvClass(pl)}" style="font-size:20px">${pl.toFixed(1)}</b> <span class="${lvClass(pl)}">${plName(pl)}</span></td><td class="bar">${ssBar(ss)}</td></tr>`;
+  let html = `<div class="brand"><div class="logo">ELP</div><div><h1>Practice Test Score Report</h1></div></div>
+  <p class="sub"><b>${esc(S.name)}</b> · ${C.label} · ${new Date().toLocaleDateString()} · about ${S.mins} minute${S.mins === 1 ? "" : "s"}</p>
+  <div class="card"><table class="rt isr"><tr><th>Language domain</th><th>Proficiency level (1.0–6.0)</th><th>Approximate scale score (100–600)</th></tr>`;
+  DOMAINS.forEach(d => { if (R.has[d]) html += row(DNAME[d], d === "listening" || d === "reading" ? `${R[d].correct} of ${R[d].n} correct${R[d].stoppedAt ? " · stopped early" : ""}` : R[d].per.some(p => p.needs) ? "⚠ needs teacher score" : R[d].per.every(p => p.teacher != null) ? "teacher rubric" : "built-in estimate", R[d].pl, R[d].ss);
+    else html += `<tr><td><b>${DNAME[d]}</b></td><td colspan="2">not taken</td></tr>`; });
+  if (R.comp) { const c = R.comp;
+    html += row("Oral Language", "50% Listening + 50% Speaking", c.oral.pl, c.oral.ss) + row("Literacy", "50% Reading + 50% Writing", c.literacy.pl, c.literacy.ss) +
+      row("Comprehension", "70% Reading + 30% Listening", c.comprehension.pl, c.comprehension.ss) + row("Overall", "35% Reading + 35% Writing + 15% Listening + 15% Speaking", c.overall.pl, c.overall.ss); }
+  html += `</table><p class="note small">Composite scores are combined on the scale-score metric, the way ACCESS does it. An Overall score appears only when all four domains are taken.</p></div>`;
+
+  html += `<div class="card"><h2>Students at this level generally can…</h2><table class="rt"><tr><th>Domain</th><th>Level</th><th>Students at this level generally can…</th></tr>` +
+    DOMAINS.filter(d => R.has[d]).map(d => { const L = Math.floor(R[d].pl); return `<tr><td>${DNAME[d]}</td><td class="${lvClass(L)}"><b>${L}</b></td><td>${CAN_DO[d][L]}</td></tr>`; }).join("") + `</table></div>`;
+
+  ["speaking", "writing"].forEach(d => {
+    if (!R.has[d]) return;
+    const tasks = C[d].tasks;
+    html += `<div class="card"><h2>${DNAME[d]} — teacher scoring</h2>
+      <p class="note">${d === "speaking" ? "Listen to each recording. " : ""}Choose a level for each part of the rubric. The task score is the average of the three, and it replaces the built-in estimate. Each task has a highest possible level (shown).</p>
+      <table class="rt"><tr><th>#</th><th style="width:40%">Task and response</th><th>Built-in estimate</th><th style="width:30%">Teacher rubric</th><th>Used</th></tr>` +
+      tasks.map((t, i) => { const p = R[d].per[i], r = S.resp[d][i] || {}, ov = (S.ov[d][i] || {});
+        const rub = Object.entries(RUBRIC[d]).map(([dim, desc]) => `<label>${dim}</label><select data-d="${d}" data-i="${i}" data-dim="${dim}" class="ovsel"><option value="">—</option>${[1, 2, 3, 4, 5, 6].filter(v => v <= (t.cap || 6)).map(v => `<option value="${v}" ${ov[dim] === v ? "selected" : ""}>${v} – ${desc[v]}</option>`).join("")}</select>`).join("");
+        return `<tr><td>${i + 1}</td><td><div class="note"><b>${esc(d === "speaking" ? t.q : t.prompt)}</b> (highest level: ${t.cap})</div>
+          ${r.audio ? `<audio controls src="${r.audio}" style="width:100%;margin:6px 0"></audio>` : d === "speaking" ? `<div class="note">${r.recorded ? "Recorded, but no audio was saved in this browser." : "No recording."}</div>` : ""}
+          <div class="resp">${r.text ? esc(r.text) : "<i>(no words captured)</i>"}</div></td>
+          <td>${p.est.blank ? "—" : p.est.pl.toFixed(1)}<div class="note small">${esc(p.est.why || "")}</div></td>
+          <td class="rub">${rub}</td><td><b>${p.used.toFixed(1)}</b><div class="note small">${p.src}</div></td></tr>`; }).join("") + `</table></div>`;
+  });
+
+  ["listening", "reading"].forEach(d => {
+    if (!R.has[d]) return;
+    const items = allItems(d);
+    html += `<div class="card"><h2>${DNAME[d]} — question details</h2><table class="rt"><tr><th>#</th><th>Question</th><th>Level</th><th>Standard</th><th>Answer</th><th></th></tr>` +
+      items.map((it, i) => { const a = S.resp[d][i], ok = a === it.ans, nr = a == null && R[d].stoppedAt != null && i >= R[d].stoppedAt;
+        const std = TESTS[S.cluster][d].folders[Math.floor(i / 3)].std;
+        return `<tr><td>${i + 1}</td><td>${it.q}</td><td>${it.lvl}</td><td class="small">${std}</td><td>${nr ? "<i>not reached</i>" : esc(choiceText(it.ch[a]))}${ok ? "" : `<br><span class="note small">Correct: ${esc(choiceText(it.ch[it.ans]))}</span>`}</td><td class="${ok ? "ok" : "no"}">${ok ? "✓" : "✗"}</td></tr>`; }).join("") + `</table></div>`;
+  });
+
+  html += `<div class="card"><h2>Save these results</h2><div class="row">
+      <button class="go" id="dlBtn">Download results (.csv)</button><button class="go sec" id="copyBtn">Copy results</button>
+      ${S.resp.speaking && S.resp.speaking.some(r => r && r.blob) ? `<button class="go sec" id="dlAudio">Download recordings</button>` : ""}
+      <button class="go sec" id="againBtn">New test</button><span id="copyMsg" class="note"></span></div>
+      <p class="note small">Results are also kept in this browser on this computer (Home → Saved results) until you clear them.</p>
+    <p class="disclaim">Unofficial practice test modeled on the format of WIDA ACCESS and written to the WIDA ELD Standards Framework (2020). Not produced or endorsed by WIDA. Scores are practice estimates on the 1.0–6.0 scale; approximate scale scores come from patterns in past score reports. Do not use for placement or exit decisions.</p></div>`;
+
+  $("#results").innerHTML = html;
+  document.querySelectorAll(".ovsel").forEach(s => s.onchange = () => { const d = s.dataset.d, i = +s.dataset.i; S.ov[d][i] = S.ov[d][i] || {}; S.ov[d][i][s.dataset.dim] = s.value === "" ? null : +s.value; const y = window.scrollY; renderResults(); window.scrollTo(0, y); });
+  $("#dlBtn").onclick = () => download(`ELP-practice-${S.name.replace(/\W+/g, "_")}-${new Date().toISOString().slice(0, 10)}.csv`, toCSV([historyRow(R)]), "text/csv");
+  $("#copyBtn").onclick = async () => { try { await navigator.clipboard.writeText(summaryText(R)); $("#copyMsg").textContent = "Copied."; } catch (e) { $("#copyMsg").textContent = "Copy is blocked here."; } };
+  if ($("#dlAudio")) $("#dlAudio").onclick = () => S.resp.speaking.forEach((r, i) => { if (r && r.blob) download(`ELP-${S.name.replace(/\W+/g, "_")}-speaking-${i + 1}.webm`, r.blob); });
+  $("#againBtn").onclick = goHome;
+}
+function goHome() { ["results", "test", "imgcheck"].forEach(x => $("#" + x).classList.add("hidden")); $("#home").classList.remove("hidden"); refreshHistoryCount(); window.scrollTo(0, 0); }
+function summaryText(R) {
+  const C = TESTS[S.cluster], L = [`ELP Practice Test (unofficial, ACCESS format) — ${S.name}, ${C.label}, ${new Date().toLocaleDateString()}`];
+  DOMAINS.forEach(d => { if (R.has[d]) L.push(`${DNAME[d]}: ${R[d].pl.toFixed(1)} ${plName(R[d].pl)} (≈${R[d].ss})`); });
+  if (R.comp) L.push(`Oral ${R.comp.oral.pl.toFixed(1)} | Literacy ${R.comp.literacy.pl.toFixed(1)} | Comprehension ${R.comp.comprehension.pl.toFixed(1)} | OVERALL ${R.comp.overall.pl.toFixed(1)} ${plName(R.comp.overall.pl)}`);
+  return L.join("\n");
+}
+function download(name, data, type) {
+  const blob = data instanceof Blob ? data : new Blob([data], { type: type || "text/plain" });
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(() => a.remove(), 100);
+}
+
+/* ---------- saved results (this browser) ---------- */
+const HCOLS = ["Date", "Student", "Grade cluster", "Listening", "Reading", "Speaking", "Writing", "Oral", "Literacy", "Comprehension", "Overall", "Listening correct", "Reading correct", "Minutes", "Writing 1", "Writing 2", "Speaking 1", "Speaking 2", "Speaking 3", "Speaking 4"];
+function historyRow(R) {
+  const f = d => R.has[d] ? R[d].pl.toFixed(1) : "", c = k => R.comp ? R.comp[k].pl.toFixed(1) : "";
+  const tx = (d, i) => ((S.resp[d] || [])[i] || {}).text || "";
+  return { id: S.id, Date: new Date().toLocaleDateString(), Student: S.name, "Grade cluster": TESTS[S.cluster].label, Listening: f("listening"), Reading: f("reading"), Speaking: f("speaking"), Writing: f("writing"),
+    Oral: c("oral"), Literacy: c("literacy"), Comprehension: c("comprehension"), Overall: c("overall"),
+    "Listening correct": R.has.listening ? `${R.listening.correct}/${R.listening.n}` : "", "Reading correct": R.has.reading ? `${R.reading.correct}/${R.reading.n}` : "", Minutes: S.mins,
+    "Writing 1": tx("writing", 0), "Writing 2": tx("writing", 1), "Speaking 1": tx("speaking", 0), "Speaking 2": tx("speaking", 1), "Speaking 3": tx("speaking", 2), "Speaking 4": tx("speaking", 3) };
+}
+function saveHistory(R) { const h = store.get("history", []), row = historyRow(R), k = h.findIndex(x => x.id === row.id); if (k >= 0) h[k] = row; else h.push(row); store.set("history", h); }
+function toCSV(rows) { const q = v => `"${String(v ?? "").replace(/"/g, '""')}"`; return [HCOLS.map(q).join(",")].concat(rows.map(r => HCOLS.map(c => q(r[c])).join(","))).join("\r\n"); }
+function refreshHistoryCount() { const n = store.get("history", []).length; $("#histBtn").textContent = `Saved results on this computer (${n})`; }
+function showHistory() {
+  const h = store.get("history", []);
+  modal("Saved results", h.length ? `<div style="max-height:50vh;overflow:auto"><table class="rt small"><tr><th>Date</th><th>Student</th><th>Grades</th><th>L</th><th>R</th><th>S</th><th>W</th><th>Overall</th></tr>${h.map(r => `<tr><td>${esc(r.Date)}</td><td>${esc(r.Student)}</td><td>${esc(r["Grade cluster"])}</td><td>${r.Listening}</td><td>${r.Reading}</td><td>${r.Speaking}</td><td>${r.Writing}</td><td><b>${r.Overall}</b></td></tr>`).join("")}</table></div>` : "<p>No results saved on this computer yet.</p>",
+    h.length ? [["Clear all", () => modal("Clear all saved results?", "<p>This removes every saved result from this browser.</p>", [["Cancel"], ["Clear", () => { store.set("history", []); refreshHistoryCount(); }]])], ["Download all (.csv)", () => download("ELP-practice-results.csv", toCSV(h), "text/csv")]] : [["OK"]]);
+}
+
+/* ---------- image checklist (teacher) ---------- */
+function showImages() {
+  $("#home").classList.add("hidden"); $("#imgcheck").classList.remove("hidden");
+  const groups = {}; IMGS.forEach(r => { const g = r.file.split("-")[0]; (groups[g] = groups[g] || []).push(r); });
+  let html = `<div class="brand"><div class="logo">IMG</div><div><h1>Picture checklist</h1></div></div>
+    <p class="note">Put each picture in a folder named <b>images</b> next to this file, with exactly the file name shown. Until a picture is added, the test shows a simple emoji picture instead. Use a 4:3 landscape shape for scenes and a square shape for answer pictures and portraits.</p>
+    <div class="row" style="margin:10px 0"><button class="go sec" id="icBack">← Back</button><button class="go" id="icCSV">Download all prompts (.csv)</button><span id="icCount" class="note"></span></div>`;
+  for (const [g, list] of Object.entries(groups)) {
+    html += `<div class="card"><h2>${g === "people" ? "People (speaking test)" : TESTS[g].label}</h2><table class="rt imgtable"><tr><th>Picture</th><th>File name</th><th>Where it is used</th><th>Prompt</th></tr>` +
+      list.map(r => `<tr><td><span class="cimg"><img src="${IMG_DIR}${r.file}" onload="this.parentNode.classList.add('hasimg');this.closest('tr').querySelector('.st').innerHTML='<span class=have>✓ added</span>';countImgs()" onerror="this.remove()"><span class="emo" style="font-size:34px">${fbHTML(r.o.fb)}</span></span><div class="st"><span class="miss">missing</span></div></td>
+        <td><code>${r.file}</code></td><td class="small">${esc(r.where)}</td><td class="small">${esc(fullPrompt(r))}</td></tr>`).join("") + `</table></div>`;
+  }
+  $("#imgcheck").innerHTML = html;
+  $("#icBack").onclick = goHome;
+  $("#icCSV").onclick = () => { const q = v => `"${String(v).replace(/"/g, '""')}"`; download("ELP-image-prompts.csv", ["File name,Priority,Type,Where used,Prompt"].concat(IMGS.map(r => [r.file, r.kind === "choice" || r.kind === "object" ? 2 : 1, r.kind, r.where, fullPrompt(r)].map(q).join(","))).join("\r\n"), "text/csv"); };
+  countImgs();
+}
+function countImgs() { const n = document.querySelectorAll("#imgcheck .have").length; const c = $("#icCount"); if (c) c.textContent = `${n} of ${IMGS.length} pictures added`; }
+
+/* ---------- HOME ---------- */
+function initHome() {
+  const g = $("#grades");
+  g.innerHTML = Object.entries(TESTS).map(([k, v]) => `<button class="pill" data-g="${k}">${v.label}</button>`).join("");
+  g.querySelectorAll(".pill").forEach(b => b.onclick = () => { g.querySelectorAll(".pill").forEach(x => x.classList.remove("on")); b.classList.add("on"); S.cluster = b.dataset.g; $("#startBtn").disabled = false; });
+  const dm = $("#dmode");
+  const modes = [["all", "Full test", "Listening, Reading, Speaking, Writing · about 30–35 min"]].concat(DOMAINS.map(d => [d, DNAME[d], `about ${DMIN[d]} min`]));
+  dm.innerHTML = modes.map(([k, a, b]) => `<button class="pill ${k === "all" ? "on" : ""}" data-m="${k}">${a}<small>${b}</small></button>`).join("");
+  dm.querySelectorAll(".pill").forEach(b => b.onclick = () => { dm.querySelectorAll(".pill").forEach(x => x.classList.remove("on")); b.classList.add("on"); S.domains = b.dataset.m === "all" ? DOMAINS.slice() : [b.dataset.m]; });
+  $("#rep").onchange = () => S.repeatAudio = $("#rep").checked;
+  S.rate = store.get("rate", 0.9); $("#rate").value = S.rate; $("#rateV").textContent = S.rate;
+  $("#rate").oninput = () => { S.rate = +$("#rate").value; $("#rateV").textContent = S.rate; store.set("rate", S.rate); };
+  $("#testAudio").onclick = () => speak([{ role: "narrator", text: "Number 1." }, { role: "teacherF", text: "Good morning, class. Please take out your notebooks." }, { role: "student", text: "Okay, Ms. Park." }, { role: "teacherM", text: "Hello! I am Mr. Diaz." }, { role: "narrator", text: "What should the students take out?" }], { tone: true });
+  $("#testMic").onclick = async () => {
+    const m = $("#micMsg"); m.textContent = "Checking…";
+    try { const st = await navigator.mediaDevices.getUserMedia({ audio: true }); st.getTracks().forEach(t => t.stop()); m.innerHTML = `<span class="status-dot ok"></span>Microphone works.${SR ? " Speech-to-text is available in this browser." : " Speech-to-text is not available in this browser (recordings still work)."}`; }
+    catch (e) { m.innerHTML = `<span class="status-dot warn"></span>The microphone is blocked or missing. Allow the microphone for this page, or open the test in Chrome.`; }
+  };
+  $("#startBtn").onclick = startTest;
+  $("#imgBtn").onclick = showImages;
+  $("#histBtn").onclick = showHistory;
+  refreshHistoryCount();
+  $("#stAudio").innerHTML = window.speechSynthesis ? `<span class="status-dot ok"></span>Read-aloud voices are available.` : `<span class="status-dot warn"></span>This browser has no read-aloud voices — use Chrome or Edge.`;
+  // Count pictures already added
+  let have = 0, done = 0; IMGS.forEach(r => { const im = new Image(); im.onload = () => { have++; fin(); }; im.onerror = fin; im.src = IMG_DIR + r.file; });
+  function fin() { if (++done === IMGS.length) $("#imgStatus").textContent = `${have} of ${IMGS.length} pictures added.`; }
+}
+initHome(); initTools();
+</script>
+</body>
+</html>
