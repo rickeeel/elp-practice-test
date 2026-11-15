@@ -213,7 +213,7 @@ select{font-size:14px;padding:4px}
     <div class="row" style="margin-top:10px"><button class="go sec" id="imgBtn" style="font-size:14px;padding:7px 14px">🖼 Picture checklist &amp; prompts</button><button class="go sec" id="histBtn" style="font-size:14px;padding:7px 14px">Saved results</button><span class="note" id="imgStatus"></span></div>
   </div>
   <p style="text-align:center"><button class="go" id="startBtn" disabled>Begin the Test</button></p>
-  <p class="disclaim">Unofficial practice material, written to the WIDA English Language Development Standards Framework (2020 Edition) and modeled on the ACCESS Online format. Not produced or endorsed by WIDA or DRC. Scores are practice estimates only. Works best in Google Chrome or Microsoft Edge. Use headphones; for Speaking, a headset with a microphone works best.</p>
+  <p class="disclaim">Unofficial practice material, written to the WIDA English Language Development Standards Framework (2020 Edition) and modeled on the ACCESS Online format. Not produced or endorsed by WIDA or DRC. Scores are practice estimates only. <b>Version: Nov 14, 2026</b>. Works best in Google Chrome or Microsoft Edge. Use headphones; for Speaking, a headset with a microphone works best.</p>
 </div>
 
 <!-- ================= TEST ================= -->
@@ -306,9 +306,9 @@ g1: { label: "Grade 1",
  reading: { readQuestions: true, folders: [
   { title: "At School", std: "ELD-SI.1",
     items: [
-      { lvl: 1, pic: { p: "a red book", fb: "📕", obj: 1 }, q: "Which word goes with the picture?", ch: ["book", "ball", "bag"], ans: 0 },
+      { lvl: 1, pic: { p: "an open picture book with a red cover", fb: "svg:book", obj: 1 }, q: "Which word goes with the picture?", ch: ["book", "ball", "bag"], ans: 0 },
       { lvl: 2, text: `<p class="big">Sam has a <b>red</b> ball.</p>`, q: "Which one is Sam's ball?",
-        ch: [{ p: "a blue ball", fb: "🔵" }, { p: "a red ball", fb: "🔴" }, { p: "a yellow ball", fb: "🟡" }], ans: 1 },
+        ch: [{ p: "one blue rubber ball", fb: "svg:ball-blue" }, { p: "one red rubber ball", fb: "svg:ball-red" }, { p: "one yellow rubber ball", fb: "svg:ball-yellow" }], ans: 1 },
       { lvl: 2, text: `<p class="big">Put your pencil in the cup.</p>`, q: "Which picture shows this?",
         ch: [{ p: "a pencil standing in a cup on a desk", fb: "✏️🥤" }, { p: "a pencil inside a backpack", fb: "✏️🎒" }, { p: "a book next to a cup", fb: "📕🥤" }], ans: 0 },
     ]},
@@ -355,7 +355,7 @@ g1: { label: "Grade 1",
  ]},
  writing: { title: "All About Me", tasks: [
    { cap: 4, w: 0.4, std: "ELD-SI.1", pic: { p: "A school lunch tray with an apple, a sandwich, a carton of milk, and a banana", fb: "🍎 🥪 🥛 🍌" },
-     prompt: "Look at the picture. Write words or a sentence about what you see.", starter: "Example: <i>apple</i>", target: 10 },
+     prompt: "Look at the picture. Write words or a sentence about what you see.", starter: "Example: <i>apple</i>", target: 8, short: true },
    { cap: 6, w: 0.6, std: "ELD-LA.1.Inform", pic: { p: "A cat, a dog, a rabbit, a turtle, and a parrot sitting together in a friendly group", fb: "🐱 🐶 🐰 🐢 🦜" },
      prompt: "Write about your favorite animal. What does it look like? What can it do?", starter: "You can use: <i>My favorite animal is ___. It has ___. It can ___. I like it because ___.</i>", target: 30 },
  ]}
@@ -457,7 +457,7 @@ g23: { label: "Grades 2–3",
  ]},
  writing: { title: "Our Class", tasks: [
    { cap: 4, w: 0.4, std: "ELD-SI.2-3", pic: { p: "Children at recess: one kicking a soccer ball, one jumping rope, one on a slide, a teacher watching", fb: "🧒⚽ 👧🪢 🧒🛝" },
-     prompt: "Look at the picture. Write 2 or 3 sentences about what the children are doing.", target: 25 },
+     prompt: "Look at the picture. Write 2 or 3 sentences about what the children are doing.", target: 25, short: true },
    { cap: 6, w: 0.6, std: "ELD-LA.2-3.Argue", pic: { p: "A classroom table with a fishbowl with a goldfish on one side and a hamster in a cage on the other side", fb: "🐠  or  🐹" },
      prompt: "Your class is choosing a class pet: a fish or a hamster. Write to your teacher. Which pet should your class get? Give reasons why.", target: 60 },
  ]}
@@ -560,7 +560,7 @@ g45: { label: "Grades 4–5",
  ]},
  writing: { title: "How Plants Grow", tasks: [
    { cap: 4, w: 0.4, std: "ELD-SC.4-5.Inform", pic: { p: "Four-panel sequence of a bean plant growing: seed in soil, sprout, young plant with leaves, plant with a flower", fb: "🫘 ➜ 🌱 ➜ 🌿 ➜ 🌻", cap: "1. seed  2. sprout  3. young plant  4. flower" },
-     prompt: "Look at the pictures. They show how a seed becomes a plant. Write 3 to 5 sentences that describe each stage.", target: 45 },
+     prompt: "Look at the pictures. They show how a seed becomes a plant. Write 3 to 5 sentences that describe each stage.", target: 45, short: true },
    { cap: 6, w: 0.6, std: "ELD-LA.4-5.Argue", pic: { p: "Split picture: students playing at recess on one side, students eating lunch in a cafeteria on the other side, a clock above", fb: "⚽⏰  or  🍎⏰" },
      prompt: "Your school is deciding between a longer recess and a longer lunch. Write a letter to your principal. Explain which one you think is better. Give reasons and examples.", target: 90 },
  ]}
@@ -653,7 +653,7 @@ g68: { label: "Grades 6–8",
  ]},
  writing: { title: "School Life", tasks: [
    { cap: 4, w: 0.35, std: "ELD-LA.6-8.Narrate", pic: { p: "Four-panel comic with no words: 1) a student at a locker realizes their lunch is missing, looks worried; 2) the student at a cafeteria table with no food; 3) a friend shares half a sandwich; 4) both students laughing together", fb: "1 🎒😟   2 🍱❌   3 🧑‍🤝‍🧑🥪   4 😊" },
-     prompt: "The pictures show a story: a student forgets lunch, and a friend helps. Write 3 to 5 sentences telling the story from beginning to end.", target: 60 },
+     prompt: "The pictures show a story: a student forgets lunch, and a friend helps. Write 3 to 5 sentences telling the story from beginning to end.", target: 60, short: true },
    { cap: 6, w: 0.65, std: "ELD-LA.6-8.Argue", pic: { p: "A cell phone with a red prohibition circle over it in front of a middle school hallway with lockers", fb: "📱🚫🏫" },
      prompt: "Your school is thinking about banning cell phones during the school day. Write an essay to your principal. State your opinion, support it with reasons and examples, and respond to people who disagree.", target: 130 },
  ]}
@@ -746,7 +746,7 @@ g912: { label: "Grades 9–12",
  ]},
  writing: { title: "Community Decisions", tasks: [
    { cap: 4, w: 0.35, std: "ELD-SI.9-12.Inform", pic: { p: "Four-panel sequence with no words: 1) a teen filling out a form at a library desk; 2) a librarian handing over a library card; 3) the teen searching shelves for a book; 4) the teen reading at home", fb: "1 🪪📝   2 🧑‍💼✅   3 📚🔎   4 📖🏠" },
-     prompt: "The pictures show how to get a library card and borrow a book. Write 3 to 5 sentences that explain the steps in order.", target: 60 },
+     prompt: "The pictures show how to get a library card and borrow a book. Write 3 to 5 sentences that explain the steps in order.", target: 60, short: true },
    { cap: 6, w: 0.65, std: "ELD-SS.9-12.Argue", pic: { p: "A city street at night with a clock showing 10 o'clock and a city council meeting room inset", fb: "🌙🕙🚫" },
      prompt: "Your city council is debating a 10:00 p.m. curfew for everyone under 18. Write an essay to the council. State your position, support it with reasons and evidence, and respond to an opposing argument.", target: 160 },
  ]}
@@ -784,44 +784,56 @@ function estimateMC(items, answers) {
   return { pl: r1(clamp(0.5 * best + 0.5 * byCount, 1, 6)), correct, n };
 }
 
-// Built-in estimate for written/spoken responses (features that track the rubric:
-// amount and complexity of language, linking words, vocabulary variety, control).
-const CONNECT = ["because", "so", "but", "when", "if", "after", "before", "then", "while", "also", "first", "next", "finally", "last"];
+// Built-in estimate for written/spoken responses.
+// Each response is judged against (1) what THAT TASK asks for and (2) what is typical for the
+// grade cluster, so a short task answered fully (e.g. a list of words, or one sentence) is not
+// penalized for being short. Features track the rubric: amount and complexity of language,
+// linking words, vocabulary variety and precision, and (writing) basic control.
+const CONNECT = ["and", "because", "so", "but", "when", "if", "after", "before", "then", "while", "also", "first", "next", "finally", "last", "or"];
 const CONNECT2 = ["although", "however", "therefore", "which", "who", "whose", "since", "unless", "instead", "whereas", "even though", "in addition", "for example", "for instance", "on the other hand", "as a result", "consequently", "furthermore", "moreover", "despite", "in conclusion", "nevertheless", "some people", "others"];
-const CLUSTER_SCALE = { g1: 0.45, g23: 0.65, g45: 0.8, g68: 0.92, g912: 1.0 };
-function estimateText(text, task, mode, cluster) {
+// Typical of an English-proficient student in each cluster: words per sentence, linking words in an extended answer, share of long words.
+const EXPECT = { g1: { sl: 6, conn: 1.5, long: 0.07 }, g23: { sl: 8, conn: 2.5, long: 0.1 }, g45: { sl: 10, conn: 3.5, long: 0.14 }, g68: { sl: 12, conn: 4.5, long: 0.18 }, g912: { sl: 14, conn: 5.5, long: 0.22 } };
+// Expected words for a full spoken answer, by speaking task (1–4) and cluster.
+const SPEAK_TARGET = { g1: [5, 10, 18, 30], g23: [6, 15, 25, 40], g45: [8, 18, 30, 50], g68: [8, 20, 35, 60], g912: [10, 22, 40, 70] };
+function estimateText(text, task, mode, cluster, taskIndex) {
   text = (text || "").trim();
   const words = text.match(/[A-Za-z][A-Za-z'’-]*/g) || [];
   const n = words.length;
   if (n === 0) return { pl: 1.0, blank: true, why: "No response" };
+  const E = EXPECT[cluster] || EXPECT.g45;
+  const short = mode === "w" ? !!task.short : taskIndex <= 1;          // short tasks: words, phrases, a few sentences
+  const target = mode === "w" ? (task.target || 40) : (SPEAK_TARGET[cluster] || SPEAK_TARGET.g45)[taskIndex] || 30;
   const lower = " " + text.toLowerCase().replace(/[^a-z' ]+/g, " ") + " ";
-  const sents = mode === "w" ? text.split(/[.!?]+/).map(s => s.trim()).filter(s => s.split(/\s+/).length >= 2) : [];
-  const sCount = mode === "w" ? Math.max(1, sents.length) : Math.max(1, Math.round(n / 9));
-  const avgLen = n / sCount;
+  const sents = mode === "w" ? text.split(/[.!?\n]+/).map(x => x.trim()).filter(x => x.split(/\s+/).length >= 2) : [];
+  const avgLen = mode === "w" ? n / Math.max(1, sents.length) : Math.min(n, 9);
   const c1 = CONNECT.filter(c => lower.includes(" " + c + " ")).length;
   const c2 = CONNECT2.filter(c => lower.includes(" " + c + " ")).length;
   const uniq = new Set(words.map(w => w.toLowerCase())).size;
-  const rootTTR = uniq / Math.sqrt(n), longShare = words.filter(w => w.length >= 7).length / n;
-  const amount = n / (task.target || (task.secs ? task.secs * 1.1 : 40)), sc = CLUSTER_SCALE[cluster] || 1;
+  const variety = n < 8 ? uniq / n : uniq / Math.sqrt(n) / 3.2;          // 0–1-ish
+  const longShare = words.filter(w => w.length >= 7).length / n;
+
   let pts = 0;
-  pts += Math.min(2.0, Math.sqrt(amount) * 2.0);
-  pts += Math.min(1.6, c1 * 0.25 + c2 * 0.55);
-  pts += mode === "w" ? clamp((avgLen - 4) / 9, 0, 1) * 0.7 : 0.35;
-  pts += clamp((rootTTR - 2) / 4.5, 0, 1) * 0.7;
-  pts += clamp(longShare / (0.22 * sc), 0, 1) * 0.6;
+  pts += Math.min(2.0, 2.0 * Math.sqrt(n / target));                        // enough language for the task
+  pts += Math.min(1.3, 1.3 * (c1 * 0.5 + c2 * 1.0) / (short ? Math.max(1, E.conn / 2) : E.conn)); // linking ideas
+  pts += clamp(avgLen / E.sl, 0, 1) * 0.7;                                   // sentence length for the grade
+  pts += clamp(variety, 0, 1) * 0.5;                                         // word variety
+  pts += clamp(longShare / E.long, 0, 1) * 0.5;                              // specific / technical words
   let pen = 0;
-  if (mode === "w") {
-    pen += Math.min(0.4, sents.filter(s => /^[a-z]/.test(s)).length * 0.12);
-    if (/(^|\s)i(\s|')/.test(text)) pen += 0.15;
-    if (!/[.!?]\s*$/.test(text) && n > 6) pen += 0.1;
-    if (avgLen > 32) pen += 0.25;
+  if (mode === "w" && n > 3) {
+    pen += Math.min(0.3, sents.filter(x => /^[a-z]/.test(x)).length * 0.1);
+    if (/(^|\s)i(\s|')/.test(text)) pen += 0.1;
+    if (avgLen > E.sl * 3) pen += 0.25;                                      // run-on sentences
   }
   let pl = 1 + pts - pen;
-  if (n < 4) pl = Math.min(pl, 1.6); else if (n < 10) pl = Math.min(pl, 2.6);
-  if (mode === "w" && sents.length < 2) pl = Math.min(pl, 3.4);
-  if (c1 + c2 === 0) pl = Math.min(pl, 3.6);
+  // Limits only where the task itself asks for more language
+  if (n < Math.max(2, target * 0.2)) pl = Math.min(pl, 2.2);
+  if (!short) {
+    if (mode === "w" && sents.length < 2) pl = Math.min(pl, 3.5);
+    if (c1 + c2 === 0) pl = Math.min(pl, 3.5);
+    if (n < target * 0.4) pl = Math.min(pl, 3.5);
+  }
   pl = clamp(pl, 1, task.cap || 6);
-  return { pl: r1(pl), n, why: `${n} words${mode === "w" ? ", " + sents.length + " sentences" : ""}, ${c1 + c2} linking words` };
+  return { pl: r1(pl), n, why: `${n} word${n === 1 ? "" : "s"} (task asks for about ${target})${mode === "w" ? ", " + sents.length + " sentence" + (sents.length === 1 ? "" : "s") : ""}, ${c1 + c2} linking word${c1 + c2 === 1 ? "" : "s"}` };
 }
 
 // A task scored at its ceiling counts at the level shown on harder tasks.
@@ -904,7 +916,18 @@ function soilSVG(pos) {
     pos === "on" ? `<ellipse cx="60" cy="46" rx="9" ry="6" fill="#5b3613" stroke="#000"/>` : `<ellipse cx="16" cy="46" rx="9" ry="6" fill="#5b3613" stroke="#000"/>`;
   return `<svg width="120" height="100" viewBox="0 0 120 100"><rect width="120" height="52" fill="#cfe8ff"/><rect y="52" width="120" height="48" fill="#a0703c" stroke="#000"/>${pos === "next" ? `<path d="M60 52 Q85 28 110 52 Z" fill="#a0703c" stroke="#000"/>` : ""}${seed}</svg>`;
 }
-function fbHTML(fb) { return fb && fb.startsWith("svg:") ? soilSVG(fb.split("-")[1]) : esc(fb || ""); }
+const SVGS = {
+  book: `<svg width="150" height="110" viewBox="0 0 150 110"><path d="M75 20 C55 8 25 8 8 14 V96 C25 90 55 90 75 102 Z" fill="#fff" stroke="#000" stroke-width="3"/><path d="M75 20 C95 8 125 8 142 14 V96 C125 90 95 90 75 102 Z" fill="#fff" stroke="#000" stroke-width="3"/><path d="M75 20 V102" stroke="#000" stroke-width="3"/><g stroke="#777" stroke-width="2"><path d="M20 30 H62 M20 42 H62 M20 54 H62 M20 66 H55 M88 30 H130 M88 42 H130 M88 54 H130 M88 66 H122"/></g><path d="M8 96 C25 90 55 90 75 102 C95 90 125 90 142 96 V104 C125 98 95 98 75 108 C55 98 25 98 8 104 Z" fill="#c0392b" stroke="#000" stroke-width="2"/></svg>`,
+  ball: c => `<svg width="90" height="90" viewBox="0 0 90 90"><circle cx="45" cy="45" r="38" fill="${c}" stroke="#000" stroke-width="3"/><ellipse cx="32" cy="30" rx="10" ry="6" fill="#fff" opacity=".65" transform="rotate(-30 32 30)"/></svg>`
+};
+function fbHTML(fb) {
+  if (!fb || !fb.startsWith("svg:")) return esc(fb || "");
+  const [kind, arg] = fb.slice(4).split("-");
+  if (kind === "soil") return soilSVG(arg);
+  if (kind === "book") return SVGS.book;
+  if (kind === "ball") return SVGS.ball({ red: "#e53935", blue: "#1e63d6", yellow: "#fdd835" }[arg] || arg);
+  return "";
+}
 function imgTag(o) { return o && o.file ? `<img alt="" src="${IMG_DIR}${o.file}" onload="this.parentNode.classList.add('hasimg')" onerror="this.remove()">` : ""; }
 function picHTML(o) { return o ? `<div class="pic">${imgTag(o)}<div class="emo">${fbHTML(o.fb)}</div>${o.cap ? `<div class="cap">${esc(o.cap)}</div>` : ""}</div>` : ""; }
 function choiceInner(c) {
@@ -951,6 +974,9 @@ function sayChunk(text, role) {
   });
 }
 // lines: [{role, text}] — spoken sentence by sentence with ACCESS-like pauses
+// Words that read-aloud voices often say wrong (spoken text only; the screen is unchanged)
+const SAY = [[/\bRecord\b/g, "Re-cord"], [/\brecord\b/g, "re-cord"], [/\brecess\b/gi, "ree-sess"]];
+const fixSay = t => SAY.reduce((a, [re, r]) => a.replace(re, r), t);
 async function speak(lines, opts = {}) {
   if (!window.speechSynthesis || !VOICES.length && !speechSynthesis.getVoices().length) return false;
   speaking = true; cancelSpeech = false;
@@ -958,7 +984,7 @@ async function speak(lines, opts = {}) {
     for (let i = 0; i < lines.length; i++) {
       const l = lines[i];
       const parts = l.text.match(/[^.!?]+[.!?]+["”’]?|[^.!?]+$/g) || [l.text];
-      for (const p of parts) { if (cancelSpeech) return true; await sayChunk(p.trim(), l.role); await wait(280); }
+      for (const p of parts) { if (cancelSpeech) return true; await sayChunk(fixSay(p.trim()), l.role); await wait(280); }
       if (i < lines.length - 1) await wait(650);
     }
     if (opts.tone && !cancelSpeech) tone();
@@ -1280,17 +1306,19 @@ function computeAll() {
     if (!S.domains.includes(d)) return;
     const tasks = C[d].tasks;
     const per = tasks.map((t, i) => {
-      const r = S.resp[d][i] || {}, est = estimateText(r.text, t, mode, S.cluster), ov = S.ov[d][i];
+      const r = S.resp[d][i] || {}, est = estimateText(r.text, t, mode, S.cluster, i), ov = S.ov[d][i];
       let teacher = null;
       if (ov && Object.values(ov).filter(v => v).length === 3) teacher = r1(clamp(Object.values(ov).reduce((a, b) => a + b, 0) / 3, 1, t.cap || 6));
-      const noEvidence = est.blank && !r.recorded;
-      const used = teacher != null ? teacher : noEvidence ? 1 : est.pl;
-      return { est, teacher, used, src: teacher != null ? "teacher rubric" : est.blank && r.recorded ? "recorded — needs teacher score" : "built-in estimate", needs: teacher == null && est.blank && r.recorded };
+      const needs = teacher == null && est.blank && r.recorded;   // student spoke, but no words were captured
+      const used = teacher != null ? teacher : needs ? null : est.pl;
+      return { est, teacher, used, src: teacher != null ? "teacher rubric" : needs ? "needs teacher score" : "built-in estimate", needs };
     });
-    out[d] = { pl: combineTasks(per.map(p => p.used), tasks, wts), per }; out.has[d] = true;
+    const scored = per.map((p, i) => i).filter(i => per[i].used != null);
+    out[d] = { pl: scored.length ? combineTasks(scored.map(i => per[i].used), scored.map(i => tasks[i]), scored.map(i => wts[i])) : null, per, pending: per.some(p => p.needs) };
+    out.has[d] = true;
   });
-  DOMAINS.forEach(d => { if (out.has[d]) out[d].ss = plToSS(S.cluster, { listening: "L", speaking: "S", reading: "R", writing: "W" }[d], out[d].pl); });
-  if (DOMAINS.every(d => out.has[d])) out.comp = composites(S.cluster, out.listening.pl, out.speaking.pl, out.reading.pl, out.writing.pl);
+  DOMAINS.forEach(d => { if (out.has[d] && out[d].pl != null) out[d].ss = plToSS(S.cluster, { listening: "L", speaking: "S", reading: "R", writing: "W" }[d], out[d].pl); });
+  if (DOMAINS.every(d => out.has[d] && out[d].pl != null)) out.comp = composites(S.cluster, out.listening.pl, out.speaking.pl, out.reading.pl, out.writing.pl);
   return out;
 }
 
@@ -1311,15 +1339,17 @@ function renderResults() {
   let html = `<div class="brand"><div class="logo">ELP</div><div><h1>Practice Test Score Report</h1></div></div>
   <p class="sub"><b>${esc(S.name)}</b> · ${C.label} · ${new Date().toLocaleDateString()} · about ${S.mins} minute${S.mins === 1 ? "" : "s"}</p>
   <div class="card"><table class="rt isr"><tr><th>Language domain</th><th>Proficiency level (1.0–6.0)</th><th>Approximate scale score (100–600)</th></tr>`;
-  DOMAINS.forEach(d => { if (R.has[d]) html += row(DNAME[d], d === "listening" || d === "reading" ? `${R[d].correct} of ${R[d].n} correct${R[d].stoppedAt ? " · stopped early" : ""}` : R[d].per.some(p => p.needs) ? "⚠ needs teacher score" : R[d].per.every(p => p.teacher != null) ? "teacher rubric" : "built-in estimate", R[d].pl, R[d].ss);
+  DOMAINS.forEach(d => { if (R.has[d] && R[d].pl == null) html += `<tr><td><b>${DNAME[d]}</b><div class="small">⚠ needs teacher score</div></td><td colspan="2">The student's answers were recorded but no words were captured. Listen to the recordings below and choose rubric scores.</td></tr>`;
+    else if (R.has[d]) html += row(DNAME[d], d === "listening" || d === "reading" ? `${R[d].correct} of ${R[d].n} correct${R[d].stoppedAt ? " · stopped early" : ""}` : R[d].per.some(p => p.needs) ? "⚠ some answers need a teacher score" : R[d].per.every(p => p.teacher != null) ? "teacher rubric" : "built-in estimate", R[d].pl, R[d].ss);
     else html += `<tr><td><b>${DNAME[d]}</b></td><td colspan="2">not taken</td></tr>`; });
   if (R.comp) { const c = R.comp;
     html += row("Oral Language", "50% Listening + 50% Speaking", c.oral.pl, c.oral.ss) + row("Literacy", "50% Reading + 50% Writing", c.literacy.pl, c.literacy.ss) +
       row("Comprehension", "70% Reading + 30% Listening", c.comprehension.pl, c.comprehension.ss) + row("Overall", "35% Reading + 35% Writing + 15% Listening + 15% Speaking", c.overall.pl, c.overall.ss); }
+  if (!R.comp && DOMAINS.every(d => R.has[d])) html += `<tr><td colspan="3" class="note">Composite and Overall scores will appear after the teacher scores the recorded Speaking answers.</td></tr>`;
   html += `</table><p class="note small">Composite scores are combined on the scale-score metric, the way ACCESS does it. An Overall score appears only when all four domains are taken.</p></div>`;
 
   html += `<div class="card"><h2>Students at this level generally can…</h2><table class="rt"><tr><th>Domain</th><th>Level</th><th>Students at this level generally can…</th></tr>` +
-    DOMAINS.filter(d => R.has[d]).map(d => { const L = Math.floor(R[d].pl); return `<tr><td>${DNAME[d]}</td><td class="${lvClass(L)}"><b>${L}</b></td><td>${CAN_DO[d][L]}</td></tr>`; }).join("") + `</table></div>`;
+    DOMAINS.filter(d => R.has[d] && R[d].pl != null).map(d => { const L = Math.floor(R[d].pl); return `<tr><td>${DNAME[d]}</td><td class="${lvClass(L)}"><b>${L}</b></td><td>${CAN_DO[d][L]}</td></tr>`; }).join("") + `</table></div>`;
 
   ["speaking", "writing"].forEach(d => {
     if (!R.has[d]) return;
@@ -1333,7 +1363,7 @@ function renderResults() {
           ${r.audio ? `<audio controls src="${r.audio}" style="width:100%;margin:6px 0"></audio>` : d === "speaking" ? `<div class="note">${r.recorded ? "Recorded, but no audio was saved in this browser." : "No recording."}</div>` : ""}
           <div class="resp">${r.text ? esc(r.text) : "<i>(no words captured)</i>"}</div></td>
           <td>${p.est.blank ? "—" : p.est.pl.toFixed(1)}<div class="note small">${esc(p.est.why || "")}</div></td>
-          <td class="rub">${rub}</td><td><b>${p.used.toFixed(1)}</b><div class="note small">${p.src}</div></td></tr>`; }).join("") + `</table></div>`;
+          <td class="rub">${rub}</td><td><b>${p.used == null ? "—" : p.used.toFixed(1)}</b><div class="note small">${p.src}</div></td></tr>`; }).join("") + `</table></div>`;
   });
 
   ["listening", "reading"].forEach(d => {
@@ -1362,7 +1392,7 @@ function renderResults() {
 function goHome() { ["results", "test", "imgcheck"].forEach(x => $("#" + x).classList.add("hidden")); $("#home").classList.remove("hidden"); refreshHistoryCount(); window.scrollTo(0, 0); }
 function summaryText(R) {
   const C = TESTS[S.cluster], L = [`ELP Practice Test (unofficial, ACCESS format) — ${S.name}, ${C.label}, ${new Date().toLocaleDateString()}`];
-  DOMAINS.forEach(d => { if (R.has[d]) L.push(`${DNAME[d]}: ${R[d].pl.toFixed(1)} ${plName(R[d].pl)} (≈${R[d].ss})`); });
+  DOMAINS.forEach(d => { if (R.has[d] && R[d].pl != null) L.push(`${DNAME[d]}: ${R[d].pl.toFixed(1)} ${plName(R[d].pl)} (≈${R[d].ss})`); });
   if (R.comp) L.push(`Oral ${R.comp.oral.pl.toFixed(1)} | Literacy ${R.comp.literacy.pl.toFixed(1)} | Comprehension ${R.comp.comprehension.pl.toFixed(1)} | OVERALL ${R.comp.overall.pl.toFixed(1)} ${plName(R.comp.overall.pl)}`);
   return L.join("\n");
 }
@@ -1374,7 +1404,7 @@ function download(name, data, type) {
 /* ---------- saved results (this browser) ---------- */
 const HCOLS = ["Date", "Student", "Grade cluster", "Listening", "Reading", "Speaking", "Writing", "Oral", "Literacy", "Comprehension", "Overall", "Listening correct", "Reading correct", "Minutes", "Writing 1", "Writing 2", "Speaking 1", "Speaking 2", "Speaking 3", "Speaking 4"];
 function historyRow(R) {
-  const f = d => R.has[d] ? R[d].pl.toFixed(1) : "", c = k => R.comp ? R.comp[k].pl.toFixed(1) : "";
+  const f = d => R.has[d] && R[d].pl != null ? R[d].pl.toFixed(1) : "", c = k => R.comp ? R.comp[k].pl.toFixed(1) : "";
   const tx = (d, i) => ((S.resp[d] || [])[i] || {}).text || "";
   return { id: S.id, Date: new Date().toLocaleDateString(), Student: S.name, "Grade cluster": TESTS[S.cluster].label, Listening: f("listening"), Reading: f("reading"), Speaking: f("speaking"), Writing: f("writing"),
     Oral: c("oral"), Literacy: c("literacy"), Comprehension: c("comprehension"), Overall: c("overall"),
