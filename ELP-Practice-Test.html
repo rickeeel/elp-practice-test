@@ -122,6 +122,9 @@ body.theme-dark .dirs h2{color:#9cc3ff}
 .recbtn:disabled{background:#9fb4cf}
 .timebar{height:16px;background:#e3e8ef;border:1px solid var(--line);border-radius:3px;overflow:hidden;margin:12px 0 4px}
 .timebar i{display:block;height:100%;background:var(--blue2);width:0}
+.meter{height:12px;background:#e3e8ef;border:1px solid var(--line);border-radius:6px;overflow:hidden;margin:8px 0 2px;max-width:320px}
+.meter i{display:block;height:100%;width:0;background:#3aa655;transition:width .08s}
+.meterlbl{font-size:13px;color:#555}
 .dot{width:12px;height:12px;border-radius:50%;background:#fff;display:inline-block}
 .recbtn.stop .dot{border-radius:2px;animation:blink 1s infinite}
 @keyframes blink{50%{opacity:.3}}
@@ -193,6 +196,17 @@ select{font-size:14px;padding:4px}
 .rub select{font-size:13px;margin:2px 0;max-width:100%}
 .rub label{display:block;font-size:12px;color:#445;margin-top:4px}
 .small{font-size:12px}
+
+@media print{
+  body{background:#fff!important}
+  body>*:not(#results){display:none!important}
+  #results{display:block!important;max-width:none!important;padding:0!important;margin:0!important}
+  #results button,#results audio,#results .noprint{display:none!important}
+  #results .card{break-inside:avoid;box-shadow:none!important;border:1px solid #bbb}
+  #results select{-webkit-appearance:none;appearance:none;border:none;background:none}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+.printbar{display:flex;justify-content:flex-end;gap:10px;margin:0 0 10px}
 </style>
 </head>
 <body>
@@ -209,6 +223,7 @@ select{font-size:14px;padding:4px}
     <div class="note" id="stAudio"></div><div class="note" id="micMsg"></div>
     <label class="chk">Voice speed: <input type="range" id="rate" min="0.7" max="1.1" step="0.05" style="width:160px"> <span id="rateV"></span></label>
     <details style="margin:6px 0"><summary class="note" style="cursor:pointer">Choose voices</summary><div id="voicePickers"></div></details>
+    <label class="chk"><input type="checkbox" id="stt"> Use speech-to-text in Speaking (turn off for recordings only: fewer permission pop-ups, teacher scores with the rubric)</label>
     <label class="chk"><input type="checkbox" id="rep"> Allow replaying audio (accommodation — the real test plays audio once)</label>
     <div class="row" style="margin-top:10px"><button class="go sec" id="imgBtn" style="font-size:14px;padding:7px 14px">🖼 Picture checklist &amp; prompts</button><button class="go sec" id="histBtn" style="font-size:14px;padding:7px 14px">Saved results</button><span class="note" id="imgStatus"></span></div>
   </div>
@@ -239,6 +254,7 @@ select{font-size:14px;padding:4px}
 <div id="imgcheck" class="hidden" style="max-width:1100px;margin:0 auto;padding:24px 20px 60px"></div>
 <!-- ================= RESULTS ================= -->
 <div id="results" class="hidden"></div>
+
 
 <script>// ===== TEST CONTENT (original items aligned to the WIDA ELD Standards Framework, 2020) =====
 // Listening & Reading: 4 thematic folders x 3 items, each item has a target level (lvl 1–6).
@@ -394,8 +410,8 @@ g23: { label: "Grades 2–3",
         ch: ["puts out fires", "brings letters and packages", "checks out library books"], ans: 1 },
       { lvl: 4, lines: [["T", "When the air gets very cold, rain can turn into snow. Snow falls when the temperature is below zero degrees Celsius."]], q: "When does snow fall?",
         ch: ["when it is very hot", "when it is below zero degrees Celsius", "when the wind stops"], ans: 1 },
-      { lvl: 5, lines: [["T", "Weather reporters help their communities. When a big storm is coming, they warn people so families can get ready. Families might buy water, find flashlights, and stay inside."]], q: "How do weather reporters help communities?",
-        ch: ["They stop storms from coming.", "They tell people to get ready for storms.", "They sell water and flashlights."], ans: 1 },
+      { lvl: 5, lines: [["T", "Weather reporters help their communities. When a big storm is coming, they warn people a day or two early. That gives families time to buy water, find flashlights, and make a plan."]], q: "Why is it important that weather reporters warn people early?",
+        ch: ["Families have time to prepare.", "The storm becomes smaller.", "Stores can sell more flashlights."], ans: 0 },
     ]},
   { title: "The Ice Cube Test", std: "ELD-SC.2-3.Explain", T: "f", tn: "Ms. Grant",
     pic: { p: "Students at a table with three ice cubes wrapped in aluminum foil, cloth, and newspaper, a timer, and a science notebook", fb: "🧊 🧣 📰 ⏲️", cap: "A science investigation" },
@@ -405,8 +421,8 @@ g23: { label: "Grades 2–3",
         ch: ["which material keeps ice frozen longest", "how to make ice cubes", "which material is the softest"], ans: 0 },
       { lvl: 5, lines: [["S", "It has been one hour. The ice in the cloth is the biggest!"], ["T", "Yes. The ice in the foil and the newspaper melted more."]], q: "What happened after one hour?",
         ch: ["All the ice melted the same.", "The ice in the cloth melted the least.", "The ice in the foil was the biggest."], ans: 1 },
-      { lvl: 6, lines: [["T", "So the cloth kept the warm air away from the ice better than the other materials. If we wanted to keep our lunch cold, what could we learn from this?"]], q: "What did the class learn?",
-        ch: ["Cloth can help keep things cold.", "Foil is the best way to melt ice.", "Newspaper keeps food warm."], ans: 0 },
+      { lvl: 6, lines: [["T", "So the cloth kept the warm air away from the ice better than the foil or the newspaper did. Now think about your lunch box on a hot day."]], q: "If a student wants to keep a sandwich cold until lunch, what does the experiment suggest?",
+        ch: ["Wrap it in foil, because foil is shiny.", "Wrap it in newspaper, because it is thick.", "Wrap it in cloth, because cloth kept the warm air out best."], ans: 2 },
     ]},
  ]},
  reading: { folders: [
@@ -423,7 +439,7 @@ g23: { label: "Grades 2–3",
     items: [
       { lvl: 3, text: `<p>Our class has a hamster named Peanut. Every morning, one student gives Peanut food and fresh water.</p>`, q: "What does a student do every morning?", ch: ["cleans the classroom", "feeds the hamster", "takes the hamster home"], ans: 1 },
       { lvl: 4, text: `<p>On Friday, it was Rosa's turn to take Peanut home for the weekend. She carried the cage carefully to the car. She wanted Peanut to feel safe.</p>`, q: "Why did Rosa carry the cage carefully?", ch: ["The cage was very heavy.", "She wanted Peanut to feel safe.", "She was late for the car."], ans: 1 },
-      { lvl: 5, text: `<p>On Monday, Rosa told the class, "Peanut slept all day and ran on his wheel all night!" The students laughed. Mr. Lee explained that hamsters are nocturnal, which means they are awake at night.</p>`, q: "What does <i>nocturnal</i> mean?", ch: ["awake at night", "sleepy all the time", "afraid of people"], ans: 0 },
+      { lvl: 5, text: `<p>On Monday, Rosa told the class, "Peanut slept all day long. But when we turned off the lights at bedtime, he ran on his wheel until morning!" The students laughed. Mr. Lee smiled and said, "That is normal. Hamsters are nocturnal."</p>`, q: "Based on the story, what does <i>nocturnal</i> mean?", ch: ["afraid of the dark", "active at night", "very hungry", "tired all the time"], ans: 1 },
     ]},
   { title: "Desert Life", std: "ELD-SC.2-3.Explain",
     pic: { p: "A sunny desert with tall cactus plants, sand, and a small fennec fox resting in the shade of a rock", fb: "🌵 ☀️ 🦊", cap: "The desert" },
@@ -431,7 +447,7 @@ g23: { label: "Grades 2–3",
       { lvl: 4, text: `<p>A desert gets very little rain. Cactus plants store water in their thick stems. Many desert animals, like the fennec fox, sleep during the hot day. They come out at night when it is cooler.</p>`, q: "Why do some desert animals come out at night?",
         ch: ["because they are looking for rain", "because it is cooler at night", "because cactus plants are open at night"], ans: 1 },
       { lvl: 5, text: `<p>The fennec fox has very large ears. Its ears help it hear small animals moving under the sand. Its big ears also let heat leave its body, which helps it stay cool.</p>`, q: "What are TWO ways big ears help the fennec fox?",
-        ch: ["They help it hear and stay cool.", "They help it dig and swim.", "They help it see and jump."], ans: 0 },
+        ch: ["They help it dig and stay cool.", "They help it find food and stay cool.", "They help it hear and find water.", "They help it hide under the sand."], ans: 1 },
       { lvl: 6, text: `<p>Beavers are sometimes called "nature's engineers." They cut down trees with their strong teeth. Then they use the branches and mud to build dams across streams. A dam slows the water and makes a pond. The pond gives fish, frogs, and birds a new place to live.</p>`, q: "Why are beavers called \"nature's engineers\"?",
         ch: ["They have very strong teeth.", "They build things that change the land and water.", "They live in ponds with fish and frogs."], ans: 1 },
     ]},
@@ -495,9 +511,9 @@ g45: { label: "Grades 4–5",
       { lvl: 4, lines: [["T", "This trail is three kilometers long. We will stop to eat lunch halfway along the trail."]], q: "After how many kilometers will the class eat lunch?",
         ch: ["1.5 kilometers", "3 kilometers", "6 kilometers"], ans: 0 },
       { lvl: 5, lines: [["T", "Long ago, many towns were built next to rivers. People used rivers to get drinking water, to grow crops, and to move goods by boat. Over time, many of these towns grew into big cities."]], q: "Why were many towns built next to rivers?",
-        ch: ["Rivers kept the towns safe from storms.", "Rivers gave people water, food, and a way to travel.", "People liked to swim in the rivers."], ans: 1 },
-      { lvl: 6, lines: [["T", "The trees along the riverbank are important. Their roots hold the soil in place. Without trees, heavy rain washes soil into the river. This makes the water muddy and harms the fish, which need clear water to find food."]], q: "According to the guide, what happens if the trees are cut down?",
-        ch: ["The roots grow bigger.", "Soil washes into the river and harms the fish.", "The river becomes clearer."], ans: 1 },
+        ch: ["Rivers protected the towns from storms.", "Rivers met several of people's most important needs.", "Boats were cheaper than building roads.", "People liked to swim in the rivers."], ans: 1 },
+      { lvl: 6, lines: [["T", "The trees along the riverbank are important. Their roots hold the soil in place. Without them, heavy rain washes loose soil into the river, and the water turns cloudy and brown. The fish here hunt by sight, so they need clear water."]], q: "Why would cutting down the trees be harmful to the fish?",
+        ch: ["The fish would lose the shade they sleep in.", "Muddy water would make it hard for the fish to see their food.", "The tree roots would grow into the river and block it.", "Heavy rain would wash the fish onto the land."], ans: 1 },
     ]},
   { title: "Back in Class", std: "ELD-LA.4-5.Argue", T: "f", tn: "Ms. Okafor",
     pic: { p: "Two fourth-grade students presenting a poster about protecting rivers to their class, with drawings of trees, fish, and a recycling bin", fb: "🧑‍🏫 🪧 🐟 ♻️", cap: "Student presentations" },
@@ -527,8 +543,8 @@ g45: { label: "Grades 4–5",
         ch: ["Raised-letter books were too slow to read.", "He wanted to write music.", "His teacher asked him to make a game."], ans: 0 },
       { lvl: 4, text: `<p>Today, braille is used all over the world. You can find it on elevator buttons, on medicine boxes, and on signs in public buildings.</p>`, q: "What is the main idea of this paragraph?",
         ch: ["Braille is used in many places today.", "Elevators have many buttons.", "Medicine boxes are hard to open."], ans: 0 },
-      { lvl: 5, text: `<p>Some inventions happen by accident. In 1945, engineer Percy Spencer was testing a machine that made microwaves for radar. He noticed that a chocolate bar in his pocket had melted. Curious, he placed popcorn kernels near the machine. They popped! His discovery led to the microwave oven.</p>`, q: "Which word best describes Percy Spencer in this story?",
-        ch: ["careless", "curious", "angry", "hungry"], ans: 1 },
+      { lvl: 5, text: `<p>Some inventions happen by accident. In 1945, engineer Percy Spencer was testing a machine that made microwaves for radar. He noticed that a chocolate bar in his pocket had melted. Instead of ignoring it, he placed popcorn kernels near the machine to see what would happen. They popped! His discovery led to the microwave oven.</p>`, q: "Which word best describes Percy Spencer in this story?",
+        ch: ["careless", "inquisitive", "frustrated", "hungry"], ans: 1 },
     ]},
   { title: "Fractions at the Bake Sale", std: "ELD-MA.4-5.Explain",
     pic: { p: "Fourth graders at a school bake sale table with a pie cut into eight slices, cookies, and a price sign shape with no words", fb: "🥧 🍪 💵", cap: "The bake sale" },
@@ -591,8 +607,8 @@ g68: { label: "Grades 6–8",
     intro: "Look at the big picture. Dr. Rivera is teaching about ecosystems. Listen to what she says.",
     items: [
       { lvl: 4, lines: [["T", "In an ecosystem, producers, like plants, make their own food using sunlight. Consumers, like rabbits, must eat other living things to get energy."]], q: "Which of these is a consumer?", ch: ["grass", "a deer", "an oak tree"], ans: 1 },
-      { lvl: 5, lines: [["T", "Imagine that a disease kills most of the foxes in this forest. Foxes eat rabbits. With fewer foxes, the rabbit population grows quickly, and the rabbits eat more and more of the grass."]], q: "According to Dr. Rivera, what happens when the foxes disappear?",
-        ch: ["The rabbits eat more grass.", "The grass grows taller.", "The rabbits get sick, too."], ans: 0 },
+      { lvl: 5, lines: [["T", "Imagine that a disease kills most of the foxes in this forest. Foxes are the main predator of rabbits. With fewer foxes, the rabbit population grows very quickly. Rabbits feed mostly on grass and young plants."]], q: "Based on Dr. Rivera's explanation, what would most likely happen to the grass?",
+        ch: ["It would grow taller, because there are fewer foxes.", "It would decrease, because more rabbits would eat it.", "It would stay the same, because foxes do not eat grass.", "It would get sick, like the foxes."], ans: 1 },
       { lvl: 6, lines: [["T", "Scientists have noticed that many coral reefs are turning white. This is called bleaching. When ocean water becomes too warm, corals push out the tiny algae that live inside them. Because these algae provide most of the coral's food and its color, the coral can starve if the water stays warm for too long."]], q: "Why can bleaching be deadly for coral?",
         ch: ["White coral attracts more predators.", "The coral loses its main source of food.", "The algae grow too quickly and cover the coral."], ans: 1 },
     ]},
@@ -637,7 +653,7 @@ g68: { label: "Grades 6–8",
     items: [
       { lvl: 5, text: `<p>(1) Should middle schools start later in the morning? (2) Sleep scientists have found that teenagers' internal clocks shift during puberty, making it difficult for them to fall asleep before 11 p.m. (3) Consequently, early start times can leave students tired.</p>`, q: "What does <i>consequently</i> show in sentence 3?", ch: ["a result", "a contrast", "an example", "a question"], ans: 0 },
       { lvl: 6, text: `<p>(4) Opponents argue that later start times would disrupt bus schedules and after-school activities. (5) Nevertheless, several districts that delayed their start times reported improved attendance and higher grades.</p>`, q: "Which sentence gives the strongest evidence that later start times can help students?", ch: ["Sentence 2", "Sentence 3", "Sentence 4", "Sentence 5"], ans: 3 },
-      { lvl: 6, text: `<p>Reread sentences 4 and 5.</p>`, q: "Why does the author include sentence 4?",
+      { lvl: 6, text: `<p><i>Reread sentences 4 and 5.</i></p><p>(4) Opponents argue that later start times would disrupt bus schedules and after-school activities. (5) Nevertheless, several districts that delayed their start times reported improved attendance and higher grades.</p>`, q: "Why does the author include sentence 4?",
         ch: ["to acknowledge an opposing view before responding to it", "to prove that later start times are a bad idea", "to describe how buses work", "to change the topic of the passage"], ans: 0 },
     ]},
  ]},
@@ -677,8 +693,8 @@ g912: { label: "Grades 9–12",
     items: [
       { lvl: 3, lines: [["T", "Plan A costs twenty-five dollars a month, plus five dollars for each gigabyte of data. Elena used three gigabytes this month."]], q: "How much did Elena pay?", ch: ["$30", "$40", "$75"], ans: 1 },
       { lvl: 4, lines: [["T", "Plan B costs forty-five dollars a month for unlimited data."], ["S", "So if I use five gigabytes, Plan A would cost fifty dollars, and Plan B would cost forty-five."]], q: "Which plan is cheaper for someone who uses five gigabytes?", ch: ["Plan A", "Plan B", "They cost the same."], ans: 1 },
-      { lvl: 5, lines: [["T", "Let's find the break-even point. That's the amount of data where both plans cost exactly the same. Twenty-five plus five times x equals forty-five."], ["S", "So x equals four. At four gigabytes, both plans cost forty-five dollars."]], q: "What is a break-even point?",
-        ch: ["the point where both plans cost the same", "the cheapest plan available", "the most data a person can use"], ans: 0 },
+      { lvl: 6, lines: [["T", "Let's find the break-even point. Twenty-five plus five times x equals forty-five, so x equals four."], ["S", "So at exactly four gigabytes, it doesn't matter which plan I choose."]], q: "For someone who uses more than four gigabytes a month, which plan is the better choice, and why?",
+        ch: ["Plan A, because its monthly fee is lower.", "Plan B, because its price does not go up with extra data.", "Either plan, because they cost the same.", "Plan A, because each gigabyte costs only five dollars."], ans: 1 },
     ]},
   { title: "Chemistry and Biology", std: "ELD-SC.9-12.Explain", T: "f", tn: "Dr. Mensah",
     pic: { p: "High school biology lab with a teacher at the front, a rusty iron nail in a beaker, petri dishes with bacteria colonies, safety goggles", fb: "🧫 🔩 🥽 🧬", cap: "Science lab" },
@@ -686,7 +702,7 @@ g912: { label: "Grades 9–12",
     items: [
       { lvl: 4, lines: [["T", "In a chemical change, a new substance is formed. For example, when iron rusts, it combines with oxygen to make iron oxide. In a physical change, like ice melting, the substance stays the same."]], q: "Which of these is a chemical change?", ch: ["wood burning", "ice melting", "paper being cut"], ans: 0 },
       { lvl: 5, lines: [["S", "Dr. Mensah, why does the nail in salt water rust faster than the nail in fresh water?"], ["T", "Salt water conducts electricity better, which speeds up the reaction between iron and oxygen."]], q: "Why does the nail in salt water rust faster?",
-        ch: ["Salt water speeds up the reaction.", "Fresh water has no oxygen.", "Salt water is colder."], ans: 0 },
+        ch: ["Salt water contains more oxygen than fresh water.", "Salt water helps the iron and oxygen react more quickly.", "Fresh water conducts electricity better than salt water.", "Salt forms a layer that protects the iron."], ans: 1 },
       { lvl: 6, lines: [["T", "Antibiotics kill most bacteria, but a few may survive because of random genetic differences. If a patient stops taking the medicine too early, those surviving bacteria can multiply. Over time, the population becomes dominated by resistant bacteria, making infections much harder to treat. It is natural selection happening on a timescale we can actually observe."]], q: "What does Dr. Mensah suggest about stopping antibiotics early?",
         ch: ["It can help resistant bacteria spread.", "It makes all bacteria weaker.", "It has no effect on bacteria."], ans: 0 },
     ]},
@@ -781,9 +797,10 @@ function estimateMC(items, answers) {
     if (ll > bestLL) { bestLL = ll; best = th; }
   }
   const byCount = 1 + 5 * Math.pow(correct / n, 1.15);
-  return { pl: r1(clamp(0.5 * best + 0.5 * byCount, 1, 6)), correct, n };
+  return { pl: r1(clamp(0.7 * best + 0.3 * byCount, 1, 6)), correct, n };
 }
 
+const AUTO_MAX = 4.5;
 // Built-in estimate for written/spoken responses.
 // Each response is judged against (1) what THAT TASK asks for and (2) what is typical for the
 // grade cluster, so a short task answered fully (e.g. a list of words, or one sentence) is not
@@ -832,8 +849,11 @@ function estimateText(text, task, mode, cluster, taskIndex) {
     if (c1 + c2 === 0) pl = Math.min(pl, 3.5);
     if (n < target * 0.4) pl = Math.min(pl, 3.5);
   }
-  pl = clamp(pl, 1, task.cap || 6);
-  return { pl: r1(pl), n, why: `${n} word${n === 1 ? "" : "s"} (task asks for about ${target})${mode === "w" ? ", " + sents.length + " sentence" + (sents.length === 1 ? "" : "s") : ""}, ${c1 + c2} linking word${c1 + c2 === 1 ? "" : "s"}` };
+  // Automatic scoring can count words and linking words but cannot judge the precision and control of levels 5-6,
+  // so the built-in estimate stops at 4.5. Teachers award higher levels with the rubric.
+  const top = Math.min(task.cap || 6, AUTO_MAX), capped = pl > top;
+  pl = clamp(pl, 1, top);
+  return { pl: r1(pl), n, why: `${n} word${n === 1 ? "" : "s"} (task asks for about ${target})${mode === "w" ? ", " + sents.length + " sentence" + (sents.length === 1 ? "" : "s") : ""}, ${c1 + c2} linking word${c1 + c2 === 1 ? "" : "s"}${capped && top === AUTO_MAX ? ". Automatic scoring stops at 4.5; use the rubric to award a higher level" : ""}` };
 }
 
 // A task scored at its ceiling counts at the level shown on harder tasks.
@@ -880,6 +900,9 @@ const DNAME = { listening: "Listening", reading: "Reading", speaking: "Speaking"
 const DMIN = { listening: 8, reading: 10, speaking: 6, writing: 10 };
 const PLN = ["", "Entering", "Emerging", "Developing", "Expanding", "Bridging", "Reaching"];
 const IMG_DIR = "images/";
+// Pictures load from images/<name>.png; if a picture is missing, the emoji picture is shown.
+const jpg = f => f.replace(/\.png$/i, ".jpg");
+const IMG_FALLBACK = "if(!this.dataset.png){this.dataset.png=1;this.src=this.src.replace(/\\.jpg$/i,'.png')}else{this.remove()}";
 const LET = "abcd";
 
 const S = { name: "", cluster: null, domains: DOMAINS.slice(), repeatAudio: false, rate: 0.9,
@@ -908,6 +931,19 @@ function reg(o, file, where, kind) { if (!o) return; o.file = o.file || file; IM
     C.writing.tasks.forEach((t, i) => reg(t.pic, `${g}-W${i + 1}.png`, `${C.label} Writing task ${i + 1}`));
   }
 })();
+// Mix up answer positions (the same order for every student) so the correct answer is not usually "A".
+// Picture files stay attached to their choices because file names were assigned above.
+(function shuffleChoices() {
+  const hash = str => { let x = 2166136261; for (const c of str) { x ^= c.charCodeAt(0); x = Math.imul(x, 16777619); } return x >>> 0; };
+  for (const C of Object.values(TESTS)) for (const d of ["listening", "reading"]) C[d].folders.forEach(f => f.items.forEach(it => {
+    const txt = it.ch.map(choiceText);
+    if (txt.every(t => /^(\$?[\d.,\/]+\b|Sentence \d|[\d]+\s)/.test(t))) return; // keep numbers and sentence numbers in order
+    const correct = it.ch[it.ans], a = it.ch.slice();
+    let seed = hash(it.q + "|" + txt.join("|"));
+    for (let i = a.length - 1; i > 0; i--) { seed = (Math.imul(seed, 1103515245) + 12345) >>> 0; const j = (seed >>> 8) % (i + 1); [a[i], a[j]] = [a[j], a[i]]; }
+    it.ch = a; it.ans = a.indexOf(correct);
+  }));
+})();
 function fullPrompt(r) { return r.kind === "portrait" ? r.o.p : (r.kind === "object" || r.kind === "choice" ? STYLE_OBJ + ". Subject: " + r.o.p : STYLE + ". Scene: " + r.o.p + ". Wide 4:3 landscape."); }
 
 /* ---------- picture HTML with automatic emoji fallback ---------- */
@@ -928,7 +964,8 @@ function fbHTML(fb) {
   if (kind === "ball") return SVGS.ball({ red: "#e53935", blue: "#1e63d6", yellow: "#fdd835" }[arg] || arg);
   return "";
 }
-function imgTag(o) { return o && o.file ? `<img alt="" src="${IMG_DIR}${o.file}" onload="this.parentNode.classList.add('hasimg')" onerror="this.remove()">` : ""; }
+const imgSrc = f => IMG_DIR + f;   // images/<name>.png — upload a file with the same name to replace a picture
+function imgTag(o) { return o && o.file ? `<img alt="" src="${imgSrc(o.file)}" onload="this.parentNode.classList.add('hasimg')" onerror="this.remove()">` : ""; }
 function picHTML(o) { return o ? `<div class="pic">${imgTag(o)}<div class="emo">${fbHTML(o.fb)}</div>${o.cap ? `<div class="cap">${esc(o.cap)}</div>` : ""}</div>` : ""; }
 function choiceInner(c) {
   if (typeof c === "string") return `<span class="ctext">${esc(c)}</span>`;
@@ -939,13 +976,15 @@ function choiceText(c) { return c == null ? "(no answer)" : typeof c === "string
 
 /* ---------- audio: browser voices, chosen per speaker ---------- */
 let VOICES = [];
-function loadVoices() { if (!window.speechSynthesis) return; VOICES = speechSynthesis.getVoices().filter(v => /^en[-_]/i.test(v.lang) && !/^(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Junior|Ralph|Fred|Kathy|Eddy|Flo|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley)\b/i.test(v.name)); fillVoicePickers(); }
+// Mac novelty/robot voices that should never be picked automatically or offered
+const NOVELTY = /\b(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Hysterical|Jester|Organ|Pipe Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Fred|Junior|Ralph|Kathy|Grandma|Grandpa|Eddy|Flo|Reed|Rocko|Sandy|Shelley)\b/i;
+function loadVoices() { if (!window.speechSynthesis) return; VOICES = speechSynthesis.getVoices().filter(v => /^en[-_]/i.test(v.lang) && !NOVELTY.test(v.name)); fillVoicePickers(); }
 const ROLES = { narrator: "Narrator", teacherF: "Teacher (woman)", teacherM: "Teacher (man)", student: "Student" };
 const PREF = {
   narrator: [/Google US English/i, /Aria.*Natural/i, /Jenny.*Natural/i, /Samantha/i, /Zira/i, /female/i],
   teacherF: [/Michelle.*Natural/i, /Jenny.*Natural/i, /Aria.*Natural/i, /Google UK English Female/i, /Karen/i, /Samantha/i, /Zira/i],
-  teacherM: [/Guy.*Natural/i, /Andrew.*Natural/i, /Christopher.*Natural/i, /Google UK English Male/i, /Daniel/i, /David/i, /Alex/i, /male/i],
-  student:  [/Ana.*Natural/i, /Google US English/i, /Samantha/i, /Zira/i]
+  teacherM: [/Guy.*Natural/i, /Andrew.*Natural/i, /Christopher.*Natural/i, /Google UK English Male/i, /Daniel/i, /David/i, /Alex/i, /Aaron/i, /\bMale\b/i],
+  student:  [/Ana.*Natural/i, /Emma.*Natural/i, /Nicky/i, /Ava/i, /Allison/i, /Susan/i, /Samantha/i, /Google US English/i, /Zira/i]
 };
 if (window.speechSynthesis) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
 function pickVoice(role) {
@@ -966,25 +1005,29 @@ function sayChunk(text, role) {
   return new Promise(res => {
     const u = new SpeechSynthesisUtterance(text), v = pickVoice(role);
     if (v) u.voice = v; u.lang = v ? v.lang : "en-US";
-    u.rate = S.rate; u.pitch = role === "student" ? 1.25 : role === "teacherM" ? 0.95 : 1;
+    u.rate = S.rate; u.pitch = 1; // pitch changes make Chrome voices sound distorted
     let done = false; const fin = () => { if (!done) { done = true; res(); } };
     u.onend = fin; u.onerror = fin;
     speechSynthesis.speak(u);
     setTimeout(fin, 3000 + text.length * 110 / S.rate);
   });
 }
+// Expand titles/abbreviations so the voice does not pause after "Mr." etc.
+function sayable(t) {
+  return String(t).replace(/\b(Mrs|Mr|Ms|Dr)\.\s*/g, (m, a) => ({ Mrs: "Missus ", Mr: "Mister ", Ms: "Miz ", Dr: "Doctor " })[a])
+    .replace(/\b([apAP])\.[mM]\.(?=\s+["“(]?[A-Z]|\s*$)/g, (m, a) => a.toUpperCase() + "M.").replace(/\b([ap])\.m\./gi, (m, a) => a.toUpperCase() + "M").replace(/\bRecord\b/g, "Re-cord").replace(/\brecord\b/g, "re-cord").replace(/\brecess\b/gi, "ree-sess").replace(/\be\.g\./gi, "for example").replace(/\bi\.e\./gi, "that is");
+}
+// Split only where a sentence really ends (punctuation, then a space and a new sentence), so "1.5" and similar stay whole.
+function sentences(t) { return t.split(/(?<=[.!?]["”’)]?)\s+(?=["“(]?[A-Z0-9])/).map(x => x.trim()).filter(Boolean); }
 // lines: [{role, text}] — spoken sentence by sentence with ACCESS-like pauses
-// Words that read-aloud voices often say wrong (spoken text only; the screen is unchanged)
-const SAY = [[/\bRecord\b/g, "Re-cord"], [/\brecord\b/g, "re-cord"], [/\brecess\b/gi, "ree-sess"]];
-const fixSay = t => SAY.reduce((a, [re, r]) => a.replace(re, r), t);
 async function speak(lines, opts = {}) {
   if (!window.speechSynthesis || !VOICES.length && !speechSynthesis.getVoices().length) return false;
   speaking = true; cancelSpeech = false;
   try {
     for (let i = 0; i < lines.length; i++) {
       const l = lines[i];
-      const parts = l.text.match(/[^.!?]+[.!?]+["”’]?|[^.!?]+$/g) || [l.text];
-      for (const p of parts) { if (cancelSpeech) return true; await sayChunk(fixSay(p.trim()), l.role); await wait(280); }
+      const parts = sentences(sayable(l.text));
+      for (const p of parts) { if (cancelSpeech) return true; await sayChunk(p.trim(), l.role); await wait(280); }
       if (i < lines.length - 1) await wait(650);
     }
     if (opts.tone && !cancelSpeech) tone();
@@ -1154,44 +1197,110 @@ function renderSpeakIntro(s) {
 
 /* ---------- recording: audio for the teacher + speech-to-text when the browser offers it ---------- */
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+// Live microphone level, so students and teachers can SEE that sound is coming through.
+const VOICE_LEVEL = 0.02;
+function micMeter(stream, onLevel) {
+  try {
+    const ac = new (window.AudioContext || window.webkitAudioContext)();
+    if (ac.state === "suspended") ac.resume().catch(() => {});
+    const an = ac.createAnalyser(); an.fftSize = 1024; ac.createMediaStreamSource(stream).connect(an);
+    const buf = new Uint8Array(an.fftSize);
+    const iv = setInterval(() => { an.getByteTimeDomainData(buf); let sum = 0; for (const v of buf) { const x = (v - 128) / 128; sum += x * x; } onLevel(Math.sqrt(sum / buf.length)); }, 100);
+    return () => { clearInterval(iv); try { ac.close(); } catch (e) {} };
+  } catch (e) { return () => {}; }
+}
+// One microphone stream per page visit, reused for the mic test and every Speaking answer,
+// so the browser asks for permission once instead of every time.
+const MIC = {
+  stream: null,
+  live() { return this.stream && this.stream.getAudioTracks().some(t => t.readyState === "live"); },
+  async get() {
+    if (this.live()) return this.stream;
+    this.stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true } });
+    return this.stream;
+  },
+  release() { if (this.stream) this.stream.getTracks().forEach(t => t.stop()); this.stream = null; }
+};
+// One speech-to-text session kept running through the Speaking section (each new session can trigger another permission prompt).
+const STT = {
+  r: null, keep: false, fatal: false, onText: null, onPartial: null, onError: null,
+  enabled() { return !!SR && store.get("stt", true); },
+  ensure() {
+    if (!this.enabled() || this.fatal) return false;
+    this.keep = true;
+    if (this.r) return true;
+    try {
+      const r = new SR(); r.lang = "en-US"; r.continuous = true; r.interimResults = true;
+      r.onresult = e => { let fin = "", par = ""; for (let i = e.resultIndex; i < e.results.length; i++) { const tr = e.results[i][0].transcript; if (e.results[i].isFinal) fin += tr; else par += tr; }
+        if (fin && this.onText) this.onText(fin); if (this.onPartial) this.onPartial(par); };
+      r.onerror = e => { if (SR_ERR[e.error]) { this.fatal = true; if (this.onError) this.onError(e.error); } };
+      r.onend = () => { this.r = null; if (this.keep && !this.fatal) this.ensure(); };
+      r.start(); this.r = r; return true;
+    } catch (e) { return false; }
+  },
+  stop() { this.keep = false; if (this.r) { try { this.r.stop(); } catch (e) {} this.r = null; } }
+};
+const MAC_MIC_HELP = "On a Mac: open System Settings → Privacy &amp; Security → Microphone, turn on Google Chrome (or Microsoft Edge), then quit and reopen the browser. Also check System Settings → Sound → Input and pick the right microphone.";
+const SR_ERR = {
+  "network": "Speech-to-text could not reach Google’s speech service (the internet or the school network may be blocking it). Your voice is still being recorded for your teacher.",
+  "not-allowed": "Speech-to-text is blocked in this browser window. Your voice is still being recorded for your teacher.",
+  "service-not-allowed": "Speech-to-text is blocked in this browser window. Your voice is still being recorded for your teacher.",
+  "audio-capture": "Speech-to-text cannot use the microphone. Your voice may still be recorded.",
+  "language-not-supported": "Speech-to-text does not support this language setting. Your voice is still being recorded."
+};
 const REC = {
-  active: false, sr: null, mr: null, chunks: [], idx: null, t0: 0, secs: 30, timer: null,
-  start(idx, secs) {
-    this.idx = idx; this.secs = secs; this.active = true; this.t0 = Date.now();
-    S.resp.speaking[idx].recorded = true;
-    let stt = false;
-    if (SR) {
-      try {
-        const r = new SR(); r.lang = "en-US"; r.continuous = true; r.interimResults = true;
-        r.onresult = e => { let fin = "", par = ""; for (let i = e.resultIndex; i < e.results.length; i++) { const tr = e.results[i][0].transcript; if (e.results[i].isFinal) fin += tr; else par += tr; }
-          const ta = $("#trans"); if (fin && ta) { ta.value = (ta.value + " " + fin).trim(); saveTranscript(); } const p = $("#partial"); if (p) p.textContent = par ? "… " + par : ""; };
-        r.onerror = e => { if (e.error === "not-allowed" || e.error === "service-not-allowed") $("#recMsg").textContent = "Speech-to-text is blocked in this browser window. Your voice is still being recorded for your teacher."; };
-        r.onend = () => { if (this.active) { try { r.start(); } catch (e) {} } };
-        r.start(); this.sr = r; stt = true;
-      } catch (e) {}
+  active: false, sr: null, mr: null, chunks: [], idx: null, t0: 0, secs: 30, timer: null, stopMeter: null, voicedMs: 0, peak: 0, srFatal: false, stream: null,
+  setMsg(t) { const m = $("#recMsg"); if (m) m.innerHTML = t; },
+  async start(idx, secs) {
+    this.idx = idx; this.secs = secs; this.active = true; this.voicedMs = 0; this.peak = 0; this.chunks = [];
+    const resp = S.resp.speaking[idx]; resp.recorded = true; resp.voiced = false;
+    // 1) Microphone (reused for the whole visit, so permission is asked only once).
+    let stream = null;
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      try { stream = await MIC.get(); }
+      catch (e) { this.setMsg("The microphone is blocked or missing. Select <b>Allow</b> if the browser asks. " + MAC_MIC_HELP + " The student can also answer out loud and the teacher can type the words in the box."); }
     }
-    this.chunks = [];
-    if (navigator.mediaDevices && window.MediaRecorder) {
-      navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-        if (!this.active) { stream.getTracks().forEach(t => t.stop()); return; }
-        const mr = new MediaRecorder(stream); this.mr = mr; const idx = this.idx;
-        mr.ondataavailable = e => this.chunks.push(e.data);
-        mr.onstop = () => { stream.getTracks().forEach(t => t.stop()); const b = new Blob(this.chunks, { type: mr.mimeType || "audio/webm" }); S.resp.speaking[idx].blob = b; S.resp.speaking[idx].audio = URL.createObjectURL(b); const pb = $("#pbWrap"); if (pb) pb.innerHTML = `<audio controls src="${S.resp.speaking[idx].audio}"></audio>`; };
-        mr.start();
-      }).catch(() => { $("#recMsg").textContent = "The microphone is not available. Answer out loud to your teacher; the teacher can type your words in the box and score them later."; });
-    } else $("#recMsg").textContent = "This browser cannot record. Answer out loud to your teacher.";
-    if (!stt) $("#trans").placeholder = "Speech-to-text is not available in this browser. A teacher may type the student's words here (optional).";
+    if (!this.active) return;
+    this.t0 = Date.now();
+    // 2) Record audio for the teacher, and show a live level meter.
+    if (stream && window.MediaRecorder) {
+      const mr = new MediaRecorder(stream); this.mr = mr;
+      mr.ondataavailable = e => { if (e.data && e.data.size) this.chunks.push(e.data); };
+      mr.onstop = () => {
+        const bl = new Blob(this.chunks, { type: mr.mimeType || "audio/webm" }); resp.blob = bl; resp.audio = URL.createObjectURL(bl);
+        const pb = $("#pbWrap"); if (pb && +($("#trans") || {}).dataset?.idx === idx) pb.innerHTML = `<audio controls src="${resp.audio}" style="width:100%;margin-top:6px"></audio>`;
+      };
+      mr.start(250);
+      this.stopMeter = micMeter(stream, lv => {
+        if (lv > this.peak) this.peak = lv;
+        if (lv > VOICE_LEVEL) this.voicedMs += 100;
+        const bar = $("#lvl"); if (bar) bar.style.width = Math.min(100, lv * 600) + "%";
+        const lb = $("#lvlLbl"); if (lb) lb.textContent = this.voicedMs > 300 ? "We can hear you ✓" : "Listening… start talking.";
+      });
+    } else if (stream) { this.setMsg("This browser cannot record audio. Answer out loud to your teacher."); }
+    // 3) Speech-to-text: one session for the whole Speaking section; words go to the answer being recorded.
+    STT.onText = fin => { if (!REC.active) return; const ta = $("#trans"); if (ta) { ta.value = (ta.value + " " + fin).trim(); saveTranscript(); } };
+    STT.onPartial = par => { const p = $("#partial"); if (p) p.textContent = REC.active && par ? "… " + par : ""; };
+    STT.onError = err => { const n = $("#sttMsg"); if (n) n.textContent = SR_ERR[err]; };
+    const stt = STT.ensure();
+    if (!stt && $("#trans")) $("#trans").placeholder = STT.enabled() ? "Speech-to-text is not working here. A teacher may type the student's words (optional)." : "Speech-to-text is off. A teacher may type the student's words here (optional).";
     this.timer = setInterval(() => { const p = (Date.now() - this.t0) / 1000 / this.secs; const bar = $("#tb"); if (bar) bar.style.width = Math.min(100, p * 100) + "%"; if (p >= 1) this.stop(); }, 200);
   },
   stop() {
     if (!this.active) return;
     this.active = false; clearInterval(this.timer);
-    if (this.sr) { try { this.sr.stop(); } catch (e) {} this.sr = null; }
+    if (this.stopMeter) { this.stopMeter(); this.stopMeter = null; }
     if (this.mr && this.mr.state !== "inactive") { try { this.mr.stop(); } catch (e) {} }
     this.mr = null;
+    const idx = this.idx, resp = S.resp.speaking[idx]; resp.voiced = this.voicedMs > 300;
     const b = $("#recBtn"); if (b) { b.classList.remove("stop"); b.innerHTML = '<span class="dot"></span> Record again'; }
-    const m = $("#recMsg"); if (m && /Recording/.test(m.textContent)) m.textContent = "Done. You can listen to your answer or record again.";
-    setTimeout(saveTranscript, 800);
+    const lb = $("#lvlLbl"); if (lb) lb.textContent = ""; const bar = $("#lvl"); if (bar) bar.style.width = "0";
+    setTimeout(() => {
+      saveTranscript();
+      if (!resp.voiced) this.setMsg("⚠ <b>We did not hear any voice.</b> Check that the microphone is on and close to your mouth, then select <b>Record again</b>. Teachers: " + MAC_MIC_HELP);
+      else if (!resp.text) this.setMsg("Your voice was recorded ✓. The words did not show up as text, so your teacher will listen to the recording and score it.");
+      else this.setMsg("Done ✓. You can listen to your answer or record again.");
+    }, 900);
     setNext(true);
   }
 };
@@ -1208,7 +1317,8 @@ function renderSpeak(s) {
       <button class="recbtn" id="recBtn" disabled><span class="dot"></span> Record</button>
       <span class="hint" style="margin-left:8px">You have about ${t.secs} seconds.</span>
       <div class="timebar"><i id="tb"></i></div>
-      <div id="recMsg" class="hint"></div><div id="pbWrap"></div>
+      <div class="meter"><i id="lvl"></i></div><div id="lvlLbl" class="meterlbl"></div>
+      <div id="recMsg" class="hint"></div><div id="sttMsg" class="hint"></div><div id="pbWrap"></div>
       <div style="margin-top:10px"><label class="hint"><b>Words we heard</b> (teachers may correct this):</label>
       <textarea id="trans" data-idx="${s.i}" rows="3" placeholder="The student's words will appear here."></textarea><div id="partial" class="partial"></div></div>
     </div></div></div>`;
@@ -1220,12 +1330,13 @@ function renderSpeak(s) {
   $("#recBtn").onclick = () => {
     if (REC.active) { REC.stop(); return; }
     $("#recBtn").classList.add("stop"); $("#recBtn").innerHTML = '<span class="dot"></span> Stop';
-    $("#recMsg").textContent = "Recording… speak clearly. Select Stop when you are done.";
+    $("#recMsg").textContent = "Recording… speak clearly. Select Stop when you are done."; $("#sttMsg").textContent = "";
     REC.start(s.i, t.secs);
   };
 }
 
 function renderWriting(s) {
+  STT.stop(); MIC.release();
   const t = s.t;
   S.resp.writing[s.i] = S.resp.writing[s.i] || { text: "" };
   $("#stage").innerHTML = `<div class="cols"><div>${picHTML(t.pic)}</div><div class="panel">
@@ -1309,9 +1420,9 @@ function computeAll() {
       const r = S.resp[d][i] || {}, est = estimateText(r.text, t, mode, S.cluster, i), ov = S.ov[d][i];
       let teacher = null;
       if (ov && Object.values(ov).filter(v => v).length === 3) teacher = r1(clamp(Object.values(ov).reduce((a, b) => a + b, 0) / 3, 1, t.cap || 6));
-      const needs = teacher == null && est.blank && r.recorded;   // student spoke, but no words were captured
+      const needs = teacher == null && est.blank && r.recorded && r.voiced !== false;   // student spoke, but no words were captured
       const used = teacher != null ? teacher : needs ? null : est.pl;
-      return { est, teacher, used, src: teacher != null ? "teacher rubric" : needs ? "needs teacher score" : "built-in estimate", needs };
+      return { est, teacher, used, src: teacher != null ? "teacher rubric" : needs ? "needs teacher score" : est.blank && r.recorded ? "recorded, but no voice was heard" : "built-in estimate", needs };
     });
     const scored = per.map((p, i) => i).filter(i => per[i].used != null);
     out[d] = { pl: scored.length ? combineTasks(scored.map(i => per[i].used), scored.map(i => tasks[i]), scored.map(i => wts[i])) : null, per, pending: per.some(p => p.needs) };
@@ -1323,6 +1434,7 @@ function computeAll() {
 }
 
 function finish() {
+  STT.stop(); MIC.release();
   clearInterval(clockTimer); stopAudio(); lineGuide(null); zoom(1);
   $("#test").classList.add("hidden"); $("#results").classList.remove("hidden");
   S.mins = Math.max(1, Math.round((Date.now() - S.start) / 60000));
@@ -1336,8 +1448,9 @@ function renderResults() {
   const C = TESTS[S.cluster], R = computeAll();
   saveHistory(R);
   const row = (name, sub, pl, ss) => `<tr><td><b>${name}</b>${sub ? `<div class="small">${sub}</div>` : ""}</td><td><b class="${lvClass(pl)}" style="font-size:20px">${pl.toFixed(1)}</b> <span class="${lvClass(pl)}">${plName(pl)}</span></td><td class="bar">${ssBar(ss)}</td></tr>`;
-  let html = `<div class="brand"><div class="logo">ELP</div><div><h1>Practice Test Score Report</h1></div></div>
+  let html = `<div class="printbar noprint"><button class="go" id="printTop">🖨 Print or save as PDF</button></div><div class="brand"><div class="logo">ELP</div><div><h1>Practice Test Score Report</h1></div></div>
   <p class="sub"><b>${esc(S.name)}</b> · ${C.label} · ${new Date().toLocaleDateString()} · about ${S.mins} minute${S.mins === 1 ? "" : "s"}</p>
+  ${["speaking", "writing"].some(d => R.has[d] && R[d].per.some(p => p.needs)) ? `<div class="card noprint" style="background:#fff6d6;border-color:#e0c060"><b>⚠ Teacher scoring needed.</b> At least one Speaking answer was recorded but did not turn into text, so its score is only a placeholder (1.0). Scroll down to <b>Speaking — teacher scoring</b>, listen to each recording, and choose the rubric levels. The scores update right away.</div>` : ""}
   <div class="card"><table class="rt isr"><tr><th>Language domain</th><th>Proficiency level (1.0–6.0)</th><th>Approximate scale score (100–600)</th></tr>`;
   DOMAINS.forEach(d => { if (R.has[d] && R[d].pl == null) html += `<tr><td><b>${DNAME[d]}</b><div class="small">⚠ needs teacher score</div></td><td colspan="2">The student's answers were recorded but no words were captured. Listen to the recordings below and choose rubric scores.</td></tr>`;
     else if (R.has[d]) html += row(DNAME[d], d === "listening" || d === "reading" ? `${R[d].correct} of ${R[d].n} correct${R[d].stoppedAt ? " · stopped early" : ""}` : R[d].per.some(p => p.needs) ? "⚠ some answers need a teacher score" : R[d].per.every(p => p.teacher != null) ? "teacher rubric" : "built-in estimate", R[d].pl, R[d].ss);
@@ -1346,7 +1459,7 @@ function renderResults() {
     html += row("Oral Language", "50% Listening + 50% Speaking", c.oral.pl, c.oral.ss) + row("Literacy", "50% Reading + 50% Writing", c.literacy.pl, c.literacy.ss) +
       row("Comprehension", "70% Reading + 30% Listening", c.comprehension.pl, c.comprehension.ss) + row("Overall", "35% Reading + 35% Writing + 15% Listening + 15% Speaking", c.overall.pl, c.overall.ss); }
   if (!R.comp && DOMAINS.every(d => R.has[d])) html += `<tr><td colspan="3" class="note">Composite and Overall scores will appear after the teacher scores the recorded Speaking answers.</td></tr>`;
-  html += `</table><p class="note small">Composite scores are combined on the scale-score metric, the way ACCESS does it. An Overall score appears only when all four domains are taken.</p></div>`;
+  html += `</table><p class="note small">Composite scores are combined on the scale-score metric, the way ACCESS does it. An Overall score appears only when all four domains are taken. This practice test is short (12 questions each in Listening and Reading), so treat each level as an estimate within about ±0.5. Speaking and Writing estimates stop at 4.5 until a teacher scores them with the rubric.</p></div>`;
 
   html += `<div class="card"><h2>Students at this level generally can…</h2><table class="rt"><tr><th>Domain</th><th>Level</th><th>Students at this level generally can…</th></tr>` +
     DOMAINS.filter(d => R.has[d] && R[d].pl != null).map(d => { const L = Math.floor(R[d].pl); return `<tr><td>${DNAME[d]}</td><td class="${lvClass(L)}"><b>${L}</b></td><td>${CAN_DO[d][L]}</td></tr>`; }).join("") + `</table></div>`;
@@ -1376,7 +1489,7 @@ function renderResults() {
   });
 
   html += `<div class="card"><h2>Save these results</h2><div class="row">
-      <button class="go" id="dlBtn">Download results (.csv)</button><button class="go sec" id="copyBtn">Copy results</button>
+      <button class="go" id="printBtn">🖨 Print or save as PDF</button><button class="go sec" id="dlBtn">Download results (.csv)</button><button class="go sec" id="copyBtn">Copy results</button>
       ${S.resp.speaking && S.resp.speaking.some(r => r && r.blob) ? `<button class="go sec" id="dlAudio">Download recordings</button>` : ""}
       <button class="go sec" id="againBtn">New test</button><span id="copyMsg" class="note"></span></div>
       <p class="note small">Results are also kept in this browser on this computer (Home → Saved results) until you clear them.</p>
@@ -1384,12 +1497,14 @@ function renderResults() {
 
   $("#results").innerHTML = html;
   document.querySelectorAll(".ovsel").forEach(s => s.onchange = () => { const d = s.dataset.d, i = +s.dataset.i; S.ov[d][i] = S.ov[d][i] || {}; S.ov[d][i][s.dataset.dim] = s.value === "" ? null : +s.value; const y = window.scrollY; renderResults(); window.scrollTo(0, y); });
+  const doPrint = () => { const t = document.title; document.title = `ELP-report-${S.name.replace(/\W+/g, "_")}-${new Date().toISOString().slice(0, 10)}`; window.print(); setTimeout(() => document.title = t, 1000); };
+  $("#printTop").onclick = doPrint; $("#printBtn").onclick = doPrint;
   $("#dlBtn").onclick = () => download(`ELP-practice-${S.name.replace(/\W+/g, "_")}-${new Date().toISOString().slice(0, 10)}.csv`, toCSV([historyRow(R)]), "text/csv");
   $("#copyBtn").onclick = async () => { try { await navigator.clipboard.writeText(summaryText(R)); $("#copyMsg").textContent = "Copied."; } catch (e) { $("#copyMsg").textContent = "Copy is blocked here."; } };
   if ($("#dlAudio")) $("#dlAudio").onclick = () => S.resp.speaking.forEach((r, i) => { if (r && r.blob) download(`ELP-${S.name.replace(/\W+/g, "_")}-speaking-${i + 1}.webm`, r.blob); });
   $("#againBtn").onclick = goHome;
 }
-function goHome() { ["results", "test", "imgcheck"].forEach(x => $("#" + x).classList.add("hidden")); $("#home").classList.remove("hidden"); refreshHistoryCount(); window.scrollTo(0, 0); }
+function goHome() { STT.stop(); MIC.release(); ["results", "test", "imgcheck"].forEach(x => $("#" + x).classList.add("hidden")); $("#home").classList.remove("hidden"); refreshHistoryCount(); window.scrollTo(0, 0); }
 function summaryText(R) {
   const C = TESTS[S.cluster], L = [`ELP Practice Test (unofficial, ACCESS format) — ${S.name}, ${C.label}, ${new Date().toLocaleDateString()}`];
   DOMAINS.forEach(d => { if (R.has[d] && R[d].pl != null) L.push(`${DNAME[d]}: ${R[d].pl.toFixed(1)} ${plName(R[d].pl)} (≈${R[d].ss})`); });
@@ -1429,7 +1544,7 @@ function showImages() {
     <div class="row" style="margin:10px 0"><button class="go sec" id="icBack">← Back</button><button class="go" id="icCSV">Download all prompts (.csv)</button><span id="icCount" class="note"></span></div>`;
   for (const [g, list] of Object.entries(groups)) {
     html += `<div class="card"><h2>${g === "people" ? "People (speaking test)" : TESTS[g].label}</h2><table class="rt imgtable"><tr><th>Picture</th><th>File name</th><th>Where it is used</th><th>Prompt</th></tr>` +
-      list.map(r => `<tr><td><span class="cimg"><img src="${IMG_DIR}${r.file}" onload="this.parentNode.classList.add('hasimg');this.closest('tr').querySelector('.st').innerHTML='<span class=have>✓ added</span>';countImgs()" onerror="this.remove()"><span class="emo" style="font-size:34px">${fbHTML(r.o.fb)}</span></span><div class="st"><span class="miss">missing</span></div></td>
+      list.map(r => `<tr><td><span class="cimg"><img src="${imgSrc(r.file)}?v=${Date.now()}" onload="this.parentNode.classList.add('hasimg');this.closest('tr').querySelector('.st').innerHTML='<span class=have>✓ added</span>';countImgs()" onerror="this.remove()"><span class="emo" style="font-size:34px">${fbHTML(r.o.fb)}</span></span><div class="st"><span class="miss">missing</span></div></td>
         <td><code>${r.file}</code></td><td class="small">${esc(r.where)}</td><td class="small">${esc(fullPrompt(r))}</td></tr>`).join("") + `</table></div>`;
   }
   $("#imgcheck").innerHTML = html;
@@ -1453,20 +1568,44 @@ function initHome() {
   $("#rate").oninput = () => { S.rate = +$("#rate").value; $("#rateV").textContent = S.rate; store.set("rate", S.rate); };
   $("#testAudio").onclick = () => speak([{ role: "narrator", text: "Number 1." }, { role: "teacherF", text: "Good morning, class. Please take out your notebooks." }, { role: "student", text: "Okay, Ms. Park." }, { role: "teacherM", text: "Hello! I am Mr. Diaz." }, { role: "narrator", text: "What should the students take out?" }], { tone: true });
   $("#testMic").onclick = async () => {
-    const m = $("#micMsg"); m.textContent = "Checking…";
-    try { const st = await navigator.mediaDevices.getUserMedia({ audio: true }); st.getTracks().forEach(t => t.stop()); m.innerHTML = `<span class="status-dot ok"></span>Microphone works.${SR ? " Speech-to-text is available in this browser." : " Speech-to-text is not available in this browser (recordings still work)."}`; }
-    catch (e) { m.innerHTML = `<span class="status-dot warn"></span>The microphone is blocked or missing. Allow the microphone for this page, or open the test in Chrome.`; }
+    const m = $("#micMsg"), btn = $("#testMic"); btn.disabled = true;
+    let st;
+    try { st = await MIC.get(); }
+    catch (e) { m.innerHTML = `<span class="status-dot warn"></span>The microphone is blocked or missing. Click the microphone icon in the address bar and choose Allow. ${MAC_MIC_HELP}`; btn.disabled = false; return; }
+    m.innerHTML = `<b>Say “Hello, my name is…” now.</b> Listening for 5 seconds…<div class="meter"><i id="mtLvl"></i></div>`;
+    let voiced = 0, words = "", srErr = "";
+    const stopM = micMeter(st, lv => { if (lv > VOICE_LEVEL) voiced += 100; const b = $("#mtLvl"); if (b) b.style.width = Math.min(100, lv * 600) + "%"; });
+    if (STT.enabled()) { STT.fatal = false; STT.onText = t => { words += t + " "; }; STT.onPartial = t => { if (t) words = words || t; }; STT.onError = e => { srErr = e; }; STT.ensure(); }
+    await wait(5000);
+    stopM(); STT.stop(); await wait(600);
+    // keep the microphone open so the test can reuse it without asking again
+    let html = voiced > 300 ? `<span class="status-dot ok"></span><b>Microphone works</b>: we heard your voice.` :
+      `<span class="status-dot warn"></span><b>No sound came through.</b> The browser is allowed to use the microphone, but it heard silence. ${MAC_MIC_HELP}`;
+    if (voiced > 300) {
+      if (!SR) html += " Speech-to-text is not available in this browser; recordings still work and teachers score them with the rubric.";
+      else if (!STT.enabled()) html += " Speech-to-text is turned off; recordings still work.";
+      else if (words.trim()) html += ` Speech-to-text works too (it heard: “${esc(words.trim().slice(0, 60))}”).`;
+      else if (srErr === "network") html += " <b>Speech-to-text is not working</b>: Google’s speech service seems to be blocked on this network. Recordings still work; you may want to turn speech-to-text off below.";
+      else if (srErr) html += ` <b>Speech-to-text is not working</b> (${esc(srErr)}). Recordings still work; you may want to turn speech-to-text off below.`;
+      else html += " Speech-to-text did not catch any words. Try again a little louder, or rely on recordings and the teacher rubric.";
+    }
+    m.innerHTML = html; btn.disabled = false;
   };
+  $("#stt").checked = store.get("stt", true);
+  $("#stt").onchange = () => store.set("stt", $("#stt").checked);
+
+
   $("#startBtn").onclick = startTest;
   $("#imgBtn").onclick = showImages;
   $("#histBtn").onclick = showHistory;
   refreshHistoryCount();
   $("#stAudio").innerHTML = window.speechSynthesis ? `<span class="status-dot ok"></span>Read-aloud voices are available.` : `<span class="status-dot warn"></span>This browser has no read-aloud voices — use Chrome or Edge.`;
   // Count pictures already added
-  let have = 0, done = 0; IMGS.forEach(r => { const im = new Image(); im.onload = () => { have++; fin(); }; im.onerror = fin; im.src = IMG_DIR + r.file; });
+  let have = 0, done = 0; IMGS.forEach(r => { const im = new Image(); im.onload = () => { have++; fin(); }; im.onerror = fin; im.src = imgSrc(r.file); });
   function fin() { if (++done === IMGS.length) $("#imgStatus").textContent = `${have} of ${IMGS.length} pictures added.`; }
 }
 initHome(); initTools();
+window.addEventListener("beforeunload", e => { if (!$("#test").classList.contains("hidden")) { e.preventDefault(); e.returnValue = ""; } });
 </script>
 </body>
 </html>
