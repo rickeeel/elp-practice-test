@@ -1074,7 +1074,7 @@ function choiceText(c) { return c == null ? "(no answer)" : typeof c === "string
 /* ---------- audio: browser voices, chosen per speaker ---------- */
 let VOICES = [];
 // Mac novelty/robot voices that should never be picked automatically or offered
-const NOVELTY = /\b(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Hysterical|Jester|Organ|Pipe Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Fred|Junior|Ralph|Kathy|Grandma|Grandpa|Eddy|Flo|Reed|Rocko|Sandy|Shelley)\b/i;
+const NOVELTY = /\b(Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Deranged|Good News|Hysterical|Jester|Organ|Pipe Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Fred|Junior|Ralph|Kathy|Grandma|Grandpa|Flo|Sandy|Shelley)\b/i;   // (Eddy, Reed and Rocko are kept: on a Mac they are the male voices used for Sam)
 function loadVoices() { if (!window.speechSynthesis) return; VOICES = speechSynthesis.getVoices().filter(v => /^en[-_]/i.test(v.lang) && !NOVELTY.test(v.name)); fillVoicePickers(); }
 const ROLES = { narrator: "Narrator", teacherF: "Teacher (woman)", teacherM: "Teacher (man)", student: "Student (Sam, a boy)" };
 const PREF = {
@@ -1084,6 +1084,7 @@ const PREF = {
   // Sam is a boy. Browsers have no child-boy voices, so use a man's voice that is different from the
   // male teacher's, and raise its pitch a little where the voice allows it (see sayChunk).
   student:  [/Brian.*Natural/i, /Eric.*Natural/i, /Christopher.*Natural/i, /Roger.*Natural/i, /Steffan.*Natural/i, /Andrew.*Natural/i, /Guy.*Natural/i,
+             /Eddy.*United States/i, /Reed.*United States/i, /Rocko.*United States/i, /\bEddy\b/i, /\bReed\b/i,
              /\bEvan\b/i, /\bNathan\b/i, /\bAaron\b/i, /\bTom\b/i, /\bAlex\b/i, /Google UK English Male/i, /\bMark\b/i, /\bDavid\b/i, /\bDaniel\b/i, /\bMale\b/i]
 };
 if (window.speechSynthesis) { loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
